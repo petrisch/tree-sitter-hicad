@@ -1,0 +1,1615 @@
+[
+  {
+    "type": "arithmetic",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "arithmetic_function",
+          "named": true
+        },
+        {
+          "type": "binary_operator",
+          "named": true
+        },
+        {
+          "type": "char_sys_var",
+          "named": true
+        },
+        {
+          "type": "general_variable",
+          "named": true
+        },
+        {
+          "type": "num_sys_var",
+          "named": true
+        },
+        {
+          "type": "num_value",
+          "named": true
+        },
+        {
+          "type": "num_variable",
+          "named": true
+        },
+        {
+          "type": "parenthesized_expression",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "arithmetic_function",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "arithmetic",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "assignment",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "char_variable",
+          "named": true
+        },
+        {
+          "type": "file_extension",
+          "named": true
+        },
+        {
+          "type": "line_literal",
+          "named": true
+        },
+        {
+          "type": "num_variable",
+          "named": true
+        },
+        {
+          "type": "path_indicator",
+          "named": true
+        },
+        {
+          "type": "point_literal",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "binary_operator",
+    "named": true,
+    "fields": {
+      "left": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "arithmetic",
+            "named": true
+          }
+        ]
+      },
+      "operator": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "*",
+            "named": false
+          },
+          {
+            "type": "+",
+            "named": false
+          },
+          {
+            "type": "-",
+            "named": false
+          },
+          {
+            "type": "/",
+            "named": false
+          },
+          {
+            "type": "^",
+            "named": false
+          }
+        ]
+      },
+      "right": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "arithmetic",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "char_comparison",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "char_sys_var",
+          "named": true
+        },
+        {
+          "type": "char_variable",
+          "named": true
+        },
+        {
+          "type": "comparative_operator",
+          "named": true
+        },
+        {
+          "type": "quoted_char",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "char_definition",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "char_value",
+          "named": true
+        },
+        {
+          "type": "char_variable",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "char_value",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "arithmetic",
+          "named": true
+        },
+        {
+          "type": "char_literal",
+          "named": true
+        },
+        {
+          "type": "char_variable",
+          "named": true
+        },
+        {
+          "type": "concat_arithmetic",
+          "named": true
+        },
+        {
+          "type": "quoted_char",
+          "named": true
+        },
+        {
+          "type": "windows_path",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "char_variable",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "num_sys_var",
+          "named": true
+        },
+        {
+          "type": "num_value",
+          "named": true
+        },
+        {
+          "type": "num_variable",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "comparative_operator",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "comparison",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": false,
+      "types": [
+        {
+          "type": "char_comparison",
+          "named": true
+        },
+        {
+          "type": "num_comparison",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "concat_arithmetic",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "char_variable",
+          "named": true
+        },
+        {
+          "type": "quoted_char",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "condition",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "condition_alt",
+          "named": true
+        },
+        {
+          "type": "jump",
+          "named": true
+        },
+        {
+          "type": "logical_expression",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "condition_alt",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "condition_alt_case",
+          "named": true
+        },
+        {
+          "type": "condition_block",
+          "named": true
+        },
+        {
+          "type": "condition_jump",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "condition_alt_case",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "condition_block",
+          "named": true
+        },
+        {
+          "type": "condition_jump",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "condition_block",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "condition",
+          "named": true
+        },
+        {
+          "type": "expression",
+          "named": true
+        },
+        {
+          "type": "input",
+          "named": true
+        },
+        {
+          "type": "jump_to",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "condition_jump",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "condition_block",
+          "named": true
+        },
+        {
+          "type": "jump_body",
+          "named": true
+        },
+        {
+          "type": "jump_invocation",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "definition",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "assignment",
+          "named": true
+        },
+        {
+          "type": "char_definition",
+          "named": true
+        },
+        {
+          "type": "num_definition",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "echo",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "char_literal",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "expression",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "definition",
+          "named": true
+        },
+        {
+          "type": "echo",
+          "named": true
+        },
+        {
+          "type": "function",
+          "named": true
+        },
+        {
+          "type": "guidance_noargs",
+          "named": true
+        },
+        {
+          "type": "logic_operation",
+          "named": true
+        },
+        {
+          "type": "menu",
+          "named": true
+        },
+        {
+          "type": "wait",
+          "named": true
+        },
+        {
+          "type": "warte",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "file_operation",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "file_read",
+          "named": true
+        },
+        {
+          "type": "file_write",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "file_read",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "char_variable",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "file_write",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "char_variable",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "for_loop",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "condition",
+          "named": true
+        },
+        {
+          "type": "definition",
+          "named": true
+        },
+        {
+          "type": "expression",
+          "named": true
+        },
+        {
+          "type": "general_variable",
+          "named": true
+        },
+        {
+          "type": "input",
+          "named": true
+        },
+        {
+          "type": "jump_to",
+          "named": true
+        },
+        {
+          "type": "loop",
+          "named": true
+        },
+        {
+          "type": "num_value",
+          "named": true
+        },
+        {
+          "type": "parenthesis",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "function",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "char_variable",
+          "named": true
+        },
+        {
+          "type": "hc_path",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "general_value",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "geo_input",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "general_value",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "goto_block",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "condition",
+          "named": true
+        },
+        {
+          "type": "expression",
+          "named": true
+        },
+        {
+          "type": "input",
+          "named": true
+        },
+        {
+          "type": "loop",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "guidance_noargs",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "hc_path",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "filename",
+          "named": true
+        },
+        {
+          "type": "path_indicator",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "input",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "geo_input",
+          "named": true
+        },
+        {
+          "type": "scal_input",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "jump",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "jump_body",
+          "named": true
+        },
+        {
+          "type": "jump_invocation",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "jump_body",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "condition",
+          "named": true
+        },
+        {
+          "type": "expression",
+          "named": true
+        },
+        {
+          "type": "goto_block",
+          "named": true
+        },
+        {
+          "type": "input",
+          "named": true
+        },
+        {
+          "type": "jump_to",
+          "named": true
+        },
+        {
+          "type": "loop",
+          "named": true
+        },
+        {
+          "type": "parenthesis",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "jump_invocation",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "label",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "jump_to",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "label",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "logic_operation",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "char_variable",
+          "named": true
+        },
+        {
+          "type": "num_variable",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "logical_expression",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "comparison",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "loop",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "for_loop",
+          "named": true
+        },
+        {
+          "type": "while_loop",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "menu",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "num_comparison",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "arithmetic",
+          "named": true
+        },
+        {
+          "type": "comparative_operator",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "num_definition",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "arithmetic",
+          "named": true
+        },
+        {
+          "type": "num_variable",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "num_value",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "int",
+          "named": true
+        },
+        {
+          "type": "real",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "parenthesis",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "echo",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "parenthesized_expression",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "arithmetic",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "quoted_char",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "char_literal",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "scal_input",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "general_value",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "source_file",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "condition",
+          "named": true
+        },
+        {
+          "type": "expression",
+          "named": true
+        },
+        {
+          "type": "input",
+          "named": true
+        },
+        {
+          "type": "jump_to",
+          "named": true
+        },
+        {
+          "type": "loop",
+          "named": true
+        },
+        {
+          "type": "parenthesis",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "wait",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "char_literal",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "warte",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "int",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "while_loop",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "condition",
+          "named": true
+        },
+        {
+          "type": "expression",
+          "named": true
+        },
+        {
+          "type": "input",
+          "named": true
+        },
+        {
+          "type": "jump_to",
+          "named": true
+        },
+        {
+          "type": "logical_expression",
+          "named": true
+        },
+        {
+          "type": "loop",
+          "named": true
+        },
+        {
+          "type": "parenthesis",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "windows_path",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "\"",
+    "named": false
+  },
+  {
+    "type": "#",
+    "named": false
+  },
+  {
+    "type": "(",
+    "named": false
+  },
+  {
+    "type": ")",
+    "named": false
+  },
+  {
+    "type": "*",
+    "named": false
+  },
+  {
+    "type": "+",
+    "named": false
+  },
+  {
+    "type": "-",
+    "named": false
+  },
+  {
+    "type": "/",
+    "named": false
+  },
+  {
+    "type": "3D",
+    "named": false
+  },
+  {
+    "type": "59",
+    "named": false
+  },
+  {
+    "type": ":",
+    "named": false
+  },
+  {
+    "type": ":=",
+    "named": false
+  },
+  {
+    "type": "<",
+    "named": false
+  },
+  {
+    "type": "<=",
+    "named": false
+  },
+  {
+    "type": "<>",
+    "named": false
+  },
+  {
+    "type": "=",
+    "named": false
+  },
+  {
+    "type": ">",
+    "named": false
+  },
+  {
+    "type": ">=",
+    "named": false
+  },
+  {
+    "type": "A",
+    "named": false
+  },
+  {
+    "type": "ABS",
+    "named": false
+  },
+  {
+    "type": "ACOS",
+    "named": false
+  },
+  {
+    "type": "AINT",
+    "named": false
+  },
+  {
+    "type": "AND",
+    "named": false
+  },
+  {
+    "type": "ANTWORT",
+    "named": false
+  },
+  {
+    "type": "APAUS",
+    "named": false
+  },
+  {
+    "type": "APEIN",
+    "named": false
+  },
+  {
+    "type": "ARC",
+    "named": false
+  },
+  {
+    "type": "ASC",
+    "named": false
+  },
+  {
+    "type": "ASIN",
+    "named": false
+  },
+  {
+    "type": "ATAN",
+    "named": false
+  },
+  {
+    "type": "BEMA",
+    "named": false
+  },
+  {
+    "type": "CALL",
+    "named": false
+  },
+  {
+    "type": "CLOSE",
+    "named": false
+  },
+  {
+    "type": "COPY",
+    "named": false
+  },
+  {
+    "type": "COS",
+    "named": false
+  },
+  {
+    "type": "COSH",
+    "named": false
+  },
+  {
+    "type": "DEL",
+    "named": false
+  },
+  {
+    "type": "DISTANZ",
+    "named": false
+  },
+  {
+    "type": "DVORHD",
+    "named": false
+  },
+  {
+    "type": "ECHO",
+    "named": false
+  },
+  {
+    "type": "ELSE",
+    "named": false
+  },
+  {
+    "type": "END",
+    "named": false
+  },
+  {
+    "type": "ESC",
+    "named": false
+  },
+  {
+    "type": "EXP",
+    "named": false
+  },
+  {
+    "type": "FEATURE",
+    "named": false
+  },
+  {
+    "type": "FEHL",
+    "named": false
+  },
+  {
+    "type": "FOR",
+    "named": false
+  },
+  {
+    "type": "GOTO",
+    "named": false
+  },
+  {
+    "type": "GRD",
+    "named": false
+  },
+  {
+    "type": "HFAUS",
+    "named": false
+  },
+  {
+    "type": "HFEIN",
+    "named": false
+  },
+  {
+    "type": "HNEXT",
+    "named": false
+  },
+  {
+    "type": "IF",
+    "named": false
+  },
+  {
+    "type": "IFEND",
+    "named": false
+  },
+  {
+    "type": "INPUT",
+    "named": false
+  },
+  {
+    "type": "INT",
+    "named": false
+  },
+  {
+    "type": "INTEGER",
+    "named": false
+  },
+  {
+    "type": "ISOP",
+    "named": false
+  },
+  {
+    "type": "JA",
+    "named": false
+  },
+  {
+    "type": "K",
+    "named": false
+  },
+  {
+    "type": "LEN",
+    "named": false
+  },
+  {
+    "type": "LOG",
+    "named": false
+  },
+  {
+    "type": "LOG10",
+    "named": false
+  },
+  {
+    "type": "MAKRO",
+    "named": false
+  },
+  {
+    "type": "MAUS",
+    "named": false
+  },
+  {
+    "type": "MEIN",
+    "named": false
+  },
+  {
+    "type": "MKDIR",
+    "named": false
+  },
+  {
+    "type": "N",
+    "named": false
+  },
+  {
+    "type": "NEIN",
+    "named": false
+  },
+  {
+    "type": "NEXT",
+    "named": false
+  },
+  {
+    "type": "NINT",
+    "named": false
+  },
+  {
+    "type": "NOT",
+    "named": false
+  },
+  {
+    "type": "OPEN",
+    "named": false
+  },
+  {
+    "type": "OPTION",
+    "named": false
+  },
+  {
+    "type": "OR",
+    "named": false
+  },
+  {
+    "type": "OUTPUT",
+    "named": false
+  },
+  {
+    "type": "PBEZ",
+    "named": false
+  },
+  {
+    "type": "PESC",
+    "named": false
+  },
+  {
+    "type": "PFD",
+    "named": false
+  },
+  {
+    "type": "PINT",
+    "named": false
+  },
+  {
+    "type": "POINT",
+    "named": false
+  },
+  {
+    "type": "POPUP",
+    "named": false
+  },
+  {
+    "type": "R",
+    "named": false
+  },
+  {
+    "type": "REAL",
+    "named": false
+  },
+  {
+    "type": "SAUS",
+    "named": false
+  },
+  {
+    "type": "SCHR",
+    "named": false
+  },
+  {
+    "type": "SEIN",
+    "named": false
+  },
+  {
+    "type": "SIG",
+    "named": false
+  },
+  {
+    "type": "SIN",
+    "named": false
+  },
+  {
+    "type": "SINH",
+    "named": false
+  },
+  {
+    "type": "SQR",
+    "named": false
+  },
+  {
+    "type": "SQRT",
+    "named": false
+  },
+  {
+    "type": "START",
+    "named": false
+  },
+  {
+    "type": "STRING",
+    "named": false
+  },
+  {
+    "type": "SYMB",
+    "named": false
+  },
+  {
+    "type": "SZAUS",
+    "named": false
+  },
+  {
+    "type": "SZEIN",
+    "named": false
+  },
+  {
+    "type": "TAN",
+    "named": false
+  },
+  {
+    "type": "TANH",
+    "named": false
+  },
+  {
+    "type": "TEXT",
+    "named": false
+  },
+  {
+    "type": "THEN",
+    "named": false
+  },
+  {
+    "type": "TO",
+    "named": false
+  },
+  {
+    "type": "UDA",
+    "named": false
+  },
+  {
+    "type": "UDE",
+    "named": false
+  },
+  {
+    "type": "VAI",
+    "named": false
+  },
+  {
+    "type": "VAL",
+    "named": false
+  },
+  {
+    "type": "VALID",
+    "named": false
+  },
+  {
+    "type": "VAR",
+    "named": false
+  },
+  {
+    "type": "VORH",
+    "named": false
+  },
+  {
+    "type": "VORHD",
+    "named": false
+  },
+  {
+    "type": "WAHR",
+    "named": false
+  },
+  {
+    "type": "WAIT",
+    "named": false
+  },
+  {
+    "type": "WARTE",
+    "named": false
+  },
+  {
+    "type": "WAUS",
+    "named": false
+  },
+  {
+    "type": "WEIN",
+    "named": false
+  },
+  {
+    "type": "WERT",
+    "named": false
+  },
+  {
+    "type": "WHEND",
+    "named": false
+  },
+  {
+    "type": "WHILE",
+    "named": false
+  },
+  {
+    "type": "WINKEL",
+    "named": false
+  },
+  {
+    "type": "ZAA",
+    "named": false
+  },
+  {
+    "type": "ZAE",
+    "named": false
+  },
+  {
+    "type": "^",
+    "named": false
+  },
+  {
+    "type": "char_literal",
+    "named": true
+  },
+  {
+    "type": "char_sys_var",
+    "named": true
+  },
+  {
+    "type": "comment",
+    "named": true
+  },
+  {
+    "type": "decimal",
+    "named": true
+  },
+  {
+    "type": "file_extension",
+    "named": true
+  },
+  {
+    "type": "filename",
+    "named": true
+  },
+  {
+    "type": "general_variable",
+    "named": true
+  },
+  {
+    "type": "int",
+    "named": true
+  },
+  {
+    "type": "label",
+    "named": true
+  },
+  {
+    "type": "line_literal",
+    "named": true
+  },
+  {
+    "type": "num_sys_var",
+    "named": true
+  },
+  {
+    "type": "num_variable",
+    "named": true
+  },
+  {
+    "type": "path_indicator",
+    "named": true
+  },
+  {
+    "type": "point_literal",
+    "named": true
+  },
+  {
+    "type": "real",
+    "named": true
+  }
+]

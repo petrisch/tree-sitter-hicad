@@ -1,0 +1,31 @@
+{
+  "name": "tree-sitter-hicad",
+  "version": "1.0.0",
+  "description": "Treesitter grammar for hicad macro language",
+  "main": "bindings/node",
+  "scripts": {
+    "test": "test"
+  },
+  "keywords": [
+    "treesitter",
+    "hicad"
+  ],
+  "author": "Patrick Jörg",
+  "license": "ISC",
+  "dependencies": {
+    "nan": "^2.16.0"
+  },
+  "devDependencies": {
+    "tree-sitter-cli": "^0.20.6"
+  },
+  "tree-sitter": [
+    {
+      "scope": "source.mac",
+      "injection.regex": "hicad",
+      "file-types": [
+        "MAC",
+         "mac"
+      ]
+    }
+  ]
+}

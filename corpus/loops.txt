@@ -1,0 +1,62 @@
+================================================================================
+Return loops
+================================================================================
+
+START   59
+
+FOR %IJ:=0 TO ANZB
+    WAIT Test
+NEXT IJ
+
+WHILE VORHD
+  WAIT Test
+WHEND
+
+WHILE %XY>5
+    $YZ:=42
+WHEND
+
+END
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (loop
+    (for_loop
+      (definition
+        (num_definition
+          (num_variable)
+          (arithmetic
+            (num_value
+              (real)))))
+      (general_variable)
+      (expression
+        (wait
+          (char_literal)))
+      (general_variable)))
+  (loop
+    (while_loop
+      (logical_expression
+        (comparison))
+      (expression
+        (wait
+          (char_literal)))))
+  (loop
+    (while_loop
+      (logical_expression
+        (comparison
+          (num_comparison
+            (arithmetic
+              (num_variable))
+            (comparative_operator)
+            (arithmetic
+              (num_value
+                (real))))))
+      (expression
+        (definition
+          (char_definition
+            (char_variable)
+            (char_value
+              (arithmetic
+                (num_value
+                  (real))))))))))

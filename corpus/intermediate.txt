@@ -1,0 +1,69 @@
+================================================================================
+Return intermediate
+================================================================================
+
+REM ****
+REM asdf
+
+START   59
+OPTION 22 59
+
+WAIT Hallo Welt
+
+REM *** Parameter vorbelegen ***
+
+$TEXTVAR:=Testtext
+%NUMVAR:=1
+
+IF %NUMVAR=1 THEN
+    WAIT Yes
+
+REM ELSE
+REM    WAIT No
+
+IFEND
+
+END
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (comment)
+  (comment)
+  (expression
+    (menu))
+  (expression
+    (wait
+      (char_literal)))
+  (comment)
+  (expression
+    (definition
+      (char_definition
+        (char_variable)
+        (char_value
+          (arithmetic
+            (general_variable))))))
+  (expression
+    (definition
+      (num_definition
+        (num_variable)
+        (arithmetic
+          (num_value
+            (real))))))
+  (condition
+    (logical_expression
+      (comparison
+        (num_comparison
+          (arithmetic
+            (num_variable))
+          (comparative_operator)
+          (arithmetic
+            (num_value
+              (real))))))
+    (condition_alt
+      (condition_block
+        (expression
+          (wait
+            (char_literal))))
+      (comment)
+      (comment))))

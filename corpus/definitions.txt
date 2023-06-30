@@ -1,0 +1,163 @@
+================================================================================
+Return definitions
+================================================================================
+
+START 59
+
+$CHARVARIABLE:=Hello
+
+$alllowercase:=foo?
+
+$Char_Var:=Hello World!
+
+$Char_Va42r:=Hello Wo3ld! of beautiful.
+
+REM This is actually possible, but we don't want to support this, so it should be a ERROR
+$Char_Va42r:="Hello Wo3ld" o^f beautiful.
+
+REM When concatenating, there can only be variable after string, or variable+variable,
+REM but not variable + string
+$Foo:="test" + $FOO2
+
+$Foo:=$Foo(1:5)
+$Foo:=$Foo(%Foo:23)
+
+%NUMVARIABLE:=42
+
+%Num_variable:=84
+
+%Var_with_n3mber:=100
+
+%Foo:=5+5
+
+%Foo:=ABS(5)
+
+%Bla:=SIN(4/3)
+
+END
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (expression
+    (definition
+      (char_definition
+        (char_variable)
+        (char_value
+          (arithmetic
+            (general_variable))))))
+  (expression
+    (definition
+      (char_definition
+        (char_variable)
+        (char_value
+          (char_literal)))))
+  (expression
+    (definition
+      (char_definition
+        (char_variable)
+        (char_value
+          (char_literal)))))
+  (expression
+    (definition
+      (char_definition
+        (char_variable)
+        (char_value
+          (char_literal)))))
+  (comment)
+  (expression
+    (definition
+      (char_definition
+        (char_variable)
+        (char_value
+          (quoted_char
+            (char_literal))))))
+  (ERROR
+    (UNEXPECTED 'o')
+    (UNEXPECTED 'f'))
+  (comment)
+  (comment)
+  (expression
+    (definition
+      (char_definition
+        (char_variable)
+        (char_value
+          (concat_arithmetic
+            (quoted_char
+              (char_literal))
+            (char_variable))))))
+  (expression
+    (definition
+      (char_definition
+        (char_variable)
+        (char_value
+          (char_variable
+            (num_value
+              (real))
+            (num_value
+              (real)))))))
+  (expression
+    (definition
+      (char_definition
+        (char_variable)
+        (char_value
+          (char_variable
+            (num_variable)
+            (num_value
+              (real)))))))
+  (expression
+    (definition
+      (num_definition
+        (num_variable)
+        (arithmetic
+          (num_value
+            (real))))))
+  (expression
+    (definition
+      (num_definition
+        (num_variable)
+        (arithmetic
+          (num_value
+            (real))))))
+  (expression
+    (definition
+      (num_definition
+        (num_variable)
+        (arithmetic
+          (num_value
+            (real))))))
+  (expression
+    (definition
+      (num_definition
+        (num_variable)
+        (arithmetic
+          (binary_operator
+            (arithmetic
+              (num_value
+                (real)))
+            (arithmetic
+              (num_value
+                (real))))))))
+  (expression
+    (definition
+      (num_definition
+        (num_variable)
+        (arithmetic
+          (arithmetic_function
+            (arithmetic
+              (num_value
+                (real))))))))
+  (expression
+    (definition
+      (num_definition
+        (num_variable)
+        (arithmetic
+          (arithmetic_function
+            (arithmetic
+              (binary_operator
+                (arithmetic
+                  (num_value
+                    (real)))
+                (arithmetic
+                  (num_value
+                    (real)))))))))))

@@ -1,0 +1,197 @@
+================================================================================
+Return conditions
+================================================================================
+
+START   59
+
+IF $FOO = "foo" THEN
+    REM Test
+    %XY:=42
+IFEND
+
+IF FOO <= 84 THEN
+    REM Test
+    %YX:=23
+   IF NOT WAHR THEN
+      %YX:=23
+      REM Test
+   IFEND
+IFEND
+
+IF WAHR THEN
+   WAIT Test
+  IF $FOO <> "Test" THEN
+     WAIT Test
+  ELSE
+     WAIT More
+  IFEND
+IFEND
+
+IF @23=5 THEN
+    WAIT 3
+IFEND
+
+IF $@A3="test" THEN
+    WAIT 3
+IFEND
+
+IF $X="test" AND %Y>0 THEN
+    WAIT 3
+IFEND
+
+IF 5+5=10 THEN
+    WAIT 5
+IFEND
+
+END
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (condition
+    (logical_expression
+      (comparison
+        (char_comparison
+          (char_variable)
+          (comparative_operator)
+          (quoted_char
+            (char_literal)))))
+    (comment)
+    (condition_alt
+      (condition_block
+        (expression
+          (definition
+            (num_definition
+              (num_variable)
+              (arithmetic
+                (num_value
+                  (real)))))))))
+  (condition
+    (logical_expression
+      (comparison
+        (num_comparison
+          (arithmetic
+            (general_variable))
+          (comparative_operator)
+          (arithmetic
+            (num_value
+              (real))))))
+    (comment)
+    (condition_alt
+      (condition_block
+        (expression
+          (definition
+            (num_definition
+              (num_variable)
+              (arithmetic
+                (num_value
+                  (real))))))
+        (condition
+          (logical_expression
+            (comparison))
+          (condition_alt
+            (condition_block
+              (expression
+                (definition
+                  (num_definition
+                    (num_variable)
+                    (arithmetic
+                      (num_value
+                        (real)))))))
+            (comment))))))
+  (condition
+    (logical_expression
+      (comparison))
+    (condition_alt
+      (condition_block
+        (expression
+          (wait
+            (char_literal)))
+        (condition
+          (logical_expression
+            (comparison
+              (char_comparison
+                (char_variable)
+                (comparative_operator)
+                (quoted_char
+                  (char_literal)))))
+          (condition_alt
+            (condition_alt_case
+              (condition_block
+                (expression
+                  (wait
+                    (char_literal))))
+              (condition_block
+                (expression
+                  (wait
+                    (char_literal))))))))))
+  (condition
+    (logical_expression
+      (comparison
+        (num_comparison
+          (arithmetic
+            (num_sys_var))
+          (comparative_operator)
+          (arithmetic
+            (num_value
+              (real))))))
+    (condition_alt
+      (condition_block
+        (expression
+          (wait
+            (char_literal))))))
+  (condition
+    (logical_expression
+      (comparison
+        (char_comparison
+          (char_sys_var)
+          (comparative_operator)
+          (quoted_char
+            (char_literal)))))
+    (condition_alt
+      (condition_block
+        (expression
+          (wait
+            (char_literal))))))
+  (condition
+    (logical_expression
+      (comparison
+        (char_comparison
+          (char_variable)
+          (comparative_operator)
+          (quoted_char
+            (char_literal))))
+      (comparison
+        (num_comparison
+          (arithmetic
+            (num_variable))
+          (comparative_operator)
+          (arithmetic
+            (num_value
+              (real))))))
+    (condition_alt
+      (condition_block
+        (expression
+          (wait
+            (char_literal))))))
+  (condition
+    (logical_expression
+      (comparison
+        (num_comparison
+          (arithmetic
+            (binary_operator
+              (arithmetic
+                (num_value
+                  (real)))
+              (arithmetic
+                (num_value
+                  (real)))))
+          (comparative_operator)
+          (arithmetic
+            (num_value
+              (real))))))
+    (condition_alt
+      (condition_block
+        (expression
+          (wait
+            (char_literal)))))))

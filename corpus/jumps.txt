@@ -1,0 +1,97 @@
+================================================================================
+Return jumps
+================================================================================
+
+REM asdf
+
+START   59
+
+IF WAHR GOTO 10
+
+IF NOT WAHR THEN
+  GOTO 223
+IFEND
+
+%FOO:=42
+
+IF %FOO=42 THEN
+  WAIT test
+ELSE
+  GOTO 3456
+IFEND
+
+10: WAIT long
+
+223: %SOMEVAR:=42
+
+3456: WAIT Test
+
+END
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (comment)
+  (condition
+    (logical_expression
+      (comparison))
+    (jump
+      (jump_invocation
+        (label))
+      (jump_body
+        (goto_block
+          (condition
+            (logical_expression
+              (comparison))
+            (condition_alt
+              (condition_jump
+                (jump_invocation
+                  (label))
+                (jump_body
+                  (goto_block
+                    (expression
+                      (definition
+                        (num_definition
+                          (num_variable)
+                          (arithmetic
+                            (num_value
+                              (real))))))
+                    (condition
+                      (logical_expression
+                        (comparison
+                          (num_comparison
+                            (arithmetic
+                              (num_variable))
+                            (comparative_operator)
+                            (arithmetic
+                              (num_value
+                                (real))))))
+                      (condition_alt
+                        (condition_alt_case
+                          (condition_block
+                            (expression
+                              (wait
+                                (char_literal))))
+                          (condition_jump
+                            (jump_invocation
+                              (label))
+                            (jump_body
+                              (jump_to
+                                (label))
+                              (expression
+                                (wait
+                                  (char_literal)))))))))
+                  (jump_to
+                    (label))
+                  (expression
+                    (definition
+                      (num_definition
+                        (num_variable)
+                        (arithmetic
+                          (num_value
+                            (real)))))))))))
+        (jump_to
+          (label))
+        (expression
+          (wait
+            (char_literal)))))))

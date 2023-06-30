@@ -1,0 +1,103 @@
+================================================================================
+Return assignment
+================================================================================
+
+START 59
+
+REM Only integervariables as input
+%FOO:=5
+VAI %FOO
+
+REM VAR takes %, $, POINT, LINE
+VAR %FOO
+
+$FOOO:=Test
+VAR $FOOO
+
+VAR P0 1.Punkt eingeben
+VAR L0 Linie eingeben
+
+REM HiCAD-Path as argument
+PFD C:
+$AB:=$@9
+
+PFD &:.SZA
+$BA:=$@09
+
+REM Delete takes any variable argument
+DEL $AB
+DEL %BA
+
+END
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (comment)
+  (expression
+    (definition
+      (num_definition
+        (num_variable)
+        (arithmetic
+          (num_value
+            (real))))))
+  (expression
+    (definition
+      (assignment
+        (num_variable))))
+  (comment)
+  (expression
+    (definition
+      (assignment
+        (num_variable))))
+  (expression
+    (definition
+      (char_definition
+        (char_variable)
+        (char_value
+          (arithmetic
+            (general_variable))))))
+  (expression
+    (definition
+      (assignment
+        (char_variable))))
+  (expression
+    (definition
+      (assignment
+        (point_literal))))
+  (expression
+    (definition
+      (assignment
+        (line_literal))))
+  (comment)
+  (expression
+    (definition
+      (assignment
+        (path_indicator))))
+  (expression
+    (definition
+      (char_definition
+        (char_variable)
+        (char_value
+          (arithmetic
+            (char_sys_var))))))
+  (expression
+    (definition
+      (assignment
+        (file_extension))))
+  (expression
+    (definition
+      (char_definition
+        (char_variable)
+        (char_value
+          (arithmetic
+            (char_sys_var))))))
+  (comment)
+  (expression
+    (definition
+      (assignment
+        (char_variable))))
+  (expression
+    (definition
+      (assignment
+        (num_variable)))))

@@ -1,0 +1,135 @@
+================================================================================
+Return user_guidance
+================================================================================
+
+START   59
+
+REM Autopilot ein/aus, no argument
+APEIN
+APAUS
+
+REM Ausgabefenster, argument as string with length 30 (opiniated)
+REM TODO: could have a $100n as file, n is the linenumber
+
+ECHO Test
+
+REM parenthesized ECHOS also give out commented strings
+(
+  ECHO REM FOO
+)
+
+
+REM TODO: no idea what this is doing
+HFEIN
+HFAUS
+
+REM Kantenzugmarkierung ein/aus, no arguments
+MEIN
+MAUS
+
+REM Benutzerführungstexte ein/aus, no argumetns
+SEIN
+SAUS
+
+REM Statuszeile ein/aus, no argment
+SZEIN
+SZAUS
+
+REM 3D Undo ein/aus, no argument
+UDA
+UDE
+
+REM Textfenster mit Benutzerführungstext, argument as string with length 30 (opiniated)
+REM TODO: Same as ECHO
+
+WAIT Dies ist ein Text
+
+REM Warten gewisse Zeit, argument is the time to wait in seconds, so a int. No arithmetic possible
+WARTE 20
+
+REM WAIT Funktion ein/aus. no arguments
+WAUS
+WEIN
+
+REM Bildneuaufbau, no arguments
+ZAE
+ZAA
+
+COPY $FILE1 C:\TEMP\FILE2
+MKDIR C:\TEMP\TEST
+MKDIR \\SERVER34\FOO
+
+OPEN Y:FOO
+  OUTPUT $FOO
+  INPUT $FOO
+CLOSE
+
+DEL $FOO
+DEL %FOO
+
+
+END
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (comment)
+  (expression
+    (guidance_noargs))
+  (expression
+    (guidance_noargs))
+  (comment)
+  (comment)
+  (expression
+    (echo
+      (char_literal)))
+  (comment)
+  (parenthesis
+    (echo
+      (comment)
+      (char_literal))
+    (comment)
+    (MISSING "parenthesis_token2"))
+  (expression
+    (guidance_noargs))
+  (expression
+    (guidance_noargs))
+  (comment)
+  (expression
+    (guidance_noargs))
+  (expression
+    (guidance_noargs))
+  (comment)
+  (expression
+    (guidance_noargs))
+  (expression
+    (guidance_noargs))
+  (comment)
+  (expression
+    (guidance_noargs))
+  (expression
+    (guidance_noargs))
+  (comment)
+  (expression
+    (guidance_noargs))
+  (expression
+    (guidance_noargs))
+  (comment)
+  (comment)
+  (expression
+    (wait
+      (char_literal)))
+  (comment)
+  (expression
+    (warte
+      (int)))
+  (comment)
+  (expression
+    (guidance_noargs))
+  (expression
+    (guidance_noargs))
+  (comment)
+  (expression
+    (guidance_noargs))
+  (expression
+    (guidance_noargs)))

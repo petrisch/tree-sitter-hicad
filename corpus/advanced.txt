@@ -1,0 +1,191 @@
+================================================================================
+Return advanced
+================================================================================
+
+
+REM ***************************************************************************************
+REM                              Aufruf von externen Programmen
+REM ---------------------------------------------------------------------------------------
+REM                              zentrale Datei für alle Aufrufe
+REM
+REM  Parameter	K99	Nummer für externes Programm
+REM
+REM		$ZAPF	Makro-Pfad
+REM
+REM  zurück	-
+REM
+REM  ExtProg.MAC  | Kunde:
+REM ***************************************************************************************
+REM  created	05.10.2004  DN							| X - 1210.45
+REM  modified	10.04.2005  DN	div. Änderungen
+REM ***************************************************************************************
+
+START   59
+OPTION 2 59
+SAUS
+
+
+REM *** Parameter vorbelegen ***
+
+REM * Name Makro ext. Programmliste lesen *
+$T500:=ExtProgListe
+$T500:=$ZAPF+$T500
+
+
+REM *** Absolut-Pfad ermitteln ***
+PFD $ZAPF
+$PFAD:=$@9
+
+
+REM *** Programmliste lesen ***
+
+CALL $T500
+
+REM wait $prog
+IF $PROG <> "xxxx" THEN
+
+   REM ALT10
+   OPTION  30   0
+   REM     Dateiname :
+
+   IF K99 <= 500 THEN
+
+      STRING  $PROG
+      STRING  RET
+
+   ELSE
+
+      STRING  startPROCCA
+
+      REM     Parameterliste ( max 80. Char.)
+      STRING  $PROG
+
+   IFEND
+
+IFEND
+
+
+8000:REM ***
+
+DEL $PFAD
+DEL $PROG
+DEL $T500
+
+
+9000:END
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (comment)
+  (comment)
+  (comment)
+  (comment)
+  (comment)
+  (comment)
+  (comment)
+  (comment)
+  (comment)
+  (comment)
+  (comment)
+  (comment)
+  (comment)
+  (comment)
+  (comment)
+  (comment)
+  (expression
+    (menu))
+  (expression
+    (guidance_noargs))
+  (comment)
+  (comment)
+  (expression
+    (definition
+      (char_definition
+        (char_variable)
+        (char_value
+          (arithmetic
+            (general_variable))))))
+  (expression
+    (definition
+      (char_definition
+        (char_variable)
+        (char_value
+          (concat_arithmetic
+            (char_variable)
+            (char_variable))))))
+  (comment)
+  (expression
+    (definition
+      (assignment
+        (char_variable))))
+  (expression
+    (definition
+      (char_definition
+        (char_variable)
+        (char_value
+          (arithmetic
+            (char_sys_var))))))
+  (comment)
+  (expression
+    (function
+      (char_variable)))
+  (comment)
+  (condition
+    (logical_expression
+      (comparison
+        (char_comparison
+          (char_variable)
+          (comparative_operator)
+          (quoted_char
+            (char_literal)))))
+    (comment)
+    (condition_alt
+      (condition_block
+        (expression
+          (menu))
+        (comment)
+        (condition
+          (logical_expression
+            (comparison
+              (num_comparison
+                (arithmetic
+                  (general_variable))
+                (comparative_operator)
+                (arithmetic
+                  (num_value
+                    (real))))))
+          (condition_alt
+            (condition_alt_case
+              (condition_block
+                (input
+                  (scal_input
+                    (general_value)))
+                (input
+                  (scal_input
+                    (general_value))))
+              (condition_block
+                (input
+                  (scal_input
+                    (general_value)))
+                (comment)
+                (input
+                  (scal_input
+                    (general_value))))))))))
+  (jump_to
+    (label))
+  (comment)
+  (expression
+    (definition
+      (assignment
+        (char_variable))))
+  (expression
+    (definition
+      (assignment
+        (char_variable))))
+  (expression
+    (definition
+      (assignment
+        (char_variable))))
+  (jump_to
+    (label)))
