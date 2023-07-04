@@ -69,16 +69,20 @@
 "VALID" @tag
 "VORHD" @tag
 "WAHR" @tag
-                                      
 
-; (num_value) @constant.numeric
-; (char_value) @string
 
-; (hc_path) @special
+"OPEN" @text.title
+"CLOSE" @text.title
+"OUTPUT" @keyword
+"INPUT" @keyword
+"COPY" @keyword
+"MKDIR" @keyword
 
-; (jump) @type
-; (jump_to) @type
-; (label) @label
+(path_indicator) @text
+(filename) @text.underline
+
+(jump_invocation) @text.strong
+(label) @text.strong
 
 (comment) @comment
 ; (error) @error
