@@ -24,6 +24,9 @@ and the AST on the left within neovim.
 
 ![Highlight](/img/neovim_TS-hicad.png)
 
+The highlight has been optimised for the [dracula](https://github.com/Mofiqul/dracula.nvim) theme,
+but should at least work for any other theme that supports tree-sitter.
+
 ## Contributing
 
 Tree-sitter itself doesn't need to be installed unless you want to contribute to the grammar,
