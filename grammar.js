@@ -212,7 +212,7 @@ module.exports = grammar({
     int: ($) => /([0-9]|[1-9][0-9])/,
 
     char_variable: ($) =>
-      seq( $.char_var_sign, /\$([A-Z]|[a-z])([A-Z]|[a-z]|[0-9]|_){0,29}/,
+      seq( $.char_var_sign, /([A-Z]|[a-z])([A-Z]|[a-z]|[0-9]|_){0,29}/,
       optional(
         seq(
           "(",
@@ -223,6 +223,7 @@ module.exports = grammar({
         )
       )
     ),
+    char_var_sign:($) => /\$/,
 
     char_value: ($) =>
       choice(
