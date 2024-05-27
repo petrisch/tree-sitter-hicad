@@ -296,7 +296,7 @@ module.exports = grammar({
         choice($.jump, seq("THEN", $.condition_alt))
       ),
 
-    loop: ($) => choice($.for_loop, $.while_loop),
+    loop: ($) => choice($.for_loop, $.while_loop, $.repeat_loop),
 
     for_loop: ($) =>
       seq(
@@ -311,6 +311,9 @@ module.exports = grammar({
 
     while_loop: ($) =>
       seq("WHILE", $.logical_expression, $._macro_body, "WHEND"),
+
+    repeat_loop: ($) =>
+      seq("REPEAT", $.logical_expression, $._macro_body, "UNTIL"),
 
     logical_expression: ($) =>
       seq(optional("NOT"), choice($.comparison, $._concat_comparison)),
