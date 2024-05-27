@@ -365,7 +365,7 @@ module.exports = grammar({
     // that not "everything" can be done in a condition
 
     condition_block: ($) =>
-      repeat1(choice($.expression, $.condition, $.input, $.jump_to)),
+      repeat1(choice($.expression, $.condition, $.input, $.jump_to, $.file_open)),
 
     // TODO, there is more than just numbers here, they are limited, and what follows as well.
     //Also we want the whole OPTION Menu hunk as one entity between.
