@@ -391,8 +391,8 @@ module.exports = grammar({
     file_operation: ($) => repeat1(choice($.file_write, $.file_read)),
      
     // Can there be numerical variables to write too?
-    file_write: ($) => seq("OUTPUT", $.char_variable),
-    file_read: ($) => seq("INPUT", $.char_variable),
+    file_write: ($) => seq("OUTPUT", choice($.char_variable, $.num_variable)),
+    file_read: ($) => seq("INPUT", choice($.char_variable, $.num_variable)),
 
     file_copy: ($) => seq("COPY", choice($.char_value, $.char_variable), choice($.char_value, $.char_variable)),
     mkdir: ($) => seq("MKDIR", choice($.char_value, $.char_variable)),
