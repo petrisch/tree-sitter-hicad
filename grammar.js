@@ -198,8 +198,9 @@ module.exports = grammar({
     // First letter a %, followed by a letter, followed by either a letter or digit
     // The whole thing limited to 31 characters. Allowing underscores.
     num_variable: ($) =>
-      seq( $.num_var_sign, /([A-Z]|[a-z])([A-Z]|[a-z]|[0-9]|_){0,29}/ ),
+      seq( $.num_var_sign,  $.num_var_name),
     num_var_sign: ($) => /%/,
+    num_var_name: ($) => /([A-Z]|[a-z])([A-Z]|[a-z]|[0-9]|_){0,29}/,
 
     // For supporting VAR=VAR comparisons a silly exception in the language
     general_variable: ($) => /([A-Z]|[a-z])([A-Z]|[a-z]|[0-9]|_){0,29}/,
@@ -212,7 +213,7 @@ module.exports = grammar({
     int: ($) => /([0-9]|[1-9][0-9])/,
 
     char_variable: ($) =>
-      seq( $.char_var_sign, /([A-Z]|[a-z])([A-Z]|[a-z]|[0-9]|_){0,29}/,
+      seq( $.char_var_sign, $.char_var_name,
       optional(
         seq(
           "(",
@@ -224,6 +225,7 @@ module.exports = grammar({
       )
     ),
     char_var_sign:($) => /\$/,
+    char_var_name: ($) => /([A-Z]|[a-z])([A-Z]|[a-z]|[0-9]|_){0,29}/,
 
     char_value: ($) =>
       choice(
