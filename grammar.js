@@ -454,8 +454,8 @@ module.exports = grammar({
           "ESC",
           seq(
             choice("A", "K", "R", "N", $.point_literal, $.line_literal),
-            optional($.decimal),
-            optional($.decimal)
+            optional($.arithmetic),
+            optional($.arithmetic)
           )
         )
       ),
