@@ -125,7 +125,8 @@ module.exports = grammar({
           $.expression,
           $.condition,
           $.loop,
-          $.input
+          $.input,
+          $.file_open
           // $.jump, There is no jump without a condition because that will always generate dead code
           // There is one exception if after a single line of GOTO 99 there follows immediatly another 91: jump_to
           // honestly don't do that!
@@ -387,10 +388,15 @@ module.exports = grammar({
     general_value: ($) => /.*/,
 
     // File Procedure stuff
-    file_open: ($) => seq("OPEN", $.hc_path, $.file_operation, "CLOSE"),
+    file_open: ($) => seq("OPEN", $.hc_path, $.file_operation,
+                          optional(choice(
+                                   $.expression,
+                                   $.condition,
+                                   $.loop,
+                                   $.input)),
+                          "CLOSE"),
     file_operation: ($) => repeat1(choice($.file_write, $.file_read)),
      
-    // Can there be numerical variables to write too?
     file_write: ($) => seq("OUTPUT", choice($.char_variable, $.num_variable)),
     file_read: ($) => seq("INPUT", choice($.char_variable, $.num_variable)),
 
