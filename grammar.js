@@ -148,12 +148,13 @@ module.exports = grammar({
     guidance_noargs: ($) => choice(...guidance_noargs),
 
     parenthesis: ($) => seq(/\(/, $.echo, /\)/),
-    // TODO: There can be a ECHO REM FOO if it is in parenthesis
+    // TODO: There is much more possible in ECHO because it specifies what is in a popup window.
     echo: ($) => seq("ECHO", $.char_literal),
-    wait: ($) => seq("WAIT", choice($.char_literal, 
-                                    $.general_variable,
-                                    $.num_variable,
-                                    $.char_variable)),
+
+    // Somehow WAIT $Foo gives an error because TS is taking the space as char_literal
+    wait: ($) => seq("WAIT", choice(seq(" ", $.num_variable),
+                                    seq(" ", $.char_variable),
+                                    seq(" ", $.char_literal))),
     warte: ($) => seq("WARTE", $.int),
 
     // "INT", currently no idea what its doing TODO
