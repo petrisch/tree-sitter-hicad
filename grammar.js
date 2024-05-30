@@ -244,8 +244,9 @@ module.exports = grammar({
 
     quoted_char: ($) => seq('"', $.char_literal, '"'),
 
-    // Accepting german Umlaut here, but not too many ascii characters
-    char_literal: ($) => /([ -!#&-?A-~äöü°]){1,60}/,
+    // Accepting german Umlaut and french signs here,
+    // but not too many ascii and latin characters, since $ or % would indicate a variable
+    char_literal: ($) => /([ -!#&-?A-~°à-ü]){1,60}/,
     windows_path: ($) => 
           choice(
             // Either a "C:\FOO" or a \\GDCHSXX\FOO\BLA.txt

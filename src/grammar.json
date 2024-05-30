@@ -94,6 +94,10 @@
             {
               "type": "SYMBOL",
               "name": "input"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "file_open"
             }
           ]
         }
@@ -243,8 +247,48 @@
           "value": "WAIT"
         },
         {
-          "type": "SYMBOL",
-          "name": "char_literal"
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SEQ",
+              "members": [
+                {
+                  "type": "STRING",
+                  "value": " "
+                },
+                {
+                  "type": "SYMBOL",
+                  "name": "num_variable"
+                }
+              ]
+            },
+            {
+              "type": "SEQ",
+              "members": [
+                {
+                  "type": "STRING",
+                  "value": " "
+                },
+                {
+                  "type": "SYMBOL",
+                  "name": "char_variable"
+                }
+              ]
+            },
+            {
+              "type": "SEQ",
+              "members": [
+                {
+                  "type": "STRING",
+                  "value": " "
+                },
+                {
+                  "type": "SYMBOL",
+                  "name": "char_literal"
+                }
+              ]
+            }
+          ]
         }
       ]
     },
@@ -590,8 +634,25 @@
       ]
     },
     "num_variable": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "num_var_sign"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "num_var_name"
+        }
+      ]
+    },
+    "num_var_sign": {
       "type": "PATTERN",
-      "value": "%([A-Z]|[a-z])([A-Z]|[a-z]|[0-9]|_){0,29}"
+      "value": "%"
+    },
+    "num_var_name": {
+      "type": "PATTERN",
+      "value": "([A-Z]|[a-z])([A-Z]|[a-z]|[0-9]|_){0,29}"
     },
     "general_variable": {
       "type": "PATTERN",
@@ -622,8 +683,12 @@
       "type": "SEQ",
       "members": [
         {
-          "type": "PATTERN",
-          "value": "\\$([A-Z]|[a-z])([A-Z]|[a-z]|[0-9]|_){0,29}"
+          "type": "SYMBOL",
+          "name": "char_var_sign"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "char_var_name"
         },
         {
           "type": "CHOICE",
@@ -686,6 +751,14 @@
         }
       ]
     },
+    "char_var_sign": {
+      "type": "PATTERN",
+      "value": "\\$"
+    },
+    "char_var_name": {
+      "type": "PATTERN",
+      "value": "([A-Z]|[a-z])([A-Z]|[a-z]|[0-9]|_){0,29}"
+    },
     "char_value": {
       "type": "CHOICE",
       "members": [
@@ -734,7 +807,7 @@
     },
     "char_literal": {
       "type": "PATTERN",
-      "value": "([ -!#&-?A-~äöü°]){1,60}"
+      "value": "([ -!#&-?A-~°à-ü]){1,60}"
     },
     "windows_path": {
       "type": "CHOICE",
@@ -1053,6 +1126,10 @@
         {
           "type": "SYMBOL",
           "name": "while_loop"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "repeat_loop"
         }
       ]
     },
@@ -1116,6 +1193,27 @@
         {
           "type": "STRING",
           "value": "WHEND"
+        }
+      ]
+    },
+    "repeat_loop": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "REPEAT"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "logical_expression"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "_macro_body"
+        },
+        {
+          "type": "STRING",
+          "value": "UNTIL"
         }
       ]
     },
@@ -1476,6 +1574,10 @@
           {
             "type": "SYMBOL",
             "name": "jump_to"
+          },
+          {
+            "type": "SYMBOL",
+            "name": "file_open"
           }
         ]
       }
@@ -1600,6 +1702,35 @@
           "name": "file_operation"
         },
         {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "CHOICE",
+              "members": [
+                {
+                  "type": "SYMBOL",
+                  "name": "expression"
+                },
+                {
+                  "type": "SYMBOL",
+                  "name": "condition"
+                },
+                {
+                  "type": "SYMBOL",
+                  "name": "loop"
+                },
+                {
+                  "type": "SYMBOL",
+                  "name": "input"
+                }
+              ]
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
+        },
+        {
           "type": "STRING",
           "value": "CLOSE"
         }
@@ -1629,8 +1760,17 @@
           "value": "OUTPUT"
         },
         {
-          "type": "SYMBOL",
-          "name": "char_variable"
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "char_variable"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "num_variable"
+            }
+          ]
         }
       ]
     },
@@ -1642,8 +1782,17 @@
           "value": "INPUT"
         },
         {
-          "type": "SYMBOL",
-          "name": "char_variable"
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "char_variable"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "num_variable"
+            }
+          ]
         }
       ]
     },
@@ -1950,7 +2099,7 @@
                   "members": [
                     {
                       "type": "SYMBOL",
-                      "name": "decimal"
+                      "name": "arithmetic"
                     },
                     {
                       "type": "BLANK"
@@ -1962,7 +2111,7 @@
                   "members": [
                     {
                       "type": "SYMBOL",
-                      "name": "decimal"
+                      "name": "arithmetic"
                     },
                     {
                       "type": "BLANK"
