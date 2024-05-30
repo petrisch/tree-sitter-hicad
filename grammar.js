@@ -150,7 +150,10 @@ module.exports = grammar({
     parenthesis: ($) => seq(/\(/, $.echo, /\)/),
     // TODO: There can be a ECHO REM FOO if it is in parenthesis
     echo: ($) => seq("ECHO", $.char_literal),
-    wait: ($) => seq("WAIT", $.char_literal),
+    wait: ($) => seq("WAIT", choice($.char_literal, 
+                                    $.general_variable,
+                                    $.num_variable,
+                                    $.char_variable)),
     warte: ($) => seq("WARTE", $.int),
 
     // "INT", currently no idea what its doing TODO
