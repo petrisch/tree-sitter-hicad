@@ -1,0 +1,33 @@
+{
+  "grammars": [
+    {
+      "name": "hicad",
+      "camelcase": "Hicad",
+      "scope": "source.mac",
+      "path": ".",
+      "file-types": ["MAC", "mac"],
+      "highlights": "queries/highlights.scm"
+    }
+  ],
+  "metadata": {
+    "version": "1.0.0",
+    "license": "ISC",
+    "description": "Treesitter grammar for hicad macro language",
+    "authors": [
+      {
+        "name": "Patrick Jörg"
+      }
+    ],
+    "links": {
+      "repository": "https://github.com/petrisch/tree-sitter-hicad"
+    }
+  },
+  "bindings": {
+    "c": true,
+    "go": true,
+    "node": true,
+    "python": true,
+    "rust": true,
+    "swift": true
+  }
+}

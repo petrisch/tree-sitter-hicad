@@ -3,29 +3,40 @@
   "version": "1.0.0",
   "description": "Treesitter grammar for hicad macro language",
   "main": "bindings/node",
+  "types": "bindings/node",
   "scripts": {
-    "test": "test"
+    "test": "test",
+    "install": "node-gyp-build",
+    "prebuildify": "prebuildify --napi --strip"
   },
   "keywords": [
     "treesitter",
     "hicad"
   ],
+  "files": [
+    "grammar.js",
+    "binding.gyp",
+    "prebuilds/**",
+    "bindings/node/*",
+    "queries/*",
+    "src/**"
+  ],
   "author": "Patrick Jörg",
   "license": "ISC",
   "dependencies": {
-    "nan": "^2.16.0"
+    "node-addon-api": "^7.1.0",
+    "node-gyp-build": "^4.8.0"
+  },
+  "peerDependencies": {
+    "tree-sitter": "^0.21.0"
+  },
+  "peerDependenciesMeta": {
+    "tree_sitter": {
+      "optional": true
+    }
   },
   "devDependencies": {
-    "tree-sitter-cli": "^0.20.6"
-  },
-  "tree-sitter": [
-    {
-      "scope": "source.mac",
-      "injection.regex": "hicad",
-      "file-types": [
-        "MAC",
-         "mac"
-      ]
-    }
-  ]
+    "tree-sitter-cli": "^0.20.6",
+    "prebuildify": "^6.0.0"
+  }
 }

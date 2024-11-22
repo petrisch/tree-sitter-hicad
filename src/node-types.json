@@ -386,6 +386,10 @@
           "named": true
         },
         {
+          "type": "file_copy",
+          "named": true
+        },
+        {
           "type": "file_open",
           "named": true
         },
@@ -395,6 +399,10 @@
         },
         {
           "type": "jump_to",
+          "named": true
+        },
+        {
+          "type": "mkdir",
           "named": true
         }
       ]
@@ -505,6 +513,25 @@
     }
   },
   {
+    "type": "file_copy",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "char_value",
+          "named": true
+        },
+        {
+          "type": "char_variable",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "file_open",
     "named": true,
     "fields": {},
@@ -521,7 +548,7 @@
           "named": true
         },
         {
-          "type": "file_operation",
+          "type": "file_read_write",
           "named": true
         },
         {
@@ -534,25 +561,6 @@
         },
         {
           "type": "loop",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "file_operation",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": true,
-      "required": true,
-      "types": [
-        {
-          "type": "file_read",
-          "named": true
-        },
-        {
-          "type": "file_write",
           "named": true
         }
       ]
@@ -572,6 +580,25 @@
         },
         {
           "type": "num_variable",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "file_read_write",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "file_read",
+          "named": true
+        },
+        {
+          "type": "file_write",
           "named": true
         }
       ]
@@ -617,6 +644,10 @@
           "named": true
         },
         {
+          "type": "file_copy",
+          "named": true
+        },
+        {
           "type": "file_open",
           "named": true
         },
@@ -634,6 +665,10 @@
         },
         {
           "type": "loop",
+          "named": true
+        },
+        {
+          "type": "mkdir",
           "named": true
         },
         {
@@ -797,6 +832,10 @@
           "named": true
         },
         {
+          "type": "file_copy",
+          "named": true
+        },
+        {
           "type": "file_open",
           "named": true
         },
@@ -814,6 +853,10 @@
         },
         {
           "type": "loop",
+          "named": true
+        },
+        {
+          "type": "mkdir",
           "named": true
         },
         {
@@ -914,6 +957,25 @@
     "type": "menu",
     "named": true,
     "fields": {}
+  },
+  {
+    "type": "mkdir",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "char_value",
+          "named": true
+        },
+        {
+          "type": "char_variable",
+          "named": true
+        }
+      ]
+    }
   },
   {
     "type": "num_comparison",
@@ -1058,6 +1120,10 @@
           "named": true
         },
         {
+          "type": "file_copy",
+          "named": true
+        },
+        {
           "type": "file_open",
           "named": true
         },
@@ -1075,6 +1141,10 @@
         },
         {
           "type": "loop",
+          "named": true
+        },
+        {
+          "type": "mkdir",
           "named": true
         },
         {
@@ -1102,6 +1172,7 @@
   {
     "type": "source_file",
     "named": true,
+    "root": true,
     "fields": {},
     "children": {
       "multiple": true,
@@ -1113,6 +1184,10 @@
         },
         {
           "type": "expression",
+          "named": true
+        },
+        {
+          "type": "file_copy",
           "named": true
         },
         {
@@ -1129,6 +1204,10 @@
         },
         {
           "type": "loop",
+          "named": true
+        },
+        {
+          "type": "mkdir",
           "named": true
         },
         {
@@ -1193,6 +1272,10 @@
           "named": true
         },
         {
+          "type": "file_copy",
+          "named": true
+        },
+        {
           "type": "file_open",
           "named": true
         },
@@ -1213,6 +1296,10 @@
           "named": true
         },
         {
+          "type": "mkdir",
+          "named": true
+        },
+        {
           "type": "parenthesis",
           "named": true
         }
@@ -1230,10 +1317,6 @@
   },
   {
     "type": "\"",
-    "named": false
-  },
-  {
-    "type": "#",
     "named": false
   },
   {
@@ -1298,10 +1381,6 @@
   },
   {
     "type": ">=",
-    "named": false
-  },
-  {
-    "type": "A",
     "named": false
   },
   {
@@ -1465,10 +1544,6 @@
     "named": false
   },
   {
-    "type": "K",
-    "named": false
-  },
-  {
     "type": "LEN",
     "named": false
   },
@@ -1494,10 +1569,6 @@
   },
   {
     "type": "MKDIR",
-    "named": false
-  },
-  {
-    "type": "N",
     "named": false
   },
   {
@@ -1554,10 +1625,6 @@
   },
   {
     "type": "POPUP",
-    "named": false
-  },
-  {
-    "type": "R",
     "named": false
   },
   {

@@ -8,7 +8,8 @@ const PREC = {
   times: 4,
   power: 5,
   arithmetic: 6,
-  char: 7,
+  file: 7,
+  char: 8,
 };
 const comparative_operators = ["=", ">", "<", "<>", "<=", ">="];
 const logical_operators = ["AND", "OR"];
@@ -113,7 +114,7 @@ module.exports = grammar({
         optional("HNEXT"),
         repeat($._macro_body),
         optional($.jump_to),
-        "END"
+        "END",
       ),
 
     _macro_body: ($) =>
@@ -126,11 +127,11 @@ module.exports = grammar({
           $.condition,
           $.loop,
           $.input,
-          $.file_open
+          $._file_operation,
           // $.jump, There is no jump without a condition because that will always generate dead code
           // There is one exception if after a single line of GOTO 99 there follows immediatly another 91: jump_to
           // honestly don't do that!
-        )
+        ),
       ),
 
     expression: ($) =>
@@ -142,7 +143,7 @@ module.exports = grammar({
         $.guidance_noargs,
         $.menu,
         $.logic_operation,
-        $.function
+        $.function,
       ),
 
     guidance_noargs: ($) => choice(...guidance_noargs),
@@ -152,9 +153,15 @@ module.exports = grammar({
     echo: ($) => seq("ECHO", $.char_literal),
 
     // Somehow WAIT $Foo gives an error because TS is taking the space as char_literal
-    wait: ($) => seq("WAIT", choice(seq(" ", $.num_variable),
-                                    seq(" ", $.char_variable),
-                                    seq(" ", $.char_literal))),
+    wait: ($) =>
+      seq(
+        "WAIT",
+        choice(
+          seq(" ", $.num_variable),
+          seq(" ", $.char_variable),
+          seq(" ", $.char_literal),
+        ),
+      ),
     warte: ($) => seq("WARTE", $.int),
 
     // "INT", currently no idea what its doing TODO
@@ -178,12 +185,12 @@ module.exports = grammar({
             $.num_variable,
             $.char_variable,
             $.point_literal,
-            $.line_literal
+            $.line_literal,
           ),
-          optional(/.*/)
+          optional(/.*/),
         ),
         seq("PFD", choice($.char_variable, $.path_indicator, $.file_extension)),
-        seq("DEL", choice($.char_variable, $.num_variable))
+        seq("DEL", choice($.char_variable, $.num_variable)),
       ),
 
     arithmetic: ($) =>
@@ -194,7 +201,7 @@ module.exports = grammar({
         $.num_variable,
         $.general_variable,
         $._sys_variable,
-        $.arithmetic_function
+        $.arithmetic_function,
       ),
 
     arithmetic_function: ($) =>
@@ -202,8 +209,7 @@ module.exports = grammar({
 
     // First letter a %, followed by a letter, followed by either a letter or digit
     // The whole thing limited to 31 characters. Allowing underscores.
-    num_variable: ($) =>
-      seq( $.num_var_sign,  $.num_var_name),
+    num_variable: ($) => seq($.num_var_sign, $.num_var_name),
     num_var_sign: ($) => /%/,
     num_var_name: ($) => /([A-Z]|[a-z])([A-Z]|[a-z]|[0-9]|_){0,29}/,
 
@@ -218,18 +224,23 @@ module.exports = grammar({
     int: ($) => /([0-9]|[1-9][0-9])/,
 
     char_variable: ($) =>
-      seq( $.char_var_sign, $.char_var_name,
-      optional(
+      prec.left(
+        PREC.char,
         seq(
-          "(",
-          choice($.num_value, $.num_variable, $.num_sys_var),
-          ":",
-          choice($.num_value, $.num_variable, $.num_sys_var),
-          ")"
-        )
-      )
-    ),
-    char_var_sign:($) => /\$/,
+          $.char_var_sign,
+          $.char_var_name,
+          optional(
+            seq(
+              "(",
+              choice($.num_value, $.num_variable, $.num_sys_var),
+              ":",
+              choice($.num_value, $.num_variable, $.num_sys_var),
+              ")",
+            ),
+          ),
+        ),
+      ),
+    char_var_sign: ($) => /\$/,
     char_var_name: ($) => /([A-Z]|[a-z])([A-Z]|[a-z]|[0-9]|_){0,29}/,
 
     char_value: ($) =>
@@ -239,7 +250,7 @@ module.exports = grammar({
         $.arithmetic,
         $.concat_arithmetic,
         $.char_variable,
-        $.windows_path
+        $.windows_path,
       ),
 
     quoted_char: ($) => seq('"', $.char_literal, '"'),
@@ -247,18 +258,22 @@ module.exports = grammar({
     // Accepting german Umlaut and french signs here,
     // but not too many ascii and latin characters, since $ or % would indicate a variable
     char_literal: ($) => /([ -!#&-?A-~°à-ü]){1,60}/,
-    windows_path: ($) => 
-          choice(
-            // Either a "C:\FOO" or a \\GDCHSXX\FOO\BLA.txt
-            seq((/[A-Z]:\\/), (/[A-Za-z0-9_\.\\]{1,256}/), 
-                (/\\{2}/), (/[A-Za-z0-9_\.\\]{1,256}/))
-          ),
+    windows_path: ($) =>
+      choice(
+        // Either a "C:\FOO" or a \\GDCHSXX\FOO\BLA.txt
+        seq(
+          /[A-Z]:\\/,
+          /[A-Za-z0-9_\.\\]{1,256}/,
+          /\\{2}/,
+          /[A-Za-z0-9_\.\\]{1,256}/,
+        ),
+      ),
 
     // For concatenating variables.
     concat_arithmetic: ($) =>
       seq(
         choice($.quoted_char, $.char_variable),
-        repeat1(seq("+", $.char_variable))
+        repeat1(seq("+", $.char_variable)),
       ),
 
     // TODO: Supporting parenthesis
@@ -278,10 +293,10 @@ module.exports = grammar({
             seq(
               field("left", $.arithmetic),
               field("operator", operator),
-              field("right", $.arithmetic)
-            )
-          )
-        )
+              field("right", $.arithmetic),
+            ),
+          ),
+        ),
       );
     },
 
@@ -298,7 +313,7 @@ module.exports = grammar({
       seq(
         "IF",
         $.logical_expression,
-        choice($.jump, seq("THEN", $.condition_alt))
+        choice($.jump, seq("THEN", $.condition_alt)),
       ),
 
     loop: ($) => choice($.for_loop, $.while_loop, $.repeat_loop),
@@ -311,7 +326,7 @@ module.exports = grammar({
         choice($.num_value, $.general_variable),
         $._macro_body,
         "NEXT",
-        $.general_variable
+        $.general_variable,
       ),
 
     while_loop: ($) =>
@@ -333,7 +348,7 @@ module.exports = grammar({
     num_comparison: ($) =>
       prec(
         PREC.arithmetic,
-        seq($.arithmetic, $.comparative_operator, $.arithmetic)
+        seq($.arithmetic, $.comparative_operator, $.arithmetic),
       ),
 
     char_comparison: ($) =>
@@ -342,8 +357,8 @@ module.exports = grammar({
         seq(
           choice($.char_variable, $.char_sys_var),
           $.comparative_operator,
-          choice($.quoted_char, $.char_variable, $.char_sys_var)
-        )
+          choice($.quoted_char, $.char_variable, $.char_sys_var),
+        ),
       ),
 
     comparative_operator: ($) => choice(...comparative_operators),
@@ -354,7 +369,7 @@ module.exports = grammar({
       choice(
         seq($.condition_block, "IFEND"),
         $.condition_alt_case,
-        $.condition_jump
+        $.condition_jump,
       ),
 
     // A nested IF block with only one ELSE is ambiguous, we assume that the ELSE belongs to the
@@ -363,7 +378,7 @@ module.exports = grammar({
       seq(
         $.condition_block,
         "ELSE",
-        choice(seq($.condition_block, "IFEND"), $.condition_jump)
+        choice(seq($.condition_block, "IFEND"), $.condition_jump),
       ),
 
     condition_jump: ($) =>
@@ -373,7 +388,15 @@ module.exports = grammar({
     // that not "everything" can be done in a condition
 
     condition_block: ($) =>
-      repeat1(choice($.expression, $.condition, $.input, $.jump_to, $.file_open)),
+      repeat1(
+        choice(
+          $.expression,
+          $.condition,
+          $.input,
+          $.jump_to,
+          $._file_operation,
+        ),
+      ),
 
     // TODO, there is more than just numbers here, they are limited, and what follows as well.
     //Also we want the whole OPTION Menu hunk as one entity between.
@@ -383,10 +406,10 @@ module.exports = grammar({
         choice(
           seq(
             /([1-9]|[12][0-9]|3[0])/,
-            /([0-9]|[1-9][0-9]|1[0-9][0-9]|2[0-1][0-9]|22[0-5])/
+            /([0-9]|[1-9][0-9]|1[0-9][0-9]|2[0-1][0-9]|22[0-5])/,
           ),
-          "ESC"
-        )
+          "ESC",
+        ),
       ),
 
     input: ($) => choice($.scal_input, $.geo_input),
@@ -396,20 +419,31 @@ module.exports = grammar({
     general_value: ($) => /.*/,
 
     // File Procedure stuff
-    file_open: ($) => seq("OPEN", $.hc_path, $.file_operation,
-                          optional(choice(
-                                   $.expression,
-                                   $.condition,
-                                   $.loop,
-                                   $.input)),
-                          "CLOSE"),
-    file_operation: ($) => repeat1(choice($.file_write, $.file_read)),
-     
+    _file_operation: ($) => choice($.file_open, $.file_copy, $.mkdir),
+    file_open: ($) =>
+      seq(
+        "OPEN",
+        $.hc_path,
+        $.file_read_write,
+        optional(choice($.expression, $.condition, $.loop, $.input)),
+        "CLOSE",
+      ),
+    file_read_write: ($) => repeat1(choice($.file_write, $.file_read)),
+
     file_write: ($) => seq("OUTPUT", choice($.char_variable, $.num_variable)),
     file_read: ($) => seq("INPUT", choice($.char_variable, $.num_variable)),
 
-    file_copy: ($) => seq("COPY", choice($.char_value, $.char_variable), choice($.char_value, $.char_variable)),
-    mkdir: ($) => seq("MKDIR", choice($.char_value, $.char_variable)),
+    file_copy: ($) =>
+      prec(
+        PREC.file,
+        seq(
+          "COPY",
+          choice($.char_value, $.char_variable),
+          choice($.char_value, $.char_variable),
+        ),
+      ),
+    mkdir: ($) =>
+      prec(PREC.file, seq("MKDIR", choice($.char_value, $.char_variable))),
 
     // From Filegrup.dat all path descriptors
     hc_path: ($) => seq(optional($.path_indicator), $.filename),
@@ -460,9 +494,9 @@ module.exports = grammar({
           seq(
             choice("A", "K", "R", "N", $.point_literal, $.line_literal),
             optional($.arithmetic),
-            optional($.arithmetic)
-          )
-        )
+            optional($.arithmetic),
+          ),
+        ),
       ),
     point_literal: ($) => /P[0-9]/,
     line_literal: ($) => /L[0-9]/,
