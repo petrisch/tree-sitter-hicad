@@ -44,11 +44,13 @@
 (condition) @constant
 
 
-(num_value) @constant.numeric.float
+;(num_value) @number
+(real) @number.float
+(int) @number
 (num_variable) @variable.parameter
 
 (char_value) @string
-(char_variable) @variable.parameter
+(char_variable) @variable.member
 
 "3D" @tag
 "BEMA" @tag
@@ -85,4 +87,4 @@
 (label) @text.strong
 
 (comment) @comment
-; (error) @error
+;(error) @error
