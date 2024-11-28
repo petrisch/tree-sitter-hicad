@@ -6,7 +6,7 @@
       "scope": "source.mac",
       "path": ".",
       "file-types": ["MAC", "mac"],
-      "highlights": "queries/highlights.scm"
+      "highlights": "queries/hicad/highlights.scm"
     }
   ],
   "metadata": {

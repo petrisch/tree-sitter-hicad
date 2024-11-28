@@ -4,9 +4,11 @@
 
 (function) @function
 "OPTION" @function.macro
+"ESC" @function.macro
 
-"START" @keyword
-"END" @keyword
+"START" @module
+"END" @module
+
 "STRING" @keyword
 "REAL" @keyword
 "INTEGER" @keyword
@@ -40,9 +42,15 @@
 ("<=") @operator
 (">=") @operator
 
+
+("NOT") @keyword.conditional
+
 ; TODO definitaly wrong, but there are not much more things in dracula theme
 (condition) @constant
 
+(for_loop) @keyword.repeat
+(while_loop) @keyword.repeat
+(repeat_loop) @keyword.repeat
 
 ;(num_value) @number
 (real) @number.float
@@ -55,7 +63,6 @@
 "3D" @tag
 "BEMA" @tag
 "DVORHD" @tag
-"ESC" @tag
 "FEATURE" @tag
 "FEHL" @tag
 "INT" @tag
@@ -69,9 +76,11 @@
 "SYMB" @tag
 "TEXT" @tag
 "VALID" @tag
-"VORHD" @tag
-"WAHR" @tag
+"VORHD" @string.special
+"WAHR" @string.special.symbol
 
+(wait) @string.documentation
+(warte) @string.documentation
 
 "OPEN" @text.title
 "CLOSE" @text.title
@@ -80,11 +89,12 @@
 "COPY" @keyword
 "MKDIR" @keyword
 
-(path_indicator) @text
+(path_indicator) @string.special.url
 (filename) @text.underline
 
 (jump_invocation) @text.strong
 (label) @text.strong
+(jump_to) @text.strong
+
 
 (comment) @comment
-;(error) @error
