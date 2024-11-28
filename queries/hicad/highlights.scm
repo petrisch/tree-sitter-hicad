@@ -9,13 +9,14 @@
 "START" @module
 "END" @module
 
-"STRING" @keyword
-"REAL" @keyword
-"INTEGER" @keyword
-"ANTWORT" @keyword
-"POINT" @keyword
-"DISTANZ" @keyword
-"WINKEL" @keyword
+"STRING" @keyword.type
+"REAL" @keyword.type
+"INTEGER" @keyword.type
+"ANTWORT" @keyword.type
+"POINT" @keyword.type
+"DISTANZ" @keyword.type
+"WINKEL" @keyword.type
+
 "APEIN" @keyword
 "APAUS" @keyword
 "HFEIN" @keyword
@@ -49,6 +50,7 @@
 ("IF") @keyword.conditional
 ("THEN") @keyword.conditional
 ("ELSE") @keyword.conditional
+("IFEND") @keyword.conditional
 
 (for_loop) @keyword.repeat
 (while_loop) @keyword.repeat
@@ -62,24 +64,24 @@
 (char_value) @string
 (char_variable) @variable.member
 
-"3D" @tag
-"BEMA" @tag
-"DVORHD" @tag
-"FEATURE" @tag
-"FEHL" @tag
-"INT" @tag
-"ISOP" @tag
-"JA" @boolean
-"NEIN" @boolean
-"PBEZ" @tag
-"PESC" @tag
-"PINT" @tag
-"SCHR" @tag
-"SYMB" @tag
-"TEXT" @tag
-"VALID" @tag
+"3D" @tag.attribute
+"BEMA" @tag.attribute
+"DVORHD" @tag.attribute
+"FEATURE" @tag.attribute
+"FEHL" @tag.attribute
+"INT" @tag.attribute
+"ISOP" @tag.attribute
+"PBEZ" @tag.attribute
+"PESC" @tag.attribute
+"PINT" @tag.attribute
+"SCHR" @tag.attribute
+"SYMB" @tag.attribute
+"TEXT" @tag.attribute
+"VALID" @tag.attribute
 "VORHD" @string.special
 "WAHR" @string.special.symbol
+"JA" @boolean
+"NEIN" @boolean
 
 (wait) @string.documentation
 (warte) @string.documentation
@@ -97,6 +99,5 @@
 (jump_invocation) @text.strong
 (label) @text.strong
 (jump_to) @text.strong
-
 
 (comment) @comment
