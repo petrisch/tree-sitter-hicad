@@ -42,11 +42,13 @@
 ("<=") @operator
 (">=") @operator
 
-
 ("NOT") @keyword.conditional
 
 ; TODO definitaly wrong, but there are not much more things in dracula theme
 (condition) @constant
+("IF") @keyword.conditional
+("THEN") @keyword.conditional
+("ELSE") @keyword.conditional
 
 (for_loop) @keyword.repeat
 (while_loop) @keyword.repeat
