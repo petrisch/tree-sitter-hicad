@@ -61,7 +61,8 @@
 (int) @number
 (num_variable) @variable.parameter
 
-(char_value) @string
+(char_value) @text.literal
+(char_literal) @text.literal
 (char_variable) @variable.member
 
 "3D" @tag.attribute
@@ -92,6 +93,8 @@
 "INPUT" @keyword
 "COPY" @keyword
 "MKDIR" @keyword
+
+(input) @string.escape
 
 (path_indicator) @string.special.url
 (filename) @text.underline
