@@ -2,6 +2,9 @@
 
 A [tree-sitter](https://tree-sitter.github.io/tree-sitter) grammar for the HCGS language from [ISD](https://www.isdgroup.com/), for its wonderful HiCAD program.
 
+>[!CAUTION]
+> This version works only for the main branch from nvim-treesitter.
+
 ## Disclaimer
 
 - This repository is independent of ISD, so not officially supported
