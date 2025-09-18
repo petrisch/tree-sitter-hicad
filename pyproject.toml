@@ -5,14 +5,14 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "tree-sitter-hicad"
 description = "Hicad grammar for tree-sitter"
-version = "0.0.1"
+version = "0.0.2"
 keywords = ["incremental", "parsing", "tree-sitter", "hicad"]
 classifiers = [
   "Intended Audience :: Developers",
   "License :: OSI Approved :: MIT License",
   "Topic :: Software Development :: Compilers",
   "Topic :: Text Processing :: Linguistic",
-  "Typing :: Typed"
+  "Typing :: Typed",
 ]
 requires-python = ">=3.8"
 license.text = "MIT"
@@ -22,7 +22,7 @@ readme = "README.md"
 Homepage = "https://github.com/tree-sitter/tree-sitter-hicad"
 
 [project.optional-dependencies]
-core = ["tree-sitter~=0.21"]
+core = ["tree-sitter~=0.25"]
 
 [tool.cibuildwheel]
 build = "cp38-*"
