@@ -173,7 +173,7 @@ module.exports = grammar({
       seq($.num_variable, choice(...assignment_operator), $.arithmetic),
 
     char_definition: ($) =>
-      seq($.char_variable, choice(...assignment_operator), $.char_value),
+      seq($.char_variable, choice(...assignment_operator), $.char_arg),
 
     // TODO VAI, VAR, PFD and DEL take a optional Benutzerführungstext, but actually not all of them
     assignment: ($) =>
@@ -243,13 +243,14 @@ module.exports = grammar({
     char_var_sign: ($) => /\$/,
     char_var_name: ($) => /([A-Z]|[a-z])([A-Z]|[a-z]|[0-9]|_){0,29}/,
 
+    char_arg: ($) => choice($.char_variable, $.char_value),
+
     char_value: ($) =>
       choice(
         $.char_literal,
         $.quoted_char,
         $.arithmetic,
         $.concat_arithmetic,
-        $.char_variable,
         $.windows_path,
       ),
 
@@ -258,16 +259,13 @@ module.exports = grammar({
     // Accepting german Umlaut and french signs here,
     // but not too many ascii and latin characters, since $ or % would indicate a variable
     char_literal: ($) => /([ -!#&-?A-~°à-ü]){1,60}/,
-    windows_path: ($) =>
-      choice(
-        // Either a "C:\FOO" or a \\GDCHSXX\FOO\BLA.txt
-        seq(
-          /[A-Z]:\\/,
-          /[A-Za-z0-9_\.\\]{1,256}/,
-          /\\{2}/,
-          /[A-Za-z0-9_\.\\]{1,256}/,
-        ),
-      ),
+
+    windows_path: ($) => choice($.unc_path, $.local_path),
+
+    // Either a "C:\FOO" or a \\GDCHSXX\FOO\BLA.txt
+    unc_path: ($) => seq(/\\\\[A-Za-z0-9_.]+\\/, /[A-Za-z0-9_.\\]{1,256}/),
+
+    local_path: ($) => seq(/[A-Z]:\\/, /[A-Za-z0-9_.\\]{1,256}/),
 
     // For concatenating variables.
     concat_arithmetic: ($) =>
@@ -438,12 +436,13 @@ module.exports = grammar({
         PREC.file,
         seq(
           "COPY",
-          choice($.char_value, $.char_variable),
-          choice($.char_value, $.char_variable),
+          choice($.char_variable, $.windows_path),
+          choice($.char_variable, $.windows_path),
         ),
       ),
+
     mkdir: ($) =>
-      prec(PREC.file, seq("MKDIR", choice($.char_value, $.char_variable))),
+      prec(PREC.file, seq("MKDIR", choice($.char_variable, $.windows_path))),
 
     // From Filegrup.dat all path descriptors
     hc_path: ($) => seq(optional($.path_indicator), $.filename),

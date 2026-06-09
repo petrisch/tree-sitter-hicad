@@ -145,6 +145,25 @@
     }
   },
   {
+    "type": "char_arg",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "char_value",
+          "named": true
+        },
+        {
+          "type": "char_variable",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "char_comparison",
     "named": true,
     "fields": {},
@@ -180,7 +199,7 @@
       "required": true,
       "types": [
         {
-          "type": "char_value",
+          "type": "char_arg",
           "named": true
         },
         {
@@ -204,10 +223,6 @@
         },
         {
           "type": "char_literal",
-          "named": true
-        },
-        {
-          "type": "char_variable",
           "named": true
         },
         {
@@ -521,11 +536,11 @@
       "required": true,
       "types": [
         {
-          "type": "char_value",
+          "type": "char_variable",
           "named": true
         },
         {
-          "type": "char_variable",
+          "type": "windows_path",
           "named": true
         }
       ]
@@ -897,6 +912,11 @@
     }
   },
   {
+    "type": "local_path",
+    "named": true,
+    "fields": {}
+  },
+  {
     "type": "logic_operation",
     "named": true,
     "fields": {},
@@ -967,11 +987,11 @@
       "required": true,
       "types": [
         {
-          "type": "char_value",
+          "type": "char_variable",
           "named": true
         },
         {
-          "type": "char_variable",
+          "type": "windows_path",
           "named": true
         }
       ]
@@ -1218,6 +1238,11 @@
     }
   },
   {
+    "type": "unc_path",
+    "named": true,
+    "fields": {}
+  },
+  {
     "type": "wait",
     "named": true,
     "fields": {},
@@ -1309,7 +1334,21 @@
   {
     "type": "windows_path",
     "named": true,
-    "fields": {}
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "local_path",
+          "named": true
+        },
+        {
+          "type": "unc_path",
+          "named": true
+        }
+      ]
+    }
   },
   {
     "type": " ",

@@ -363,7 +363,7 @@
         },
         {
           "type": "SYMBOL",
-          "name": "char_value"
+          "name": "char_arg"
         }
       ]
     },
@@ -764,6 +764,19 @@
       "type": "PATTERN",
       "value": "([A-Z]|[a-z])([A-Z]|[a-z]|[0-9]|_){0,29}"
     },
+    "char_arg": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "char_variable"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "char_value"
+        }
+      ]
+    },
     "char_value": {
       "type": "CHOICE",
       "members": [
@@ -782,10 +795,6 @@
         {
           "type": "SYMBOL",
           "name": "concat_arithmetic"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "char_variable"
         },
         {
           "type": "SYMBOL",
@@ -818,25 +827,38 @@
       "type": "CHOICE",
       "members": [
         {
-          "type": "SEQ",
-          "members": [
-            {
-              "type": "PATTERN",
-              "value": "[A-Z]:\\\\"
-            },
-            {
-              "type": "PATTERN",
-              "value": "[A-Za-z0-9_\\.\\\\]{1,256}"
-            },
-            {
-              "type": "PATTERN",
-              "value": "\\\\{2}"
-            },
-            {
-              "type": "PATTERN",
-              "value": "[A-Za-z0-9_\\.\\\\]{1,256}"
-            }
-          ]
+          "type": "SYMBOL",
+          "name": "unc_path"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "local_path"
+        }
+      ]
+    },
+    "unc_path": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "PATTERN",
+          "value": "\\\\\\\\[A-Za-z0-9_.]+\\\\"
+        },
+        {
+          "type": "PATTERN",
+          "value": "[A-Za-z0-9_.\\\\]{1,256}"
+        }
+      ]
+    },
+    "local_path": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "PATTERN",
+          "value": "[A-Z]:\\\\"
+        },
+        {
+          "type": "PATTERN",
+          "value": "[A-Za-z0-9_.\\\\]{1,256}"
         }
       ]
     },
@@ -1833,11 +1855,11 @@
             "members": [
               {
                 "type": "SYMBOL",
-                "name": "char_value"
+                "name": "char_variable"
               },
               {
                 "type": "SYMBOL",
-                "name": "char_variable"
+                "name": "windows_path"
               }
             ]
           },
@@ -1846,11 +1868,11 @@
             "members": [
               {
                 "type": "SYMBOL",
-                "name": "char_value"
+                "name": "char_variable"
               },
               {
                 "type": "SYMBOL",
-                "name": "char_variable"
+                "name": "windows_path"
               }
             ]
           }
@@ -1872,11 +1894,11 @@
             "members": [
               {
                 "type": "SYMBOL",
-                "name": "char_value"
+                "name": "char_variable"
               },
               {
                 "type": "SYMBOL",
-                "name": "char_variable"
+                "name": "windows_path"
               }
             ]
           }

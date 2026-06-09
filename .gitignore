@@ -3,6 +3,7 @@ Cargo.lock
 package-lock.json
 /.idea/
 valid_grammar/
+*.html
 
 # Rust artifacts
 target/

@@ -12,9 +12,6 @@ $Char_Var:=Hello World!
 
 $Char_Va42r:=Hello Wo3ld! of beautiful.
 
-REM This is actually possible, but we don't want to support this, so it should be a ERROR
-$Char_Va42r:="Hello Wo3ld" o^f beautiful.
-
 REM When concatenating, there can only be variable after string, or variable+variable,
 REM but not variable + string
 $Foo:="test" + $FOO2
@@ -34,125 +31,133 @@ $Foo:=$Foo(%Foo:23)
 
 %Bla:=SIN(4/3)
 
+REM Var starting with minus
+%Foo:=-42
+
+REM *** Absolut-Pfad ermitteln ***
+PFD $ZAPF
+$PFAD:=$@9
+
 END
 
 --------------------------------------------------------------------------------
 
-(source_file
-  (expression
-    (definition
-      (char_definition
-        (char_variable)
-        (char_value
-          (arithmetic
-            (general_variable))))))
-  (expression
-    (definition
-      (char_definition
-        (char_variable)
-        (char_value
-          (char_literal)))))
-  (expression
-    (definition
-      (char_definition
-        (char_variable)
-        (char_value
-          (char_literal)))))
-  (expression
-    (definition
-      (char_definition
-        (char_variable)
-        (char_value
-          (char_literal)))))
-  (comment)
-  (expression
-    (definition
-      (char_definition
-        (char_variable)
-        (char_value
-          (quoted_char
-            (char_literal))))))
-  (ERROR
-    (UNEXPECTED 'o')
-    (UNEXPECTED 'f'))
-  (comment)
-  (comment)
-  (expression
-    (definition
-      (char_definition
-        (char_variable)
-        (char_value
-          (concat_arithmetic
-            (quoted_char
-              (char_literal))
-            (char_variable))))))
-  (expression
-    (definition
-      (char_definition
-        (char_variable)
-        (char_value
-          (char_variable
-            (num_value
-              (real))
-            (num_value
-              (real)))))))
-  (expression
-    (definition
-      (char_definition
-        (char_variable)
-        (char_value
-          (char_variable
-            (num_variable)
-            (num_value
-              (real)))))))
-  (expression
-    (definition
-      (num_definition
-        (num_variable)
-        (arithmetic
-          (num_value
-            (real))))))
-  (expression
-    (definition
-      (num_definition
-        (num_variable)
-        (arithmetic
-          (num_value
-            (real))))))
-  (expression
-    (definition
-      (num_definition
-        (num_variable)
-        (arithmetic
-          (num_value
-            (real))))))
-  (expression
-    (definition
-      (num_definition
-        (num_variable)
-        (arithmetic
-          (binary_operator
+    (source_file
+      (expression
+        (definition
+          (char_definition
+            (char_variable
+              (char_var_sign)
+              (char_var_name))
+            (char_arg
+              (char_value
+                (arithmetic
+                  (general_variable)))))))
+      (expression
+        (definition
+          (char_definition
+            (char_variable
+              (char_var_sign)
+              (char_var_name))
+            (char_arg
+              (char_value
+                (char_literal))))))
+      (expression
+        (definition
+          (char_definition
+            (char_variable
+              (char_var_sign)
+              (char_var_name))
+            (char_arg
+              (char_value
+                (char_literal))))))
+      (expression
+        (definition
+          (char_definition
+            (char_variable
+              (char_var_sign)
+              (char_var_name))
+            (char_arg
+              (char_value
+                (char_literal))))))
+      (comment)
+      (comment)
+      (expression
+        (definition
+          (char_definition
+            (char_variable
+              (char_var_sign)
+              (char_var_name))
+            (char_arg
+              (char_value
+                (concat_arithmetic
+                  (quoted_char
+                    (char_literal))
+                  (char_variable
+                    (char_var_sign)
+                    (char_var_name))))))))
+      (expression
+        (definition
+          (char_definition
+            (char_variable
+              (char_var_sign)
+              (char_var_name))
+            (char_arg
+              (char_variable
+                (char_var_sign)
+                (char_var_name)
+                (num_value
+                  (real))
+                (num_value
+                  (real)))))))
+      (expression
+        (definition
+          (char_definition
+            (char_variable
+              (char_var_sign)
+              (char_var_name))
+            (char_arg
+              (char_variable
+                (char_var_sign)
+                (char_var_name)
+                (num_variable
+                  (num_var_sign)
+                  (num_var_name))
+                (num_value
+                  (real)))))))
+      (expression
+        (definition
+          (num_definition
+            (num_variable
+              (num_var_sign)
+              (num_var_name))
             (arithmetic
               (num_value
-                (real)))
+                (real))))))
+      (expression
+        (definition
+          (num_definition
+            (num_variable
+              (num_var_sign)
+              (num_var_name))
             (arithmetic
               (num_value
-                (real))))))))
-  (expression
-    (definition
-      (num_definition
-        (num_variable)
-        (arithmetic
-          (arithmetic_function
+                (real))))))
+      (expression
+        (definition
+          (num_definition
+            (num_variable
+              (num_var_sign)
+              (num_var_name))
             (arithmetic
               (num_value
-                (real))))))))
-  (expression
-    (definition
-      (num_definition
-        (num_variable)
-        (arithmetic
-          (arithmetic_function
+                (real))))))
+      (expression
+        (definition
+          (num_definition
+            (num_variable
+              (num_var_sign)
+              (num_var_name))
             (arithmetic
               (binary_operator
                 (arithmetic
@@ -160,4 +165,58 @@ END
                     (real)))
                 (arithmetic
                   (num_value
-                    (real)))))))))))
+                    (real))))))))
+      (expression
+        (definition
+          (num_definition
+            (num_variable
+              (num_var_sign)
+              (num_var_name))
+            (arithmetic
+              (arithmetic_function
+                (arithmetic
+                  (num_value
+                    (real))))))))
+      (expression
+        (definition
+          (num_definition
+            (num_variable
+              (num_var_sign)
+              (num_var_name))
+            (arithmetic
+              (arithmetic_function
+                (arithmetic
+                  (binary_operator
+                    (arithmetic
+                      (num_value
+                        (real)))
+                    (arithmetic
+                      (num_value
+                        (real))))))))))
+      (comment)
+      (expression
+        (definition
+          (num_definition
+            (num_variable
+              (num_var_sign)
+              (num_var_name))
+            (arithmetic
+              (num_value
+                (real))))))
+      (comment)
+      (expression
+        (definition
+          (assignment
+            (char_variable
+              (char_var_sign)
+              (char_var_name)))))
+      (expression
+        (definition
+          (char_definition
+            (char_variable
+              (char_var_sign)
+              (char_var_name))
+            (char_arg
+              (char_value
+                (arithmetic
+                  (char_sys_var))))))))

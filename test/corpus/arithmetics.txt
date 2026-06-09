@@ -1,0 +1,135 @@
+================================================================================
+Arithmetics
+================================================================================
+
+START 59
+
+REM Simple addition
+%VAR:=ANZ1+ANZ2
+$VAR3:="1:"+$ANZ1
+
+REM Simple subtraction
+%VAR:=ANZ1-ANZ2
+$VAR3:="1:"+$ANZ1
+
+REM Simple multiplication
+%VAR:=ANZ1*ANZ2
+
+REM Simple division
+%VAR:=ANZ1/ANZ2
+%VAR:=ANZ1/ANZ2
+
+REM Exponential
+%VAR:=ANZ1^2
+
+END
+
+--------------------------------------------------------------------------------
+
+    (source_file
+      (comment)
+      (expression
+        (definition
+          (num_definition
+            (num_variable
+              (num_var_sign)
+              (num_var_name))
+            (arithmetic
+              (binary_operator
+                (arithmetic
+                  (general_variable))
+                (arithmetic
+                  (general_variable)))))))
+      (expression
+        (definition
+          (char_definition
+            (char_variable
+              (char_var_sign)
+              (char_var_name))
+            (char_arg
+              (char_value
+                (concat_arithmetic
+                  (quoted_char
+                    (char_literal))
+                  (char_variable
+                    (char_var_sign)
+                    (char_var_name))))))))
+      (comment)
+      (expression
+        (definition
+          (num_definition
+            (num_variable
+              (num_var_sign)
+              (num_var_name))
+            (arithmetic
+              (binary_operator
+                (arithmetic
+                  (general_variable))
+                (arithmetic
+                  (general_variable)))))))
+      (expression
+        (definition
+          (char_definition
+            (char_variable
+              (char_var_sign)
+              (char_var_name))
+            (char_arg
+              (char_value
+                (concat_arithmetic
+                  (quoted_char
+                    (char_literal))
+                  (char_variable
+                    (char_var_sign)
+                    (char_var_name))))))))
+      (comment)
+      (expression
+        (definition
+          (num_definition
+            (num_variable
+              (num_var_sign)
+              (num_var_name))
+            (arithmetic
+              (binary_operator
+                (arithmetic
+                  (general_variable))
+                (arithmetic
+                  (general_variable)))))))
+      (comment)
+      (expression
+        (definition
+          (num_definition
+            (num_variable
+              (num_var_sign)
+              (num_var_name))
+            (arithmetic
+              (binary_operator
+                (arithmetic
+                  (general_variable))
+                (arithmetic
+                  (general_variable)))))))
+      (expression
+        (definition
+          (num_definition
+            (num_variable
+              (num_var_sign)
+              (num_var_name))
+            (arithmetic
+              (binary_operator
+                (arithmetic
+                  (general_variable))
+                (arithmetic
+                  (general_variable)))))))
+      (comment)
+      (expression
+        (definition
+          (num_definition
+            (num_variable
+              (num_var_sign)
+              (num_var_name))
+            (arithmetic
+              (binary_operator
+                (arithmetic
+                  (general_variable))
+                (arithmetic
+                  (num_value
+                    (real)))))))))

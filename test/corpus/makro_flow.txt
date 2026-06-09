@@ -1,0 +1,33 @@
+================================================================================
+Return makro_flow
+================================================================================
+
+START   59
+
+REM Has to be variables, can't be direct text
+CALL $Testmakro
+MAKRO $Testmakro
+POPUP $Testmakro
+
+
+END
+
+--------------------------------------------------------------------------------
+
+    (source_file
+      (comment)
+      (expression
+        (function
+          (char_variable
+            (char_var_sign)
+            (char_var_name))))
+      (expression
+        (function
+          (char_variable
+            (char_var_sign)
+            (char_var_name))))
+      (expression
+        (function
+          (char_variable
+            (char_var_sign)
+            (char_var_name)))))

@@ -1,0 +1,76 @@
+================================================================================
+Return menu
+================================================================================
+
+START   59
+OPTION 2 59
+SAUS
+
+IF $PROG <> "xxxx" THEN
+
+   OPTION  30   0
+   REM     Dateiname :
+
+   IF K99 <= 500 THEN
+
+      STRING  $PROG
+      STRING  RET
+
+   ELSE
+
+      STRING  XXXX
+      STRING  $PROG
+
+   IFEND
+IFEND
+
+END
+
+--------------------------------------------------------------------------------
+
+    (source_file
+      (expression
+        (menu))
+      (expression
+        (guidance_noargs))
+      (condition
+        (logical_expression
+          (comparison
+            (char_comparison
+              (char_variable
+                (char_var_sign)
+                (char_var_name))
+              (comparative_operator)
+              (quoted_char
+                (char_literal)))))
+        (condition_alt
+          (condition_block
+            (expression
+              (menu))
+            (comment)
+            (condition
+              (logical_expression
+                (comparison
+                  (num_comparison
+                    (arithmetic
+                      (general_variable))
+                    (comparative_operator)
+                    (arithmetic
+                      (num_value
+                        (real))))))
+              (condition_alt
+                (condition_alt_case
+                  (condition_block
+                    (input
+                      (scal_input
+                        (general_value)))
+                    (input
+                      (scal_input
+                        (general_value))))
+                  (condition_block
+                    (input
+                      (scal_input
+                        (general_value)))
+                    (input
+                      (scal_input
+                        (general_value)))))))))))
