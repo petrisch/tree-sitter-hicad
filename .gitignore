@@ -2,6 +2,7 @@ Cargo.lock
 *.log
 package-lock.json
 /.idea/
+valid_grammar/
 
 # Rust artifacts
 target/
