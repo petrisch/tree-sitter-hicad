@@ -444,6 +444,10 @@
         {
           "type": "jump_to",
           "named": true
+        },
+        {
+          "type": "loop",
+          "named": true
         }
       ]
     }

@@ -1008,7 +1008,7 @@
     },
     "char_variable": {
       "type": "PREC_LEFT",
-      "value": 8,
+      "value": 9,
       "content": {
         "type": "SEQ",
         "members": [
@@ -1567,56 +1567,64 @@
       }
     },
     "condition": {
-      "type": "SEQ",
-      "members": [
-        {
-          "type": "SYMBOL",
-          "name": "if_kw"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "logical_expression"
-        },
-        {
-          "type": "CHOICE",
-          "members": [
-            {
-              "type": "SYMBOL",
-              "name": "jump"
-            },
-            {
-              "type": "SEQ",
-              "members": [
-                {
-                  "type": "SYMBOL",
-                  "name": "then_kw"
-                },
-                {
-                  "type": "SYMBOL",
-                  "name": "condition_alt"
-                }
-              ]
-            }
-          ]
-        }
-      ]
+      "type": "PREC",
+      "value": 8,
+      "content": {
+        "type": "SEQ",
+        "members": [
+          {
+            "type": "SYMBOL",
+            "name": "if_kw"
+          },
+          {
+            "type": "SYMBOL",
+            "name": "logical_expression"
+          },
+          {
+            "type": "CHOICE",
+            "members": [
+              {
+                "type": "SYMBOL",
+                "name": "jump"
+              },
+              {
+                "type": "SEQ",
+                "members": [
+                  {
+                    "type": "SYMBOL",
+                    "name": "then_kw"
+                  },
+                  {
+                    "type": "SYMBOL",
+                    "name": "condition_alt"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
     },
     "loop": {
-      "type": "CHOICE",
-      "members": [
-        {
-          "type": "SYMBOL",
-          "name": "for_loop"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "while_loop"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "repeat_loop"
-        }
-      ]
+      "type": "PREC",
+      "value": 8,
+      "content": {
+        "type": "CHOICE",
+        "members": [
+          {
+            "type": "SYMBOL",
+            "name": "for_loop"
+          },
+          {
+            "type": "SYMBOL",
+            "name": "while_loop"
+          },
+          {
+            "type": "SYMBOL",
+            "name": "repeat_loop"
+          }
+        ]
+      }
     },
     "for_loop": {
       "type": "SEQ",
@@ -1647,8 +1655,11 @@
           ]
         },
         {
-          "type": "SYMBOL",
-          "name": "_macro_body"
+          "type": "REPEAT",
+          "content": {
+            "type": "SYMBOL",
+            "name": "_macro_body"
+          }
         },
         {
           "type": "SYMBOL",
@@ -1672,8 +1683,11 @@
           "name": "logical_expression"
         },
         {
-          "type": "SYMBOL",
-          "name": "_macro_body"
+          "type": "REPEAT",
+          "content": {
+            "type": "SYMBOL",
+            "name": "_macro_body"
+          }
         },
         {
           "type": "SYMBOL",
@@ -1693,8 +1707,11 @@
           "name": "logical_expression"
         },
         {
-          "type": "SYMBOL",
-          "name": "_macro_body"
+          "type": "REPEAT",
+          "content": {
+            "type": "SYMBOL",
+            "name": "_macro_body"
+          }
         },
         {
           "type": "SYMBOL",
@@ -2041,7 +2058,7 @@
     },
     "char_comparison": {
       "type": "PREC",
-      "value": 8,
+      "value": 9,
       "content": {
         "type": "SEQ",
         "members": [
@@ -2213,6 +2230,10 @@
           {
             "type": "SYMBOL",
             "name": "condition"
+          },
+          {
+            "type": "SYMBOL",
+            "name": "loop"
           },
           {
             "type": "SYMBOL",

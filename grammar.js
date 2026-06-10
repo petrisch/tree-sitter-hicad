@@ -19,7 +19,8 @@ const PREC = {
   power: 5,
   arithmetic: 6,
   file: 7,
-  char: 8,
+  flow: 8,
+  char: 9,
   keyword: 10,
 };
 
@@ -460,13 +461,17 @@ module.exports = grammar({
 
     // TODO Limit the number of IF statement nesting to some number, maybe 6
     condition: ($) =>
-      seq(
-        $.if_kw,
-        $.logical_expression,
-        choice($.jump, seq($.then_kw, $.condition_alt)),
+      prec(
+        PREC.flow,
+        seq(
+          $.if_kw,
+          $.logical_expression,
+          choice($.jump, seq($.then_kw, $.condition_alt)),
+        ),
       ),
 
-    loop: ($) => choice($.for_loop, $.while_loop, $.repeat_loop),
+    loop: ($) =>
+      prec(PREC.flow, choice($.for_loop, $.while_loop, $.repeat_loop)),
 
     for_loop: ($) =>
       seq(
@@ -474,16 +479,16 @@ module.exports = grammar({
         $.definition,
         $.to_kw,
         choice($.num_value, $.general_variable),
-        $._macro_body,
+        repeat($._macro_body),
         $.next_kw,
         $.general_variable,
       ),
 
     while_loop: ($) =>
-      seq($.while_kw, $.logical_expression, $._macro_body, $.whend_kw),
+      seq($.while_kw, $.logical_expression, repeat($._macro_body), $.whend_kw),
 
     repeat_loop: ($) =>
-      seq($.repeat_kw, $.logical_expression, $._macro_body, $.until_kw),
+      seq($.repeat_kw, $.logical_expression, repeat($._macro_body), $.until_kw),
 
     negation: ($) => not_kw,
 
@@ -549,7 +554,14 @@ module.exports = grammar({
 
     condition_block: ($) =>
       repeat1(
-        choice($.expression, $.condition, $.input, $.jump_to, $.file_operation),
+        choice(
+          $.expression,
+          $.condition,
+          $.loop,
+          $.input,
+          $.jump_to,
+          $.file_operation,
+        ),
       ),
 
     // TODO, there is more than just numbers here, they are limited, and what follows as well.
