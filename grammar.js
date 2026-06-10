@@ -1,6 +1,16 @@
 // Version HiCAD 2020
 // - Neuer Befehl ab 2022 "ASK"
 
+const ci = (word) =>
+  new RegExp(
+    word
+      .split("")
+      .map((/** @type {string} */ c) =>
+        /[a-zA-Z]/.test(c) ? `[${c.toLowerCase()}${c.toUpperCase()}]` : c,
+      )
+      .join(""),
+  );
+
 const PREC = {
   parenthesized: 1,
   quoted: 2,
@@ -10,92 +20,218 @@ const PREC = {
   arithmetic: 6,
   file: 7,
   char: 8,
+  keyword: 10,
 };
+
+/** @param {string} word */
+const kw = (word) => token(prec(PREC.keyword, ci(word)));
+
 const comparative_operators = ["=", ">", "<", "<>", "<=", ">="];
-const logical_operators = ["AND", "OR"];
+
+const and = kw("AND");
+const or = kw("OR");
+
+const logical_operators = [and, or];
 
 // The VORH is not mentioned in the documentation.
 // According to some power users it is valid code, so its in here.
 // could be deleted if we want to be strict, because we should use VORHD instead
+
+const three_d = kw("3D");
+const bema = kw("BEMA");
+const dvorhd = kw("DVORHD");
+const feature = kw("FEATURE");
+const fehl = kw("FEHL");
+const int = kw("INT");
+const isop = kw("ISOP");
+const ja = kw("JA");
+const nein = kw("NEIN");
+const pbez = kw("PBEZ");
+const pesc = kw("PESC");
+const pint = kw("PINT");
+const schr = kw("SCHR");
+const symb = kw("SYMB");
+const text = kw("TEXT");
+const valid = kw("VALID");
+const vorhd = kw("VORHD");
+const vorh = kw("VORH");
+const wahr = kw("WAHR");
+
 const logical_variable = [
-  "3D",
-  "BEMA",
-  "DVORHD",
-  "ESC",
-  "FEATURE",
-  "FEHL",
-  "INT",
-  "ISOP",
-  "JA",
-  "NEIN",
-  "PBEZ",
-  "PESC",
-  "PINT",
-  "SCHR",
-  "SYMB",
-  "TEXT",
-  "VALID",
-  "VORHD",
-  "VORH",
-  "WAHR",
+  three_d,
+  bema,
+  dvorhd,
+  feature,
+  fehl,
+  int,
+  isop,
+  ja,
+  nein,
+  pbez,
+  pesc,
+  pint,
+  schr,
+  symb,
+  text,
+  valid,
+  vorhd,
+  vorh,
+  wahr,
 ];
 
 const assignment_operator = [":="];
 
-const scalar_input = ["STRING", "REAL", "INTEGER", "ANTWORT"];
+const string = kw("STRING");
+const real = kw("REAL");
+const integer = kw("INTEGER");
+const antwort = kw("ANTWORT");
 
-const geometric_input = ["POINT", "DISTANZ", "WINKEL"];
+const scalar_input = [string, real, integer, antwort];
 
-// The `free` Argument #
-const arguments = ["#", "RET", "ESC"];
+const point = kw("POINT");
+const distanz = kw("DISTANZ");
+const winkel = kw("WINKEL");
+
+const geometric_input = [point, distanz, winkel];
+
+const free_kw = kw("#");
+const ret_kw = kw("RET");
+const esc_kw = kw("ESC");
 
 // User guidance keywords with no arguments
+const apein = kw("APEIN");
+const apaus = kw("APAUS");
+const hfein = kw("HFEIN");
+const hfaus = kw("HFAUS");
+const mein = kw("MEIN");
+const maus = kw("MAUS");
+const sein = kw("SEIN");
+const saus = kw("SAUS");
+const szein = kw("SZEIN");
+const szaus = kw("SZAUS");
+const uda = kw("UDA");
+const ude = kw("UDE");
+const waus = kw("WAUS");
+const wein = kw("WEIN");
+const zae = kw("ZAE");
+const zaa = kw("ZAA");
+
 const guidance_noargs = [
-  "APEIN",
-  "APAUS",
-  "HFEIN",
-  "HFAUS",
-  "MEIN",
-  "MAUS",
-  "SEIN",
-  "SAUS",
-  "SZEIN",
-  "SZAUS",
-  "UDA",
-  "UDE",
-  "WAUS",
-  "WEIN",
-  "ZAE",
-  "ZAA",
+  apein,
+  apaus,
+  hfein,
+  hfaus,
+  mein,
+  maus,
+  sein,
+  saus,
+  szein,
+  szaus,
+  uda,
+  ude,
+  waus,
+  wein,
+  zae,
+  zaa,
 ];
 
-const function_definition = ["CALL", "MAKRO", "POPUP"];
+const call = kw("CALL");
+const makro = kw("MAKRO");
+const popup = kw("POPUP");
+
+const function_call = [call, makro, popup];
+
+const abs = kw("ABS");
+const acos = kw("ACOS");
+const aint = kw("AINT");
+const arc = kw("ARC");
+const asc = kw("ASC");
+const asin = kw("ASIN");
+const atan = kw("ATAN");
+const cos = kw("COS");
+const cosh = kw("COSH");
+const exp = kw("EXP");
+const grd = kw("GRD");
+const len = kw("LEN");
+const log = kw("LOG");
+const log10 = kw("LOG10");
+const nint = kw("NINT");
+const sig = kw("SIG");
+const sin = kw("SIN");
+const sinh = kw("SINH");
+const sqr = kw("SQR");
+const sqrt = kw("SQRT");
+const tan = kw("TAN");
+const tanh = kw("TANH");
+const val = kw("VAL");
 
 const arithmetic_functions = [
-  "ABS",
-  "ACOS",
-  "AINT",
-  "ARC",
-  "ASC",
-  "ASIN",
-  "ATAN",
-  "COS",
-  "COSH",
-  "EXP",
-  "GRD",
-  "LEN",
-  "LOG",
-  "LOG10",
-  "NINT",
-  "SIG",
-  "SIN",
-  "SINH",
-  "SQR",
-  "SQRT",
-  "TAN",
-  "TANH",
-  "VAL",
+  abs,
+  acos,
+  aint,
+  arc,
+  asc,
+  asin,
+  atan,
+  cos,
+  cosh,
+  exp,
+  grd,
+  len,
+  log,
+  log10,
+  nint,
+  sig,
+  sin,
+  sinh,
+  sqr,
+  sqrt,
+  tan,
+  tanh,
+  val,
 ];
+
+const wait_kw = kw("WAIT");
+const warte_kw = kw("WARTE");
+const echo_kw = kw("ECHO");
+
+const vai = kw("VAI");
+const var_kw = kw("VAR");
+const pfd = kw("PFD");
+const del = kw("DEL");
+
+const if_kw = kw("IF");
+const then_kw = kw("THEN");
+const else_kw = kw("ELSE");
+const elseif_kw = kw("ELSEIF");
+const ifend_kw = kw("IFEND");
+
+const for_kw = kw("FOR");
+const to_kw = kw("TO");
+const next_kw = kw("NEXT");
+
+const whend_kw = kw("WHEND");
+const repeat_kw = kw("REPEAT");
+const until_kw = kw("UNTIL");
+
+const while_kw = kw("WHILE");
+
+const not_kw = kw("NOT");
+
+const option_kw = kw("OPTION");
+
+const open_kw = kw("OPEN");
+const close_kw = kw("CLOSE");
+const output_kw = kw("OUTPUT");
+const input_kw = kw("INPUT");
+const copy_kw = kw("COPY");
+const mkdir_kw = kw("MKDIR");
+
+const goto_kw = kw("GOTO");
+const wert_kw = kw("WERT");
+const point_kw = kw("POINT");
+
+const comment_kw = kw("REM");
 
 module.exports = grammar({
   name: "hicad",
@@ -127,7 +263,7 @@ module.exports = grammar({
           $.condition,
           $.loop,
           $.input,
-          $._file_operation,
+          $.file_operation,
           // $.jump, There is no jump without a condition because that will always generate dead code
           // There is one exception if after a single line of GOTO 99 there follows immediatly another 91: jump_to
           // honestly don't do that!
@@ -140,29 +276,29 @@ module.exports = grammar({
         $.echo,
         $.wait,
         $.warte,
-        $.guidance_noargs,
+        $.guidance_noarg,
         $.menu,
         $.logic_operation,
         $.function,
       ),
 
-    guidance_noargs: ($) => choice(...guidance_noargs),
+    guidance_noarg: ($) => choice(...guidance_noargs),
 
     parenthesis: ($) => seq(/\(/, $.echo, /\)/),
     // TODO: There is much more possible in ECHO because it specifies what is in a popup window.
-    echo: ($) => seq("ECHO", $.char_literal),
+    echo: ($) => seq(echo_kw, $.char_literal),
 
     // Somehow WAIT $Foo gives an error because TS is taking the space as char_literal
     wait: ($) =>
       seq(
-        "WAIT",
+        wait_kw,
         choice(
           seq(" ", $.num_variable),
           seq(" ", $.char_variable),
           seq(" ", $.char_literal),
         ),
       ),
-    warte: ($) => seq("WARTE", $.int),
+    warte: ($) => seq(warte_kw, $.int),
 
     // "INT", currently no idea what its doing TODO
 
@@ -178,9 +314,9 @@ module.exports = grammar({
     // TODO VAI, VAR, PFD and DEL take a optional Benutzerführungstext, but actually not all of them
     assignment: ($) =>
       choice(
-        seq("VAI", $.num_variable, optional(/.*/)),
+        seq(vai, $.num_variable, optional(/.*/)),
         seq(
-          "VAR",
+          var_kw,
           choice(
             $.num_variable,
             $.char_variable,
@@ -189,8 +325,8 @@ module.exports = grammar({
           ),
           optional(/.*/),
         ),
-        seq("PFD", choice($.char_variable, $.path_indicator, $.file_extension)),
-        seq("DEL", choice($.char_variable, $.num_variable)),
+        seq(pfd, choice($.char_variable, $.path_indicator, $.file_extension)),
+        seq(del, choice($.char_variable, $.num_variable)),
       ),
 
     arithmetic: ($) =>
@@ -204,8 +340,8 @@ module.exports = grammar({
         $.arithmetic_function,
       ),
 
-    arithmetic_function: ($) =>
-      seq(choice(...arithmetic_functions), "(", $.arithmetic, ")"),
+    arithmetic_func: ($) => choice(...arithmetic_functions),
+    arithmetic_function: ($) => seq($.arithmetic_func, "(", $.arithmetic, ")"),
 
     // First letter a %, followed by a letter, followed by either a letter or digit
     // The whole thing limited to 31 characters. Allowing underscores.
@@ -306,42 +442,63 @@ module.exports = grammar({
     num_sys_var: ($) => /@([A-Z]|[a-z]|[0-9]){1,3}/,
     char_sys_var: ($) => /\$@([A-Z]|[a-z]|[0-9]){1,3}/,
 
+    if_kw: ($) => if_kw,
+    then_kw: ($) => then_kw,
+    else_kw: ($) => else_kw,
+    elseif_kw: ($) => elseif_kw,
+    ifend_kw: ($) => ifend_kw,
+
+    for_kw: ($) => for_kw,
+    to_kw: ($) => to_kw,
+    next_kw: ($) => next_kw,
+
+    whend_kw: ($) => whend_kw,
+    repeat_kw: ($) => repeat_kw,
+    until_kw: ($) => until_kw,
+
+    while_kw: ($) => while_kw,
+
     // TODO Limit the number of IF statement nesting to some number, maybe 6
     condition: ($) =>
       seq(
-        "IF",
+        $.if_kw,
         $.logical_expression,
-        choice($.jump, seq("THEN", $.condition_alt)),
+        choice($.jump, seq($.then_kw, $.condition_alt)),
       ),
 
     loop: ($) => choice($.for_loop, $.while_loop, $.repeat_loop),
 
     for_loop: ($) =>
       seq(
-        "FOR",
+        $.for_kw,
         $.definition,
-        "TO",
+        $.to_kw,
         choice($.num_value, $.general_variable),
         $._macro_body,
-        "NEXT",
+        $.next_kw,
         $.general_variable,
       ),
 
     while_loop: ($) =>
-      seq("WHILE", $.logical_expression, $._macro_body, "WHEND"),
+      seq($.while_kw, $.logical_expression, $._macro_body, $.whend_kw),
 
     repeat_loop: ($) =>
-      seq("REPEAT", $.logical_expression, $._macro_body, "UNTIL"),
+      seq($.repeat_kw, $.logical_expression, $._macro_body, $.until_kw),
+
+    negation: ($) => not_kw,
 
     logical_expression: ($) =>
-      seq(optional("NOT"), choice($.comparison, $._concat_comparison)),
+      seq(optional($.negation), choice($.comparison, $._concat_comparison)),
+
+    logical_var: ($) => choice(...logical_variable),
 
     // These have to match, so either char or num variable and value
     comparison: ($) =>
-      choice($.num_comparison, $.char_comparison, choice(...logical_variable)),
+      choice($.num_comparison, $.char_comparison, $.logical_var),
 
-    _concat_comparison: ($) =>
-      seq($.comparison, choice(...logical_operators), $.comparison),
+    logical_op: ($) => choice(...logical_operators),
+
+    _concat_comparison: ($) => seq($.comparison, $.logical_op, $.comparison),
 
     num_comparison: ($) =>
       prec(
@@ -365,7 +522,7 @@ module.exports = grammar({
     // (Where between GOTO and IFEND would be dead code)
     condition_alt: ($) =>
       choice(
-        seq($.condition_block, "IFEND"),
+        seq($.condition_block, $.ifend_kw),
         $.condition_alt_case,
         $.condition_jump,
       ),
@@ -375,74 +532,78 @@ module.exports = grammar({
     condition_alt_case: ($) =>
       seq(
         $.condition_block,
-        "ELSE",
-        choice(seq($.condition_block, "IFEND"), $.condition_jump),
+        $.else_kw,
+        choice(seq($.condition_block, $.ifend_kw), $.condition_jump),
       ),
 
     condition_jump: ($) =>
-      seq(optional($.condition_block), $.jump_invocation, "IFEND", $.jump_body),
+      seq(
+        optional($.condition_block),
+        $.jump_invocation,
+        $.ifend_kw,
+        $.jump_body,
+      ),
 
     // TODO this is different than a macro_body because we assume,
     // that not "everything" can be done in a condition
 
     condition_block: ($) =>
       repeat1(
-        choice(
-          $.expression,
-          $.condition,
-          $.input,
-          $.jump_to,
-          $._file_operation,
-        ),
+        choice($.expression, $.condition, $.input, $.jump_to, $.file_operation),
       ),
 
     // TODO, there is more than just numbers here, they are limited, and what follows as well.
     //Also we want the whole OPTION Menu hunk as one entity between.
     menu: ($) =>
       seq(
-        "OPTION",
+        option_kw,
         choice(
           seq(
             /([1-9]|[12][0-9]|3[0])/,
             /([0-9]|[1-9][0-9]|1[0-9][0-9]|2[0-1][0-9]|22[0-5])/,
           ),
-          "ESC",
+          esc_kw,
         ),
       ),
 
     input: ($) => choice($.scal_input, $.geo_input),
-    scal_input: ($) => seq(choice(...scalar_input), $.general_value),
-    geo_input: ($) => seq(choice(...geometric_input), $.general_value),
+
+    scalar_in: ($) => choice(...scalar_input),
+    scal_input: ($) => seq($.scalar_in, $.general_value),
+
+    geometric_in: ($) => choice(...geometric_input),
+    geo_input: ($) => seq(choice($.geometric_in), $.general_value),
+
     // TODO there is not everything possible here, but we leave it for now
     general_value: ($) => /.*/,
 
     // File Procedure stuff
-    _file_operation: ($) => choice($.file_open, $.file_copy, $.mkdir),
+    file_operation: ($) => choice($.file_open, $.file_copy, $.mkdir),
     file_open: ($) =>
       seq(
-        "OPEN",
+        open_kw,
         $.hc_path,
         $.file_read_write,
         optional(choice($.expression, $.condition, $.loop, $.input)),
-        "CLOSE",
+        close_kw,
       ),
     file_read_write: ($) => repeat1(choice($.file_write, $.file_read)),
 
-    file_write: ($) => seq("OUTPUT", choice($.char_variable, $.num_variable)),
-    file_read: ($) => seq("INPUT", choice($.char_variable, $.num_variable)),
+    file_write: ($) => seq(output_kw, choice($.char_variable, $.num_variable)),
+    file_read: ($) => seq(input_kw, choice($.char_variable, $.num_variable)),
 
     file_copy: ($) =>
       prec(
         PREC.file,
         seq(
-          "COPY",
+          copy_kw,
           choice($.char_variable, $.windows_path),
           choice($.char_variable, $.windows_path),
         ),
       ),
 
     mkdir: ($) =>
-      prec(PREC.file, seq("MKDIR", choice($.char_variable, $.windows_path))),
+      prec(PREC.file, seq(mkdir_kw, choice($.char_variable, $.windows_path))),
 
     // From Filegrup.dat all path descriptors
     hc_path: ($) => seq(optional($.path_indicator), $.filename),
@@ -453,8 +614,8 @@ module.exports = grammar({
     file_extension: ($) => /&:\.SZA/,
 
     // CALL submacro Stuff
-    function: ($) =>
-      seq(choice(...function_definition), choice($.char_variable, $.hc_path)),
+    function_c: ($) => choice(...function_call),
+    function: ($) => seq($.function_c, choice($.char_variable, $.hc_path)),
 
     // The GOTO is obviously highly opiniated.
     // We only want to support GOTO statements, that are linear, so no "up" jumps to make a loop.
@@ -465,12 +626,12 @@ module.exports = grammar({
     // Supporting the GOTO jump. After the jump_to must be something, can't be empty
     jump: ($) => seq($.jump_invocation, $.jump_body),
 
-    jump_invocation: ($) => seq("GOTO", $.label),
+    jump_invocation: ($) => seq(goto_kw, $.label),
 
     // The final IFEND is probably only one of many possible endings that are missing.
     // The only thing we know is, it can't be empty
     jump_body: ($) =>
-      seq(optional($.goto_block), $.jump_to, choice($._macro_body, "IFEND")),
+      seq(optional($.goto_block), $.jump_to, choice($._macro_body, $.ifend_kw)),
 
     label: ($) => /([0-9]|[1-9][0-9]|[1-9][0-9][0-9]|[1-9][0-9][0-9][0-9])/,
 
@@ -481,15 +642,15 @@ module.exports = grammar({
 
     // SUPPORTING WERT, which tests a variable and sets the VORHD global variable
     logic_operation: ($) =>
-      seq("WERT", choice($.num_variable, $.char_variable)),
+      seq(wert_kw, choice($.num_variable, $.char_variable)),
 
     // The decimal
     point: ($) =>
       seq(
-        "POINT",
+        point_kw,
         choice(
-          "#",
-          "ESC",
+          free_kw,
+          esc_kw,
           seq(
             choice("A", "K", "R", "N", $.point_literal, $.line_literal),
             optional($.arithmetic),
@@ -502,7 +663,7 @@ module.exports = grammar({
 
     // basically it wouldn't be  case sensitive, but this is a opiniated grammar to find such things.
     // TODO This would belong to a linter or formatter.
-    comment: ($) => token(seq(choice("REM", "rem"), /.*/)),
+    comment: ($) => token(seq(comment_kw, /.*/)),
 
     // Not more than 8 digits before and after the "."
     // decimal: $ => /0*(?:[1-9][0-9]{0,8}|(?![0-9.]{8})(?:0\.[0-9]*[1-9][0-9]*|[1-9][0-9]*\.[0-9]+))/,

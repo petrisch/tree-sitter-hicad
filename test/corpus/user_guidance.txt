@@ -74,12 +74,12 @@ END
 
 --------------------------------------------------------------------------------
 
-   (source_file
+    (source_file
       (comment)
       (expression
-        (guidance_noargs))
+        (guidance_noarg))
       (expression
-        (guidance_noargs))
+        (guidance_noarg))
       (comment)
       (comment)
       (expression
@@ -91,29 +91,29 @@ END
           (char_literal)))
       (comment)
       (expression
-        (guidance_noargs))
+        (guidance_noarg))
       (expression
-        (guidance_noargs))
+        (guidance_noarg))
       (comment)
       (expression
-        (guidance_noargs))
+        (guidance_noarg))
       (expression
-        (guidance_noargs))
+        (guidance_noarg))
       (comment)
       (expression
-        (guidance_noargs))
+        (guidance_noarg))
       (expression
-        (guidance_noargs))
+        (guidance_noarg))
       (comment)
       (expression
-        (guidance_noargs))
+        (guidance_noarg))
       (expression
-        (guidance_noargs))
+        (guidance_noarg))
       (comment)
       (expression
-        (guidance_noargs))
+        (guidance_noarg))
       (expression
-        (guidance_noargs))
+        (guidance_noarg))
       (comment)
       (comment)
       (expression
@@ -125,47 +125,52 @@ END
           (int)))
       (comment)
       (expression
-        (guidance_noargs))
+        (guidance_noarg))
       (expression
-        (guidance_noargs))
+        (guidance_noarg))
       (comment)
       (expression
-        (guidance_noargs))
+        (guidance_noarg))
       (expression
-        (guidance_noargs))
-      (file_copy
-        (char_variable
-          (char_var_sign)
-          (char_var_name))
-        (char_variable
-          (char_var_sign)
-          (char_var_name)))
-      (file_copy
-        (char_variable
-          (char_var_sign)
-          (char_var_name))
-        (windows_path
-          (local_path)))
-      (mkdir
-        (char_variable
-          (char_var_sign)
-          (char_var_name)))
-      (mkdir
-        (windows_path
-          (local_path)))
-      (file_open
-        (hc_path
-          (path_indicator)
-          (filename))
-        (file_read_write
-          (file_write
-            (char_variable
-              (char_var_sign)
-              (char_var_name)))
-          (file_read
-            (char_variable
-              (char_var_sign)
-              (char_var_name)))))
+        (guidance_noarg))
+      (file_operation
+        (file_copy
+          (char_variable
+            (char_var_sign)
+            (char_var_name))
+          (char_variable
+            (char_var_sign)
+            (char_var_name))))
+      (file_operation
+        (file_copy
+          (char_variable
+            (char_var_sign)
+            (char_var_name))
+          (windows_path
+            (local_path))))
+      (file_operation
+        (mkdir
+          (char_variable
+            (char_var_sign)
+            (char_var_name))))
+      (file_operation
+        (mkdir
+          (windows_path
+            (local_path))))
+      (file_operation
+        (file_open
+          (hc_path
+            (path_indicator)
+            (filename))
+          (file_read_write
+            (file_write
+              (char_variable
+                (char_var_sign)
+                (char_var_name)))
+            (file_read
+              (char_variable
+                (char_var_sign)
+                (char_var_name))))))
       (expression
         (definition
           (assignment

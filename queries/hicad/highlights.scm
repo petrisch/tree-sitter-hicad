@@ -3,58 +3,67 @@
 (expression) @namespace
 
 (function) @function
-"OPTION" @function.macro
-"ESC" @function.macro
+(function_c) @function.call
+(menu) @function.macro
 
 "START" @module
 "END" @module
 
-"STRING" @keyword.type
-"REAL" @keyword.type
-"INTEGER" @keyword.type
-"ANTWORT" @keyword.type
-"POINT" @keyword.type
-"DISTANZ" @keyword.type
-"WINKEL" @keyword.type
+; "STRING" @keyword.type
+; "REAL" @keyword.type
+; "INTEGER" @keyword.type
 
-"APEIN" @keyword
-"APAUS" @keyword
-"HFEIN" @keyword
-"HFAUS" @keyword
-"MEIN" @keyword
-"MAUS" @keyword
-"SEIN" @keyword
-"SAUS" @keyword
-"SZEIN" @keyword
-"SZAUS" @keyword
-"UDA" @keyword
-"UDE" @keyword
-"WAUS" @keyword
-"WEIN" @keyword
-"ZAE" @keyword
-"ZAA" @keyword
+; "ANTWORT" @keyword.type
+; "POINT" @keyword.type
+; "DISTANZ" @keyword.type
+; "WINKEL" @keyword.type
+(scalar_in) @keyword.type
+
+; "APEIN" @keyword
+; "APAUS" @keyword
+; "HFEIN" @keyword
+; "HFAUS" @keyword
+; "MEIN" @keyword
+; "MAUS" @keyword
+; "SEIN" @keyword
+; "SAUS" @keyword
+; "SZEIN" @keyword
+; "SZAUS" @keyword
+; "UDA" @keyword
+; "UDE" @keyword
+; "WAUS" @keyword
+; "WEIN" @keyword
+; "ZAE" @keyword
+; "ZAA" @keyword
+(guidance_noarg) @keyword
 
 (":=") @punctuation
 
-("=") @operator
-(">") @operator
-("<") @operator
-("<>") @operator
-("<=") @operator
-(">=") @operator
+("=") @constructor
+(">") @constructor
+("<") @constructor
+("<>") @constructor
+("<=") @constructor
+(">=") @constructor
+(logical_op) @constructor
 
-("NOT") @keyword.conditional
+(arithmetic_func) @operator
 
-; TODO definitaly wrong, but there are not much more things in dracula theme
-(condition) @constant
-("IF") @keyword.conditional
-("THEN") @keyword.conditional
-("ELSE") @keyword.conditional
-("IFEND") @keyword.conditional
+(negation) @operator
 
-(for_loop) @keyword.repeat
-(while_loop) @keyword.repeat
-(repeat_loop) @keyword.repeat
+; (condition) @keyword.conditional
+(if_kw) @keyword.conditional
+(then_kw) @keyword.conditional
+(else_kw) @keyword.conditional
+(ifend_kw) @keyword.conditional
+
+(for_kw) @keyword.repeat
+(to_kw) @keyword.repeat
+(next_kw) @keyword.repeat
+
+(while_kw) @keyword.repeat
+(repeat_kw) @keyword.repeat
+(until_kw) @keyword.repeat
 
 ;(num_value) @number
 (real) @number.float
@@ -65,34 +74,19 @@
 (char_literal) @text.literal
 (char_variable) @variable.member
 
-"3D" @tag.attribute
-"BEMA" @tag.attribute
-"DVORHD" @tag.attribute
-"FEATURE" @tag.attribute
-"FEHL" @tag.attribute
-"INT" @tag.attribute
-"ISOP" @tag.attribute
-"PBEZ" @tag.attribute
-"PESC" @tag.attribute
-"PINT" @tag.attribute
-"SCHR" @tag.attribute
-"SYMB" @tag.attribute
-"TEXT" @tag.attribute
-"VALID" @tag.attribute
-"VORHD" @string.special
-"WAHR" @string.special.symbol
-"JA" @boolean
-"NEIN" @boolean
+(logical_var) @boolean
+
 
 (wait) @string.documentation
 (warte) @string.documentation
 
-"OPEN" @text.title
-"CLOSE" @text.title
-"OUTPUT" @keyword
-"INPUT" @keyword
-"COPY" @keyword
-"MKDIR" @keyword
+(file_operation) @text.title
+; "OPEN" @text.title
+; "CLOSE" @text.title
+; "OUTPUT" @keyword
+; "INPUT" @keyword
+; "COPY" @keyword
+; "MKDIR" @keyword
 
 (input) @string.escape
 

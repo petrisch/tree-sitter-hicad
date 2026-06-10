@@ -33,20 +33,27 @@ END
     (source_file
       (comment)
       (condition
+        (if_kw)
         (logical_expression
-          (comparison))
+          (comparison
+            (logical_var)))
         (jump
           (jump_invocation
             (label))
           (jump_body
             (goto_block
               (condition
+                (if_kw)
                 (logical_expression
-                  (comparison))
+                  (negation)
+                  (comparison
+                    (logical_var)))
+                (then_kw)
                 (condition_alt
                   (condition_jump
                     (jump_invocation
                       (label))
+                    (ifend_kw)
                     (jump_body
                       (goto_block
                         (expression
@@ -59,6 +66,7 @@ END
                                 (num_value
                                   (real))))))
                         (condition
+                          (if_kw)
                           (logical_expression
                             (comparison
                               (num_comparison
@@ -70,15 +78,18 @@ END
                                 (arithmetic
                                   (num_value
                                     (real))))))
+                          (then_kw)
                           (condition_alt
                             (condition_alt_case
                               (condition_block
                                 (expression
                                   (wait
                                     (char_literal))))
+                              (else_kw)
                               (condition_jump
                                 (jump_invocation
                                   (label))
+                                (ifend_kw)
                                 (jump_body
                                   (jump_to
                                     (label))

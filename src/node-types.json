@@ -43,15 +43,24 @@
     }
   },
   {
+    "type": "arithmetic_func",
+    "named": true,
+    "fields": {}
+  },
+  {
     "type": "arithmetic_function",
     "named": true,
     "fields": {},
     "children": {
-      "multiple": false,
+      "multiple": true,
       "required": true,
       "types": [
         {
           "type": "arithmetic",
+          "named": true
+        },
+        {
+          "type": "arithmetic_func",
           "named": true
         }
       ]
@@ -287,10 +296,14 @@
     "fields": {},
     "children": {
       "multiple": false,
-      "required": false,
+      "required": true,
       "types": [
         {
           "type": "char_comparison",
+          "named": true
+        },
+        {
+          "type": "logical_var",
           "named": true
         },
         {
@@ -332,11 +345,19 @@
           "named": true
         },
         {
+          "type": "if_kw",
+          "named": true
+        },
+        {
           "type": "jump",
           "named": true
         },
         {
           "type": "logical_expression",
+          "named": true
+        },
+        {
+          "type": "then_kw",
           "named": true
         }
       ]
@@ -347,7 +368,7 @@
     "named": true,
     "fields": {},
     "children": {
-      "multiple": false,
+      "multiple": true,
       "required": true,
       "types": [
         {
@@ -360,6 +381,10 @@
         },
         {
           "type": "condition_jump",
+          "named": true
+        },
+        {
+          "type": "ifend_kw",
           "named": true
         }
       ]
@@ -379,6 +404,14 @@
         },
         {
           "type": "condition_jump",
+          "named": true
+        },
+        {
+          "type": "else_kw",
+          "named": true
+        },
+        {
+          "type": "ifend_kw",
           "named": true
         }
       ]
@@ -401,11 +434,7 @@
           "named": true
         },
         {
-          "type": "file_copy",
-          "named": true
-        },
-        {
-          "type": "file_open",
+          "type": "file_operation",
           "named": true
         },
         {
@@ -414,10 +443,6 @@
         },
         {
           "type": "jump_to",
-          "named": true
-        },
-        {
-          "type": "mkdir",
           "named": true
         }
       ]
@@ -433,6 +458,10 @@
       "types": [
         {
           "type": "condition_block",
+          "named": true
+        },
+        {
+          "type": "ifend_kw",
           "named": true
         },
         {
@@ -505,7 +534,7 @@
           "named": true
         },
         {
-          "type": "guidance_noargs",
+          "type": "guidance_noarg",
           "named": true
         },
         {
@@ -576,6 +605,29 @@
         },
         {
           "type": "loop",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "file_operation",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "file_copy",
+          "named": true
+        },
+        {
+          "type": "file_open",
+          "named": true
+        },
+        {
+          "type": "mkdir",
           "named": true
         }
       ]
@@ -659,11 +711,11 @@
           "named": true
         },
         {
-          "type": "file_copy",
+          "type": "file_operation",
           "named": true
         },
         {
-          "type": "file_open",
+          "type": "for_kw",
           "named": true
         },
         {
@@ -683,7 +735,7 @@
           "named": true
         },
         {
-          "type": "mkdir",
+          "type": "next_kw",
           "named": true
         },
         {
@@ -692,6 +744,10 @@
         },
         {
           "type": "parenthesis",
+          "named": true
+        },
+        {
+          "type": "to_kw",
           "named": true
         }
       ]
@@ -702,11 +758,15 @@
     "named": true,
     "fields": {},
     "children": {
-      "multiple": false,
+      "multiple": true,
       "required": true,
       "types": [
         {
           "type": "char_variable",
+          "named": true
+        },
+        {
+          "type": "function_c",
           "named": true
         },
         {
@@ -715,6 +775,11 @@
         }
       ]
     }
+  },
+  {
+    "type": "function_c",
+    "named": true,
+    "fields": {}
   },
   {
     "type": "general_value",
@@ -731,15 +796,24 @@
     "named": true,
     "fields": {},
     "children": {
-      "multiple": false,
+      "multiple": true,
       "required": true,
       "types": [
         {
           "type": "general_value",
           "named": true
+        },
+        {
+          "type": "geometric_in",
+          "named": true
         }
       ]
     }
+  },
+  {
+    "type": "geometric_in",
+    "named": true,
+    "fields": {}
   },
   {
     "type": "goto_block",
@@ -769,7 +843,7 @@
     }
   },
   {
-    "type": "guidance_noargs",
+    "type": "guidance_noarg",
     "named": true,
     "fields": {}
   },
@@ -847,15 +921,15 @@
           "named": true
         },
         {
-          "type": "file_copy",
-          "named": true
-        },
-        {
-          "type": "file_open",
+          "type": "file_operation",
           "named": true
         },
         {
           "type": "goto_block",
+          "named": true
+        },
+        {
+          "type": "ifend_kw",
           "named": true
         },
         {
@@ -868,10 +942,6 @@
         },
         {
           "type": "loop",
-          "named": true
-        },
-        {
-          "type": "mkdir",
           "named": true
         },
         {
@@ -946,9 +1016,27 @@
         {
           "type": "comparison",
           "named": true
+        },
+        {
+          "type": "logical_op",
+          "named": true
+        },
+        {
+          "type": "negation",
+          "named": true
         }
       ]
     }
+  },
+  {
+    "type": "logical_op",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "logical_var",
+    "named": true,
+    "fields": {}
   },
   {
     "type": "loop",
@@ -1140,11 +1228,7 @@
           "named": true
         },
         {
-          "type": "file_copy",
-          "named": true
-        },
-        {
-          "type": "file_open",
+          "type": "file_operation",
           "named": true
         },
         {
@@ -1164,11 +1248,15 @@
           "named": true
         },
         {
-          "type": "mkdir",
+          "type": "parenthesis",
           "named": true
         },
         {
-          "type": "parenthesis",
+          "type": "repeat_kw",
+          "named": true
+        },
+        {
+          "type": "until_kw",
           "named": true
         }
       ]
@@ -1179,15 +1267,24 @@
     "named": true,
     "fields": {},
     "children": {
-      "multiple": false,
+      "multiple": true,
       "required": true,
       "types": [
         {
           "type": "general_value",
           "named": true
+        },
+        {
+          "type": "scalar_in",
+          "named": true
         }
       ]
     }
+  },
+  {
+    "type": "scalar_in",
+    "named": true,
+    "fields": {}
   },
   {
     "type": "source_file",
@@ -1207,11 +1304,7 @@
           "named": true
         },
         {
-          "type": "file_copy",
-          "named": true
-        },
-        {
-          "type": "file_open",
+          "type": "file_operation",
           "named": true
         },
         {
@@ -1224,10 +1317,6 @@
         },
         {
           "type": "loop",
-          "named": true
-        },
-        {
-          "type": "mkdir",
           "named": true
         },
         {
@@ -1297,11 +1386,7 @@
           "named": true
         },
         {
-          "type": "file_copy",
-          "named": true
-        },
-        {
-          "type": "file_open",
+          "type": "file_operation",
           "named": true
         },
         {
@@ -1321,11 +1406,15 @@
           "named": true
         },
         {
-          "type": "mkdir",
+          "type": "parenthesis",
           "named": true
         },
         {
-          "type": "parenthesis",
+          "type": "whend_kw",
+          "named": true
+        },
+        {
+          "type": "while_kw",
           "named": true
         }
       ]
@@ -1383,10 +1472,6 @@
     "named": false
   },
   {
-    "type": "3D",
-    "named": false
-  },
-  {
     "type": "59",
     "named": false
   },
@@ -1423,131 +1508,7 @@
     "named": false
   },
   {
-    "type": "ABS",
-    "named": false
-  },
-  {
-    "type": "ACOS",
-    "named": false
-  },
-  {
-    "type": "AINT",
-    "named": false
-  },
-  {
-    "type": "AND",
-    "named": false
-  },
-  {
-    "type": "ANTWORT",
-    "named": false
-  },
-  {
-    "type": "APAUS",
-    "named": false
-  },
-  {
-    "type": "APEIN",
-    "named": false
-  },
-  {
-    "type": "ARC",
-    "named": false
-  },
-  {
-    "type": "ASC",
-    "named": false
-  },
-  {
-    "type": "ASIN",
-    "named": false
-  },
-  {
-    "type": "ATAN",
-    "named": false
-  },
-  {
-    "type": "BEMA",
-    "named": false
-  },
-  {
-    "type": "CALL",
-    "named": false
-  },
-  {
-    "type": "CLOSE",
-    "named": false
-  },
-  {
-    "type": "COPY",
-    "named": false
-  },
-  {
-    "type": "COS",
-    "named": false
-  },
-  {
-    "type": "COSH",
-    "named": false
-  },
-  {
-    "type": "DEL",
-    "named": false
-  },
-  {
-    "type": "DISTANZ",
-    "named": false
-  },
-  {
-    "type": "DVORHD",
-    "named": false
-  },
-  {
-    "type": "ECHO",
-    "named": false
-  },
-  {
-    "type": "ELSE",
-    "named": false
-  },
-  {
     "type": "END",
-    "named": false
-  },
-  {
-    "type": "ESC",
-    "named": false
-  },
-  {
-    "type": "EXP",
-    "named": false
-  },
-  {
-    "type": "FEATURE",
-    "named": false
-  },
-  {
-    "type": "FEHL",
-    "named": false
-  },
-  {
-    "type": "FOR",
-    "named": false
-  },
-  {
-    "type": "GOTO",
-    "named": false
-  },
-  {
-    "type": "GRD",
-    "named": false
-  },
-  {
-    "type": "HFAUS",
-    "named": false
-  },
-  {
-    "type": "HFEIN",
     "named": false
   },
   {
@@ -1555,275 +1516,7 @@
     "named": false
   },
   {
-    "type": "IF",
-    "named": false
-  },
-  {
-    "type": "IFEND",
-    "named": false
-  },
-  {
-    "type": "INPUT",
-    "named": false
-  },
-  {
-    "type": "INT",
-    "named": false
-  },
-  {
-    "type": "INTEGER",
-    "named": false
-  },
-  {
-    "type": "ISOP",
-    "named": false
-  },
-  {
-    "type": "JA",
-    "named": false
-  },
-  {
-    "type": "LEN",
-    "named": false
-  },
-  {
-    "type": "LOG",
-    "named": false
-  },
-  {
-    "type": "LOG10",
-    "named": false
-  },
-  {
-    "type": "MAKRO",
-    "named": false
-  },
-  {
-    "type": "MAUS",
-    "named": false
-  },
-  {
-    "type": "MEIN",
-    "named": false
-  },
-  {
-    "type": "MKDIR",
-    "named": false
-  },
-  {
-    "type": "NEIN",
-    "named": false
-  },
-  {
-    "type": "NEXT",
-    "named": false
-  },
-  {
-    "type": "NINT",
-    "named": false
-  },
-  {
-    "type": "NOT",
-    "named": false
-  },
-  {
-    "type": "OPEN",
-    "named": false
-  },
-  {
-    "type": "OPTION",
-    "named": false
-  },
-  {
-    "type": "OR",
-    "named": false
-  },
-  {
-    "type": "OUTPUT",
-    "named": false
-  },
-  {
-    "type": "PBEZ",
-    "named": false
-  },
-  {
-    "type": "PESC",
-    "named": false
-  },
-  {
-    "type": "PFD",
-    "named": false
-  },
-  {
-    "type": "PINT",
-    "named": false
-  },
-  {
-    "type": "POINT",
-    "named": false
-  },
-  {
-    "type": "POPUP",
-    "named": false
-  },
-  {
-    "type": "REAL",
-    "named": false
-  },
-  {
-    "type": "REPEAT",
-    "named": false
-  },
-  {
-    "type": "SAUS",
-    "named": false
-  },
-  {
-    "type": "SCHR",
-    "named": false
-  },
-  {
-    "type": "SEIN",
-    "named": false
-  },
-  {
-    "type": "SIG",
-    "named": false
-  },
-  {
-    "type": "SIN",
-    "named": false
-  },
-  {
-    "type": "SINH",
-    "named": false
-  },
-  {
-    "type": "SQR",
-    "named": false
-  },
-  {
-    "type": "SQRT",
-    "named": false
-  },
-  {
     "type": "START",
-    "named": false
-  },
-  {
-    "type": "STRING",
-    "named": false
-  },
-  {
-    "type": "SYMB",
-    "named": false
-  },
-  {
-    "type": "SZAUS",
-    "named": false
-  },
-  {
-    "type": "SZEIN",
-    "named": false
-  },
-  {
-    "type": "TAN",
-    "named": false
-  },
-  {
-    "type": "TANH",
-    "named": false
-  },
-  {
-    "type": "TEXT",
-    "named": false
-  },
-  {
-    "type": "THEN",
-    "named": false
-  },
-  {
-    "type": "TO",
-    "named": false
-  },
-  {
-    "type": "UDA",
-    "named": false
-  },
-  {
-    "type": "UDE",
-    "named": false
-  },
-  {
-    "type": "UNTIL",
-    "named": false
-  },
-  {
-    "type": "VAI",
-    "named": false
-  },
-  {
-    "type": "VAL",
-    "named": false
-  },
-  {
-    "type": "VALID",
-    "named": false
-  },
-  {
-    "type": "VAR",
-    "named": false
-  },
-  {
-    "type": "VORH",
-    "named": false
-  },
-  {
-    "type": "VORHD",
-    "named": false
-  },
-  {
-    "type": "WAHR",
-    "named": false
-  },
-  {
-    "type": "WAIT",
-    "named": false
-  },
-  {
-    "type": "WARTE",
-    "named": false
-  },
-  {
-    "type": "WAUS",
-    "named": false
-  },
-  {
-    "type": "WEIN",
-    "named": false
-  },
-  {
-    "type": "WERT",
-    "named": false
-  },
-  {
-    "type": "WHEND",
-    "named": false
-  },
-  {
-    "type": "WHILE",
-    "named": false
-  },
-  {
-    "type": "WINKEL",
-    "named": false
-  },
-  {
-    "type": "ZAA",
-    "named": false
-  },
-  {
-    "type": "ZAE",
     "named": false
   },
   {
@@ -1848,11 +1541,27 @@
     "extra": true
   },
   {
+    "type": "else_kw",
+    "named": true
+  },
+  {
     "type": "file_extension",
     "named": true
   },
   {
     "type": "filename",
+    "named": true
+  },
+  {
+    "type": "for_kw",
+    "named": true
+  },
+  {
+    "type": "if_kw",
+    "named": true
+  },
+  {
+    "type": "ifend_kw",
     "named": true
   },
   {
@@ -1865,6 +1574,14 @@
   },
   {
     "type": "line_literal",
+    "named": true
+  },
+  {
+    "type": "negation",
+    "named": true
+  },
+  {
+    "type": "next_kw",
     "named": true
   },
   {
@@ -1885,6 +1602,30 @@
   },
   {
     "type": "real",
+    "named": true
+  },
+  {
+    "type": "repeat_kw",
+    "named": true
+  },
+  {
+    "type": "then_kw",
+    "named": true
+  },
+  {
+    "type": "to_kw",
+    "named": true
+  },
+  {
+    "type": "until_kw",
+    "named": true
+  },
+  {
+    "type": "whend_kw",
+    "named": true
+  },
+  {
+    "type": "while_kw",
     "named": true
   }
 ]

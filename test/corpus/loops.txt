@@ -23,6 +23,7 @@ END
     (source_file
       (loop
         (for_loop
+          (for_kw)
           (definition
             (num_definition
               (num_variable
@@ -31,20 +32,26 @@ END
               (arithmetic
                 (num_value
                   (real)))))
+          (to_kw)
           (general_variable)
           (expression
             (wait
               (char_literal)))
+          (next_kw)
           (general_variable)))
       (loop
         (while_loop
+          (while_kw)
           (logical_expression
-            (comparison))
+            (comparison
+              (logical_var)))
           (expression
             (wait
-              (char_literal)))))
+              (char_literal)))
+          (whend_kw)))
       (loop
         (while_loop
+          (while_kw)
           (logical_expression
             (comparison
               (num_comparison
@@ -66,4 +73,5 @@ END
                   (char_value
                     (arithmetic
                       (num_value
-                        (real)))))))))))
+                        (real))))))))
+          (whend_kw))))

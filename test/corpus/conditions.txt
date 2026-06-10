@@ -49,6 +49,7 @@ END
 
     (source_file
       (condition
+        (if_kw)
         (logical_expression
           (comparison
             (char_comparison
@@ -58,6 +59,7 @@ END
               (comparative_operator)
               (quoted_char
                 (char_literal)))))
+        (then_kw)
         (comment)
         (condition_alt
           (condition_block
@@ -69,8 +71,10 @@ END
                     (num_var_name))
                   (arithmetic
                     (num_value
-                      (real)))))))))
+                      (real)))))))
+          (ifend_kw)))
       (condition
+        (if_kw)
         (logical_expression
           (comparison
             (num_comparison
@@ -80,6 +84,7 @@ END
               (arithmetic
                 (num_value
                   (real))))))
+        (then_kw)
         (comment)
         (condition_alt
           (condition_block
@@ -93,8 +98,12 @@ END
                     (num_value
                       (real))))))
             (condition
+              (if_kw)
               (logical_expression
-                (comparison))
+                (negation)
+                (comparison
+                  (logical_var)))
+              (then_kw)
               (condition_alt
                 (condition_block
                   (expression
@@ -106,16 +115,22 @@ END
                         (arithmetic
                           (num_value
                             (real)))))))
-                (comment))))))
+                (comment)
+                (ifend_kw))))
+          (ifend_kw)))
       (condition
+        (if_kw)
         (logical_expression
-          (comparison))
+          (comparison
+            (logical_var)))
+        (then_kw)
         (condition_alt
           (condition_block
             (expression
               (wait
                 (char_literal)))
             (condition
+              (if_kw)
               (logical_expression
                 (comparison
                   (char_comparison
@@ -125,17 +140,22 @@ END
                     (comparative_operator)
                     (quoted_char
                       (char_literal)))))
+              (then_kw)
               (condition_alt
                 (condition_alt_case
                   (condition_block
                     (expression
                       (wait
                         (char_literal))))
+                  (else_kw)
                   (condition_block
                     (expression
                       (wait
-                        (char_literal))))))))))
+                        (char_literal))))
+                  (ifend_kw)))))
+          (ifend_kw)))
       (condition
+        (if_kw)
         (logical_expression
           (comparison
             (num_comparison
@@ -145,12 +165,15 @@ END
               (arithmetic
                 (num_value
                   (real))))))
+        (then_kw)
         (condition_alt
           (condition_block
             (expression
               (wait
-                (char_literal))))))
+                (char_literal))))
+          (ifend_kw)))
       (condition
+        (if_kw)
         (logical_expression
           (comparison
             (char_comparison
@@ -158,12 +181,15 @@ END
               (comparative_operator)
               (quoted_char
                 (char_literal)))))
+        (then_kw)
         (condition_alt
           (condition_block
             (expression
               (wait
-                (char_literal))))))
+                (char_literal))))
+          (ifend_kw)))
       (condition
+        (if_kw)
         (logical_expression
           (comparison
             (char_comparison
@@ -173,6 +199,7 @@ END
               (comparative_operator)
               (quoted_char
                 (char_literal))))
+          (logical_op)
           (comparison
             (num_comparison
               (arithmetic
@@ -183,12 +210,15 @@ END
               (arithmetic
                 (num_value
                   (real))))))
+        (then_kw)
         (condition_alt
           (condition_block
             (expression
               (wait
-                (char_literal))))))
+                (char_literal))))
+          (ifend_kw)))
       (condition
+        (if_kw)
         (logical_expression
           (comparison
             (num_comparison
@@ -204,8 +234,10 @@ END
               (arithmetic
                 (num_value
                   (real))))))
+        (then_kw)
         (condition_alt
           (condition_block
             (expression
               (wait
-                (char_literal)))))))
+                (char_literal))))
+          (ifend_kw))))
