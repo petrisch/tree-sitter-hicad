@@ -34,6 +34,10 @@
         {
           "type": "parenthesized_expression",
           "named": true
+        },
+        {
+          "type": "unary_operator",
+          "named": true
         }
       ]
     }
@@ -1389,6 +1393,36 @@
           "named": true
         }
       ]
+    }
+  },
+  {
+    "type": "unary_operator",
+    "named": true,
+    "fields": {
+      "operand": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "arithmetic",
+            "named": true
+          }
+        ]
+      },
+      "operator": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "+",
+            "named": false
+          },
+          {
+            "type": "-",
+            "named": false
+          }
+        ]
+      }
     }
   },
   {

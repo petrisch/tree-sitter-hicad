@@ -379,12 +379,19 @@ module.exports = grammar({
     arithmetic: ($) =>
       choice(
         $.binary_operator,
+        $.unary_operator,
         $.parenthesized_expression,
         $.num_value,
         $.num_variable,
         $.num_sys_var,
         $.arithmetic_function,
         $.general_variable,
+      ),
+
+    unary_operator: ($) =>
+      prec.right(
+        PREC.power,
+        seq(field("operator", choice("-", "+")), field("operand", $.arithmetic)),
       ),
 
     arithmetic_func: ($) => choice(...arithmetic_functions),
