@@ -1342,6 +1342,10 @@
         {
           "type": "num_variable",
           "named": true
+        },
+        {
+          "type": "text_value",
+          "named": true
         }
       ]
     }
@@ -1717,6 +1721,10 @@
   },
   {
     "type": "repeat_kw",
+    "named": true
+  },
+  {
+    "type": "text_value",
     "named": true
   },
   {

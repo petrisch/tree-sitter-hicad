@@ -622,7 +622,21 @@ module.exports = grammar({
     scalar_in: ($) => choice(...scalar_input),
     scal_input: ($) => seq($.scalar_in, $.scal_value),
     scal_value: ($) =>
-      choice($.char_value, $.char_literal, $.num_variable, ...flow_arguments),
+      choice(
+        $.char_value,
+        $.char_literal,
+        $.num_variable,
+        $.text_value,
+        ...flow_arguments,
+      ),
+
+    // A forgiving fallback for unquoted free-text values (e.g. menu prompts
+    // for STRING that contain spaces, "%", commas or accented characters).
+    // It must not start with a sigil ("$"/"%"), a quote, "#" or whitespace so
+    // that variables, quoted strings, the "#" marker and flow keywords keep
+    // their dedicated interpretation; the higher token precedence lets it win
+    // over `char_literal` when the value spans more than a single word.
+    text_value: ($) => token(prec(PREC.char, /[^\s"$%#][^\n\r]*/)),
 
     geometric_in: ($) => choice(...geometric_input),
 

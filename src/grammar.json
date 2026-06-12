@@ -2504,6 +2504,10 @@
           "name": "num_variable"
         },
         {
+          "type": "SYMBOL",
+          "name": "text_value"
+        },
+        {
           "type": "TOKEN",
           "content": {
             "type": "PREC",
@@ -2537,6 +2541,17 @@
           }
         }
       ]
+    },
+    "text_value": {
+      "type": "TOKEN",
+      "content": {
+        "type": "PREC",
+        "value": 2,
+        "content": {
+          "type": "PATTERN",
+          "value": "[^\\s\"$%#][^\\n\\r]*"
+        }
+      }
     },
     "geometric_in": {
       "type": "CHOICE",
