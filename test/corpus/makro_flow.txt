@@ -14,23 +14,23 @@ END
 
 --------------------------------------------------------------------------------
 
-    (source_file
+    (source_file
       (comment)
       (expression
         (function
           (function_c)
           (char_variable
             (char_var_sign)
-            (char_var_name))))
+            (identifier))))
       (expression
         (function
           (function_c)
           (char_variable
             (char_var_sign)
-            (char_var_name))))
+            (identifier))))
       (expression
         (function
           (function_c)
           (char_variable
             (char_var_sign)
-            (char_var_name)))))
+            (identifier)))))

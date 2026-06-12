@@ -45,15 +45,8 @@ END
           (char_definition
             (char_variable
               (char_var_sign)
-              (char_var_name))
-            (char_arg
-              (char_value
-                (concat_arithmetic
-                  (quoted_char
-                    (char_literal))
-                  (char_variable
-                    (char_var_sign)
-                    (char_var_name))))))))
+              (identifier))
+            (free_text))))
       (comment)
       (expression
         (definition
@@ -72,15 +65,8 @@ END
           (char_definition
             (char_variable
               (char_var_sign)
-              (char_var_name))
-            (char_arg
-              (char_value
-                (concat_arithmetic
-                  (quoted_char
-                    (char_literal))
-                  (char_variable
-                    (char_var_sign)
-                    (char_var_name))))))))
+              (identifier))
+            (free_text))))
       (comment)
       (expression
         (definition

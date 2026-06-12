@@ -35,8 +35,7 @@ END
           (to_kw)
           (general_variable)
           (expression
-            (wait
-              (char_literal)))
+            (wait))
           (next_kw)
           (general_variable)))
       (loop
@@ -46,8 +45,7 @@ END
             (comparison
               (logical_var)))
           (expression
-            (wait
-              (char_literal)))
+            (wait))
           (whend_kw)))
       (loop
         (while_loop
@@ -68,10 +66,7 @@ END
               (char_definition
                 (char_variable
                   (char_var_sign)
-                  (char_var_name))
-                (char_arg
-                  (char_value
-                    (arithmetic
-                      (num_value
-                        (real))))))))
+                  (identifier))
+                (free_text))))
           (whend_kw))))
+

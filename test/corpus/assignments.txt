@@ -61,17 +61,14 @@ END
           (char_definition
             (char_variable
               (char_var_sign)
-              (char_var_name))
-            (char_arg
-              (char_value
-                (arithmetic
-                  (general_variable)))))))
+              (identifier))
+            (free_text))))
       (expression
         (definition
           (assignment
             (char_variable
               (char_var_sign)
-              (char_var_name)))))
+              (identifier)))))
       (expression
         (definition
           (assignment
@@ -90,11 +87,8 @@ END
           (char_definition
             (char_variable
               (char_var_sign)
-              (char_var_name))
-            (char_arg
-              (char_value
-                (arithmetic
-                  (char_sys_var)))))))
+              (identifier))
+            (free_text))))
       (expression
         (definition
           (assignment
@@ -104,18 +98,15 @@ END
           (char_definition
             (char_variable
               (char_var_sign)
-              (char_var_name))
-            (char_arg
-              (char_value
-                (arithmetic
-                  (char_sys_var)))))))
+              (identifier))
+            (free_text))))
       (comment)
       (expression
         (definition
           (assignment
             (char_variable
               (char_var_sign)
-              (char_var_name)))))
+              (identifier)))))
       (expression
         (definition
           (assignment

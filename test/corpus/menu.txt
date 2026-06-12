@@ -24,13 +24,22 @@ IF $PROG <> "xxxx" THEN
    IFEND
 IFEND
 
+
+OPTION ESC
+
+STRING #
+
+REAL RET
+
 END
 
 --------------------------------------------------------------------------------
 
     (source_file
       (expression
-        (menu))
+        (menu
+          (menu_index)
+          (menu_code)))
       (expression
         (guidance_noarg))
       (condition
@@ -40,7 +49,7 @@ END
             (char_comparison
               (char_variable
                 (char_var_sign)
-                (char_var_name))
+                (identifier))
               (comparative_operator)
               (quoted_char
                 (char_literal)))))
@@ -48,7 +57,9 @@ END
         (condition_alt
           (condition_block
             (expression
-              (menu))
+              (menu
+                (menu_index)
+                (menu_code)))
             (comment)
             (condition
               (if_kw)
@@ -68,20 +79,39 @@ END
                     (input
                       (scal_input
                         (scalar_in)
-                        (general_value)))
+                        (scal_value
+                          (char_value
+                            (char_variable
+                              (char_var_sign)
+                              (identifier))))))
                     (input
                       (scal_input
                         (scalar_in)
-                        (general_value))))
+                        (scal_value))))
                   (else_kw)
                   (condition_block
                     (input
                       (scal_input
                         (scalar_in)
-                        (general_value)))
+                        (scal_value
+                          (char_literal))))
                     (input
                       (scal_input
                         (scalar_in)
-                        (general_value))))
+                        (scal_value
+                          (char_value
+                            (char_variable
+                              (char_var_sign)
+                              (identifier)))))))
                   (ifend_kw)))))
-          (ifend_kw))))
+          (ifend_kw)))
+      (expression
+        (menu))
+      (input
+        (scal_input
+          (scalar_in)
+          (scal_value)))
+      (input
+        (scal_input
+          (scalar_in)
+          (scal_value))))

@@ -4,11 +4,13 @@ Return conditions
 
 START   59
 
+REM string compare
 IF $FOO = "foo" THEN
     REM Test
     %XY:=42
 IFEND
 
+REM num compare nested not
 IF FOO <= 84 THEN
     REM Test
     %YX:=23
@@ -18,6 +20,7 @@ IF FOO <= 84 THEN
    IFEND
 IFEND
 
+REM bool compare nested char compare
 IF WAHR THEN
    WAIT Test
   IF $FOO <> "Test" THEN
@@ -27,18 +30,22 @@ IF WAHR THEN
   IFEND
 IFEND
 
+REM sys compare
 IF @23=5 THEN
     WAIT 3
 IFEND
 
+REM sys char compare
 IF $@A3="test" THEN
     WAIT 3
 IFEND
 
+REM combine
 IF $X="test" AND %Y>0 THEN
     WAIT 3
 IFEND
 
+REM arithmetic
 IF 5+5=10 THEN
     WAIT 5
 IFEND
@@ -48,6 +55,7 @@ END
 --------------------------------------------------------------------------------
 
     (source_file
+      (comment)
       (condition
         (if_kw)
         (logical_expression
@@ -55,7 +63,7 @@ END
             (char_comparison
               (char_variable
                 (char_var_sign)
-                (char_var_name))
+                (identifier))
               (comparative_operator)
               (quoted_char
                 (char_literal)))))
@@ -73,6 +81,7 @@ END
                     (num_value
                       (real)))))))
           (ifend_kw)))
+      (comment)
       (condition
         (if_kw)
         (logical_expression
@@ -118,6 +127,7 @@ END
                 (comment)
                 (ifend_kw))))
           (ifend_kw)))
+      (comment)
       (condition
         (if_kw)
         (logical_expression
@@ -127,8 +137,7 @@ END
         (condition_alt
           (condition_block
             (expression
-              (wait
-                (char_literal)))
+              (wait))
             (condition
               (if_kw)
               (logical_expression
@@ -136,7 +145,7 @@ END
                   (char_comparison
                     (char_variable
                       (char_var_sign)
-                      (char_var_name))
+                      (identifier))
                     (comparative_operator)
                     (quoted_char
                       (char_literal)))))
@@ -145,15 +154,14 @@ END
                 (condition_alt_case
                   (condition_block
                     (expression
-                      (wait
-                        (char_literal))))
+                      (wait)))
                   (else_kw)
                   (condition_block
                     (expression
-                      (wait
-                        (char_literal))))
+                      (wait)))
                   (ifend_kw)))))
           (ifend_kw)))
+      (comment)
       (condition
         (if_kw)
         (logical_expression
@@ -169,9 +177,9 @@ END
         (condition_alt
           (condition_block
             (expression
-              (wait
-                (char_literal))))
+              (wait)))
           (ifend_kw)))
+      (comment)
       (condition
         (if_kw)
         (logical_expression
@@ -185,9 +193,9 @@ END
         (condition_alt
           (condition_block
             (expression
-              (wait
-                (char_literal))))
+              (wait)))
           (ifend_kw)))
+      (comment)
       (condition
         (if_kw)
         (logical_expression
@@ -195,7 +203,7 @@ END
             (char_comparison
               (char_variable
                 (char_var_sign)
-                (char_var_name))
+                (identifier))
               (comparative_operator)
               (quoted_char
                 (char_literal))))
@@ -214,9 +222,9 @@ END
         (condition_alt
           (condition_block
             (expression
-              (wait
-                (char_literal))))
+              (wait)))
           (ifend_kw)))
+      (comment)
       (condition
         (if_kw)
         (logical_expression
@@ -238,6 +246,5 @@ END
         (condition_alt
           (condition_block
             (expression
-              (wait
-                (char_literal))))
+              (wait)))
           (ifend_kw))))
