@@ -633,6 +633,8 @@ module.exports = grammar({
         $.num_sys_var,
         $.general_variable,
         $.numeric_binary,
+        $.numeric_unary,
+        $.numeric_parenthesized,
       ),
 
     numeric_binary: ($) =>
@@ -644,6 +646,12 @@ module.exports = grammar({
           $.numeric_expression,
         ),
       ),
+
+    numeric_unary: ($) =>
+      prec.right(PREC.power, seq(choice("-", "+"), $.numeric_expression)),
+
+    numeric_parenthesized: ($) =>
+      prec(PREC.parenthesized, seq("(", $.numeric_expression, ")")),
 
     // // TODO there is not everything possible here, but we leave it for now
     // general_value: ($) =>
@@ -682,7 +690,7 @@ module.exports = grammar({
     path_indicator: ($) => /([A-Z]|[0-9]|#):/,
 
     // The documentation says the whole path can't be longer than 60, so we limit this here to 40 for now
-    filename: ($) => /([A-Z]|[0-9]|_){1,40}/,
+    filename: ($) => /([A-Za-z]|[0-9]|_|-){1,40}/,
     file_extension: ($) => /&:\.SZA/,
 
     // CALL submacro Stuff
@@ -714,6 +722,7 @@ module.exports = grammar({
             free_kw,
             esc_kw,
             seq(
+              optional($.point_option),
               choice(
                 $.point_literal,
                 $.line_literal,
@@ -725,6 +734,7 @@ module.exports = grammar({
           ),
         ),
       ),
+    point_option: ($) => choice("A", "K", "R", "N"),
     point_literal: ($) => /P[0-9]/,
     line_literal: ($) => /L[0-9]/,
 

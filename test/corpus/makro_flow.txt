@@ -6,31 +6,40 @@ START   59
 
 REM Has to be variables, can't be direct text
 CALL $Testmakro
+
+CALL M:Some-Makro
 MAKRO $Testmakro
 POPUP $Testmakro
+
 
 
 END
 
 --------------------------------------------------------------------------------
 
-    (source_file
-      (comment)
-      (expression
-        (function
-          (function_c)
-          (char_variable
-            (char_var_sign)
-            (identifier))))
-      (expression
-        (function
-          (function_c)
-          (char_variable
-            (char_var_sign)
-            (identifier))))
-      (expression
-        (function
-          (function_c)
-          (char_variable
-            (char_var_sign)
-            (identifier)))))
+(source_file
+  (comment)
+  (expression
+    (function
+      (function_c)
+      (char_variable
+        (char_var_sign)
+        (identifier))))
+  (expression
+    (function
+      (function_c)
+      (hc_path
+        (path_indicator)
+        (filename))))
+  (expression
+    (function
+      (function_c)
+      (char_variable
+        (char_var_sign)
+        (identifier))))
+  (expression
+    (function
+      (function_c)
+      (char_variable
+        (char_var_sign)
+        (identifier)))))

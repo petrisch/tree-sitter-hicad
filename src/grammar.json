@@ -2576,6 +2576,14 @@
         {
           "type": "SYMBOL",
           "name": "numeric_binary"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "numeric_unary"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "numeric_parenthesized"
         }
       ]
     },
@@ -2617,6 +2625,53 @@
           {
             "type": "SYMBOL",
             "name": "numeric_expression"
+          }
+        ]
+      }
+    },
+    "numeric_unary": {
+      "type": "PREC_RIGHT",
+      "value": 8,
+      "content": {
+        "type": "SEQ",
+        "members": [
+          {
+            "type": "CHOICE",
+            "members": [
+              {
+                "type": "STRING",
+                "value": "-"
+              },
+              {
+                "type": "STRING",
+                "value": "+"
+              }
+            ]
+          },
+          {
+            "type": "SYMBOL",
+            "name": "numeric_expression"
+          }
+        ]
+      }
+    },
+    "numeric_parenthesized": {
+      "type": "PREC",
+      "value": 4,
+      "content": {
+        "type": "SEQ",
+        "members": [
+          {
+            "type": "STRING",
+            "value": "("
+          },
+          {
+            "type": "SYMBOL",
+            "name": "numeric_expression"
+          },
+          {
+            "type": "STRING",
+            "value": ")"
           }
         ]
       }
@@ -2882,7 +2937,7 @@
     },
     "filename": {
       "type": "PATTERN",
-      "value": "([A-Z]|[0-9]|_){1,40}"
+      "value": "([A-Za-z]|[0-9]|_|-){1,40}"
     },
     "file_extension": {
       "type": "PATTERN",
@@ -3064,6 +3119,18 @@
                     "members": [
                       {
                         "type": "SYMBOL",
+                        "name": "point_option"
+                      },
+                      {
+                        "type": "BLANK"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "CHOICE",
+                    "members": [
+                      {
+                        "type": "SYMBOL",
                         "name": "point_literal"
                       },
                       {
@@ -3093,6 +3160,27 @@
           }
         ]
       }
+    },
+    "point_option": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "A"
+        },
+        {
+          "type": "STRING",
+          "value": "K"
+        },
+        {
+          "type": "STRING",
+          "value": "R"
+        },
+        {
+          "type": "STRING",
+          "value": "N"
+        }
+      ]
     },
     "point_literal": {
       "type": "PATTERN",
