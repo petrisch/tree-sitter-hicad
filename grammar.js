@@ -276,19 +276,23 @@ module.exports = grammar({
 
     _macro_body: ($) =>
       // Any line can start with the jump_to label for the GOTO statement
-      seq(
-        optional($.jump_to),
-        choice(
-          prec(PREC.parenthesized, $.parenthesis),
-          $.expression,
-          $.condition,
-          $.loop,
-          $.input,
-          $.file_operation,
-          // There is no jump without a condition because that will always generate dead code
-          // There is one exception if after a single line of GOTO 99 there follows immediatly another 91: jump_to
-          // honestly don't do that!
-          $.jump,
+      choice(
+        // A label can stand alone on a line (e.g. directly before END)
+        prec(-1, $.jump_to),
+        seq(
+          optional($.jump_to),
+          choice(
+            prec(PREC.parenthesized, $.parenthesis),
+            $.expression,
+            $.condition,
+            $.loop,
+            $.input,
+            $.file_operation,
+            // There is no jump without a condition because that will always generate dead code
+            // There is one exception if after a single line of GOTO 99 there follows immediatly another 91: jump_to
+            // honestly don't do that!
+            $.jump,
+          ),
         ),
       ),
 
@@ -611,12 +615,7 @@ module.exports = grammar({
     scalar_in: ($) => choice(...scalar_input),
     scal_input: ($) => seq($.scalar_in, $.scal_value),
     scal_value: ($) =>
-      choice(
-        $.char_value,
-        $.char_literal,
-        $.num_variable,
-        ...flow_arguments,
-      ),
+      choice($.char_value, $.char_literal, $.num_variable, ...flow_arguments),
 
     geometric_in: ($) => choice(...geometric_input),
 

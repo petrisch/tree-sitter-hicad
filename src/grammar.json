@@ -94,54 +94,67 @@
       }
     },
     "_macro_body": {
-      "type": "SEQ",
+      "type": "CHOICE",
       "members": [
         {
-          "type": "CHOICE",
-          "members": [
-            {
-              "type": "SYMBOL",
-              "name": "jump_to"
-            },
-            {
-              "type": "BLANK"
-            }
-          ]
+          "type": "PREC",
+          "value": -1,
+          "content": {
+            "type": "SYMBOL",
+            "name": "jump_to"
+          }
         },
         {
-          "type": "CHOICE",
+          "type": "SEQ",
           "members": [
             {
-              "type": "PREC",
-              "value": 4,
-              "content": {
-                "type": "SYMBOL",
-                "name": "parenthesis"
-              }
+              "type": "CHOICE",
+              "members": [
+                {
+                  "type": "SYMBOL",
+                  "name": "jump_to"
+                },
+                {
+                  "type": "BLANK"
+                }
+              ]
             },
             {
-              "type": "SYMBOL",
-              "name": "expression"
-            },
-            {
-              "type": "SYMBOL",
-              "name": "condition"
-            },
-            {
-              "type": "SYMBOL",
-              "name": "loop"
-            },
-            {
-              "type": "SYMBOL",
-              "name": "input"
-            },
-            {
-              "type": "SYMBOL",
-              "name": "file_operation"
-            },
-            {
-              "type": "SYMBOL",
-              "name": "jump"
+              "type": "CHOICE",
+              "members": [
+                {
+                  "type": "PREC",
+                  "value": 4,
+                  "content": {
+                    "type": "SYMBOL",
+                    "name": "parenthesis"
+                  }
+                },
+                {
+                  "type": "SYMBOL",
+                  "name": "expression"
+                },
+                {
+                  "type": "SYMBOL",
+                  "name": "condition"
+                },
+                {
+                  "type": "SYMBOL",
+                  "name": "loop"
+                },
+                {
+                  "type": "SYMBOL",
+                  "name": "input"
+                },
+                {
+                  "type": "SYMBOL",
+                  "name": "file_operation"
+                },
+                {
+                  "type": "SYMBOL",
+                  "name": "jump"
+                }
+              ]
             }
           ]
         }
