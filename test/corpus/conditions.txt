@@ -60,6 +60,7 @@ END
 --------------------------------------------------------------------------------
 
 (source_file
+  (start_marker)
   (comment)
   (condition
     (if_kw)
@@ -270,4 +271,5 @@ END
       (condition_block
         (expression
           (wait)))
-      (ifend_kw))))
+      (ifend_kw)))
+  (end_marker))

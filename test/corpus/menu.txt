@@ -37,6 +37,7 @@ END
 --------------------------------------------------------------------------------
 
 (source_file
+  (start_marker)
   (expression
     (menu
       (menu_index)
@@ -120,4 +121,5 @@ END
   (input
     (scal_input
       (scalar_in)
-      (scal_value))))
+      (scal_value)))
+  (end_marker))

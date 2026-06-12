@@ -14,7 +14,9 @@ GOTO 99
 
 (source_file
   (comment)
+  (start_marker)
   (jump
     (label))
   (jump_to
-    (label)))
+    (label))
+  (end_marker))

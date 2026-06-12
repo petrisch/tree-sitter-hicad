@@ -1369,6 +1369,10 @@
           "named": true
         },
         {
+          "type": "end_marker",
+          "named": true
+        },
+        {
           "type": "expression",
           "named": true
         },
@@ -1395,9 +1399,18 @@
         {
           "type": "parenthesis",
           "named": true
+        },
+        {
+          "type": "start_marker",
+          "named": true
         }
       ]
     }
+  },
+  {
+    "type": "start_marker",
+    "named": true,
+    "fields": {}
   },
   {
     "type": "unary_operator",
@@ -1641,6 +1654,10 @@
   },
   {
     "type": "else_kw",
+    "named": true
+  },
+  {
+    "type": "end_marker",
     "named": true
   },
   {

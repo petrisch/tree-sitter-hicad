@@ -18,6 +18,8 @@ REM Finally
 
 (source_file
   (comment)
+  (start_marker)
   (comment)
   (comment)
+  (end_marker)
   (comment))

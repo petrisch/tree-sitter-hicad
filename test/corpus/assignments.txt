@@ -37,6 +37,7 @@ END
 --------------------------------------------------------------------------------
 
 (source_file
+  (start_marker)
   (comment)
   (expression
     (definition
@@ -149,4 +150,5 @@ END
       (assignment
         (num_variable
           (num_var_sign)
-          (num_var_name))))))
+          (num_var_name)))))
+  (end_marker))

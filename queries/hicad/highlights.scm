@@ -1,100 +1,119 @@
-; highlights.scm
+; ----------------------------
+; START END
+; ----------------------------
 
-(expression) @namespace
+(start_marker) @module
+(end_marker) @module
 
-(function) @function
-(function_c) @function.call
+; ----------------------------
+; CONDITION KEYWORDS
+; ----------------------------
+
+(condition) @keyword.conditional
+
+; ----------------------------
+; LOOPS
+; ----------------------------
+
+(loop) @keyword.repeat
+
+; ----------------------------
+; COMMANDS
+; ----------------------------
+
+(wait) @keyword
+(warte) @keyword
+(echo) @keyword
+
+(assignment) @keyword
+
 (menu) @function.macro
 
-"START" @module
-"END" @module
+(file_operation) @function.macro
 
-; "STRING" @keyword.type
-; "REAL" @keyword.type
-; "INTEGER" @keyword.type
+(function) @function.call
+(function_c) @function
 
-; "ANTWORT" @keyword.type
-; "POINT" @keyword.type
-; "DISTANZ" @keyword.type
-; "WINKEL" @keyword.type
-(scalar_in) @keyword.type
+(arithmetic_func) @function.builtin
 
-; "APEIN" @keyword
-; "APAUS" @keyword
-; "HFEIN" @keyword
-; "HFAUS" @keyword
-; "MEIN" @keyword
-; "MAUS" @keyword
-; "SEIN" @keyword
-; "SAUS" @keyword
-; "SZEIN" @keyword
-; "SZAUS" @keyword
-; "UDA" @keyword
-; "UDE" @keyword
-; "WAUS" @keyword
-; "WEIN" @keyword
-; "ZAE" @keyword
-; "ZAA" @keyword
-(guidance_noarg) @keyword
+; ----------------------------
+; VARIABLES
+; ----------------------------
 
-(":=") @punctuation
+(num_variable) @variable
+(char_variable) @variable
 
-("=") @constructor
-(">") @constructor
-("<") @constructor
-("<>") @constructor
-("<=") @constructor
-(">=") @constructor
-(logical_op) @constructor
+(char_sys_var) @variable.builtin
+(num_sys_var) @variable.builtin
 
-(arithmetic_func) @operator
+(identifier) @variable
+(general_variable) @variable
 
-(negation) @operator
+; ----------------------------
+; NUMBERS
+; ----------------------------
 
-; (condition) @keyword.conditional
-(if_kw) @keyword.conditional
-(then_kw) @keyword.conditional
-(else_kw) @keyword.conditional
-(ifend_kw) @keyword.conditional
-
-(for_kw) @keyword.repeat
-(to_kw) @keyword.repeat
-(next_kw) @keyword.repeat
-
-(while_kw) @keyword.repeat
-(repeat_kw) @keyword.repeat
-(until_kw) @keyword.repeat
-
-;(num_value) @number
 (real) @number.float
 (int) @number
-(num_variable) @variable.parameter
+(num_value) @number
 
-(char_value) @text.literal
-(char_literal) @text.literal
-(char_variable) @variable.member
+; ----------------------------
+; STRINGS / TEXT
+; ----------------------------
+
+(char_literal) @string
+(quoted_char) @string
+(free_text) @string
+(text_value) @string
+
+(windows_path) @string.special
+(local_path) @string.special
+(unc_path) @string.special
+
+(path_indicator) @string.special
+(filename) @string
+
+; ----------------------------
+; OPERATORS
+; ----------------------------
+
+(comparative_operator) @operator
+
+(binary_operator operator: _ @operator)
+(unary_operator operator: _ @operator)
+
+; ----------------------------
+; LOGICAL
+; ----------------------------
 
 (logical_var) @boolean
+(logical_op) @keyword.operator
+(negation) @keyword.operator
 
+; ----------------------------
+; LABELS
+; ----------------------------
 
-(wait) @string.documentation
-(warte) @string.documentation
+(label) @label
+(jump_to) @label
+(jump) @keyword.control
 
-(file_operation) @text.title
-; "OPEN" @text.title
-; "CLOSE" @text.title
-; "OUTPUT" @keyword
-; "INPUT" @keyword
-; "COPY" @keyword
-; "MKDIR" @keyword
+; ----------------------------
+; INPUT / IO
+; ----------------------------
 
-(input) @string.escape
+(input) @string.special
 
-(path_indicator) @string.special.url
-(filename) @text.underline
-
-(jump_invocation) @text.strong
-(label) @text.strong
-(jump_to) @text.strong
+; ----------------------------
+; COMMENTS
+; ----------------------------
 
 (comment) @comment
+
+; ----------------------------
+; PUNCTUATION
+; ----------------------------
+
+"(" @punctuation.bracket
+")" @punctuation.bracket
+":" @punctuation.delimiter

@@ -265,14 +265,14 @@ module.exports = grammar({
     // Probably its due to a version detection thing in HiCAD
     _top_item: ($) =>
       choice(
-        $._start_marker,
-        $._end_marker,
+        $.start_marker,
+        $.end_marker,
         seq($._macro_body, optional($._eol)),
       ),
 
-    _start_marker: ($) => seq(start_kw, /59/, optional(hnext_kw)),
+    start_marker: ($) => seq(start_kw, /59/, optional(hnext_kw)),
 
-    _end_marker: ($) => end_kw,
+    end_marker: ($) => end_kw,
 
     _macro_body: ($) =>
       // Any line can start with the jump_to label for the GOTO statement

@@ -30,6 +30,7 @@ END
 --------------------------------------------------------------------------------
 
 (source_file
+  (start_marker)
   (comment)
   (expression
     (definition
@@ -141,4 +142,5 @@ END
                   (arithmetic_function
                     (arithmetic_func)
                     (arithmetic
-                      (general_variable))))))))))))
+                      (general_variable)))))))))))
+  (end_marker))

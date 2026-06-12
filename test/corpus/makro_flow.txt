@@ -18,6 +18,7 @@ END
 --------------------------------------------------------------------------------
 
 (source_file
+  (start_marker)
   (comment)
   (expression
     (function
@@ -42,4 +43,5 @@ END
       (function_c)
       (char_variable
         (char_var_sign)
-        (identifier)))))
+        (identifier))))
+  (end_marker))
