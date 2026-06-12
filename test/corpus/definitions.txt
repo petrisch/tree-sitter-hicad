@@ -10,6 +10,8 @@ $alllowercase:=foo?
 
 $Char_Var:=Hello World!
 
+$Allow-inVar:=0
+
 $Char_Va42r:=Hello Wo3ld! of beautiful.
 
 REM When concatenating, there can only be variable after string, or variable+variable,
@@ -43,6 +45,13 @@ END
 --------------------------------------------------------------------------------
 
     (source_file
+      (expression
+        (definition
+          (char_definition
+            (char_variable
+              (char_var_sign)
+              (identifier))
+            (free_text))))
       (expression
         (definition
           (char_definition

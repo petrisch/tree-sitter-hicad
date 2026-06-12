@@ -391,7 +391,10 @@ module.exports = grammar({
     unary_operator: ($) =>
       prec.right(
         PREC.power,
-        seq(field("operator", choice("-", "+")), field("operand", $.arithmetic)),
+        seq(
+          field("operator", choice("-", "+")),
+          field("operand", $.arithmetic),
+        ),
       ),
 
     arithmetic_func: ($) => choice(...arithmetic_functions),
@@ -431,7 +434,7 @@ module.exports = grammar({
 
     char_var_sign: ($) => "$",
 
-    identifier: ($) => token(/[A-Za-z][A-Za-z0-9_]*/),
+    identifier: ($) => token(/[A-Za-z][A-Za-z0-9_-]*/),
 
     // char_arg: ($) => choice($.char_variable, $.char_value),
 
