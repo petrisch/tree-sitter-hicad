@@ -89,7 +89,8 @@ END
                 (input
                   (scal_input
                     (scalar_in)
-                    (scal_value))))
+                    (scal_value
+                      (flow_args)))))
               (else_kw)
               (condition_block
                 (input
@@ -117,9 +118,11 @@ END
   (input
     (scal_input
       (scalar_in)
-      (scal_value)))
+      (scal_value
+        (flow_args))))
   (input
     (scal_input
       (scalar_in)
-      (scal_value)))
+      (scal_value
+        (flow_args))))
   (end_marker))

@@ -55,6 +55,8 @@ IF SP=1 THEN
  WAIT 6
 IFEND
 
+IF ESC OR INT GOTO 99
+
 END
 
 --------------------------------------------------------------------------------
@@ -272,4 +274,14 @@ END
         (expression
           (wait)))
       (ifend_kw)))
+  (condition
+    (if_kw)
+    (logical_expression
+      (comparison
+        (flow_args))
+      (logical_op)
+      (comparison
+        (logical_var)))
+    (jump
+      (label)))
   (end_marker))

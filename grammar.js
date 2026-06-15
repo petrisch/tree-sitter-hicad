@@ -553,9 +553,11 @@ module.exports = grammar({
 
     logical_var: ($) => choice(...logical_variable),
 
+    flow_args: ($) => choice(...flow_arguments),
+
     // These have to match, so either char or num variable and value
     comparison: ($) =>
-      choice($.num_comparison, $.char_comparison, $.logical_var),
+      choice($.num_comparison, $.char_comparison, $.logical_var, $.flow_args),
 
     logical_op: ($) => choice(...logical_operators),
 
@@ -630,7 +632,7 @@ module.exports = grammar({
         $.char_literal,
         $.num_variable,
         $.text_value,
-        ...flow_arguments,
+        $.flow_args,
       ),
 
     // A forgiving fallback for unquoted free-text values (e.g. menu prompts
