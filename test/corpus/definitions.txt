@@ -40,6 +40,9 @@ REM *** Absolut-Pfad ermitteln ***
 PFD $ZAPF
 $PFAD:=$@9
 
+REM VAL turns char to num if possible, so this is valid
+%FN:=VAL($FR1)
+
 END
 
 --------------------------------------------------------------------------------
@@ -198,4 +201,16 @@ END
           (char_var_sign)
           (identifier))
         (free_text))))
+  (comment)
+  (expression
+    (definition
+      (num_definition
+        (num_variable
+          (num_var_sign)
+          (num_var_name))
+        (arithmetic
+          (val_function
+            (char_variable
+              (char_var_sign)
+              (identifier)))))))
   (end_marker))

@@ -38,6 +38,10 @@
         {
           "type": "unary_operator",
           "named": true
+        },
+        {
+          "type": "val_function",
+          "named": true
         }
       ]
     }
@@ -1474,6 +1478,29 @@
     "type": "unc_path",
     "named": true,
     "fields": {}
+  },
+  {
+    "type": "val_function",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "char_sys_var",
+          "named": true
+        },
+        {
+          "type": "char_variable",
+          "named": true
+        },
+        {
+          "type": "quoted_char",
+          "named": true
+        }
+      ]
+    }
   },
   {
     "type": "wait",

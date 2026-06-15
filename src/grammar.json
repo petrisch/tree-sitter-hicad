@@ -760,6 +760,10 @@
         },
         {
           "type": "SYMBOL",
+          "name": "val_function"
+        },
+        {
+          "type": "SYMBOL",
           "name": "general_variable"
         }
       ]
@@ -1042,17 +1046,6 @@
               "value": "[tT][aA][nN][hH]"
             }
           }
-        },
-        {
-          "type": "TOKEN",
-          "content": {
-            "type": "PREC",
-            "value": 14,
-            "content": {
-              "type": "PATTERN",
-              "value": "[vV][aA][lL]"
-            }
-          }
         }
       ]
     },
@@ -1080,6 +1073,47 @@
           }
         ]
       }
+    },
+    "val_function": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "TOKEN",
+          "content": {
+            "type": "PREC",
+            "value": 14,
+            "content": {
+              "type": "PATTERN",
+              "value": "[vV][aA][lL]"
+            }
+          }
+        },
+        {
+          "type": "STRING",
+          "value": "("
+        },
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "char_variable"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "char_sys_var"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "quoted_char"
+            }
+          ]
+        },
+        {
+          "type": "STRING",
+          "value": ")"
+        }
+      ]
     },
     "num_variable": {
       "type": "SEQ",

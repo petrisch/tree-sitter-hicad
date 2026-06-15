@@ -179,6 +179,8 @@ const sqr = kw("SQR");
 const sqrt = kw("SQRT");
 const tan = kw("TAN");
 const tanh = kw("TANH");
+
+// Type conversion special case
 const val = kw("VAL");
 
 const arithmetic_functions = [
@@ -204,7 +206,6 @@ const arithmetic_functions = [
   sqrt,
   tan,
   tanh,
-  val,
 ];
 
 const wait_kw = kw("WAIT");
@@ -369,6 +370,7 @@ module.exports = grammar({
         $.num_variable,
         $.num_sys_var,
         $.arithmetic_function,
+        $.val_function,
         $.general_variable,
       ),
 
@@ -384,6 +386,14 @@ module.exports = grammar({
     arithmetic_func: ($) => choice(...arithmetic_functions),
     arithmetic_function: ($) =>
       prec(PREC.arithmetic, seq($.arithmetic_func, "(", $.arithmetic, ")")),
+
+    val_function: ($) =>
+      seq(
+        val,
+        "(",
+        choice($.char_variable, $.char_sys_var, $.quoted_char),
+        ")",
+      ),
 
     // First letter a %, followed by a letter, followed by either a letter or digit
     // The whole thing limited to 31 characters. Allowing underscores.
