@@ -484,6 +484,21 @@
     "fields": {}
   },
   {
+    "type": "end_marker",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": false,
+      "types": [
+        {
+          "type": "jump_to",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "expression",
     "named": true,
     "fields": {},
@@ -1667,10 +1682,6 @@
   },
   {
     "type": "else_kw",
-    "named": true
-  },
-  {
-    "type": "end_marker",
     "named": true
   },
   {

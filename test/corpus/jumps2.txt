@@ -17,6 +17,6 @@ GOTO 99
   (start_marker)
   (jump
     (label))
-  (jump_to
-    (label))
-  (end_marker))
+  (end_marker
+    (jump_to
+      (label))))

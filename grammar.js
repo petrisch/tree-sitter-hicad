@@ -25,8 +25,9 @@ const PREC = {
   file: 10,
   sys: 11,
   flow: 12,
-  keyword: 13,
-  echo: 14,
+  jump: 13,
+  keyword: 14,
+  echo: 15,
   comment: 30,
   echo_text: 31,
 };
@@ -256,44 +257,39 @@ module.exports = grammar({
   extras: ($) => [/\s+/, $.comment],
 
   rules: {
-    // Forgiving top level: a macro usually is wrapped in START 59 ... END,
-    // but the START/END markers as well as the body are all optional so that
-    // partial macros / snippets without the wrapper still parse without errors.
     source_file: ($) => repeat($._top_item),
 
     // THE "HNEXT" is questionable if we shouldn't remove those.
     // Probably its due to a version detection thing in HiCAD
-    _top_item: ($) =>
-      choice(
-        $.start_marker,
-        $.end_marker,
-        seq($._macro_body, optional($._eol)),
-      ),
+    _top_item: ($) => choice($.start_marker, $.end_marker, $._macro_body),
 
     start_marker: ($) => seq(start_kw, /59/, optional(hnext_kw)),
 
-    end_marker: ($) => end_kw,
+    end_marker: ($) => seq(optional($.jump_to), end_kw),
 
     _macro_body: ($) =>
-      // Any line can start with the jump_to label for the GOTO statement
       choice(
-        // A label can stand alone on a line (e.g. directly before END)
-        prec(-1, $.jump_to),
+        // label-only line
+        seq($.jump_to, $._eol),
+
+        // normal statement line
         seq(
           optional($.jump_to),
           choice(
             prec(PREC.parenthesized, $.parenthesis),
             $.expression,
-            $.condition,
             $.loop,
             $.input,
             $.file_operation,
-            // There is no jump without a condition because that will always generate dead code
-            // There is one exception if after a single line of GOTO 99 there follows immediatly another 91: jump_to
-            // honestly don't do that!
+            // A jump without condition is only possible if the jump goes upwards. Hence creating a loop.
+            // which should be avoided, but is valid. Also GOTO 99 with immediat 99: would be valid too.
+            // otherwise its dead code
             $.jump,
           ),
         ),
+
+        // inline IF already contains its own _eol
+        $.condition,
       ),
 
     _eol: ($) => /\r?\n/,
@@ -329,8 +325,6 @@ module.exports = grammar({
 
     warte: ($) => seq(warte_kw, $.int),
 
-    // "INT", currently no idea what its doing TODO
-
     definition: ($) =>
       choice($.num_definition, $.char_definition, $.assignment),
 
@@ -343,17 +337,7 @@ module.exports = grammar({
       seq(
         $.char_variable,
         choice(...assignment_operator),
-        choice(
-          $.free_text,
-          // $.quoted_char,
-          // $.windows_path,
-          // $.concat_arithmetic,
-          // $.char_variable,
-          $.char_literal,
-          $.char_value,
-          // $.char_sys_var,
-          // ),
-        ),
+        choice($.free_text, $.char_literal, $.char_value),
       ),
 
     free_text: ($) => token(prec(PREC.general, /[^\n\r]+/)),
@@ -515,14 +499,15 @@ module.exports = grammar({
 
     while_kw: ($) => while_kw,
 
-    // TODO Limit the number of IF statement nesting to some number, maybe 6
     condition: ($) =>
       prec(
         PREC.flow,
-        seq(
-          $.if_kw,
-          $.logical_expression,
-          choice($.jump, seq($.then_kw, $.condition_alt)),
+        choice(
+          // inline IF
+          seq($.if_kw, $.logical_expression, prec(PREC.jump, $.jump), $._eol),
+
+          // block IF
+          seq($.if_kw, $.logical_expression, $.then_kw, $.condition_alt),
         ),
       ),
 
@@ -549,7 +534,13 @@ module.exports = grammar({
     negation: ($) => not_kw,
 
     logical_expression: ($) =>
-      seq(optional($.negation), choice($.comparison, $._concat_comparison)),
+      prec.left(
+        seq(
+          optional($.negation),
+          $.comparison,
+          repeat(seq($.logical_op, $.comparison)),
+        ),
+      ),
 
     logical_var: ($) => choice(...logical_variable),
 
@@ -557,11 +548,14 @@ module.exports = grammar({
 
     // These have to match, so either char or num variable and value
     comparison: ($) =>
-      choice($.num_comparison, $.char_comparison, $.logical_var, $.flow_args),
+      prec(
+        PREC.flow,
+        choice($.num_comparison, $.char_comparison, $.logical_var, $.flow_args),
+      ),
 
     logical_op: ($) => choice(...logical_operators),
 
-    _concat_comparison: ($) => seq($.comparison, $.logical_op, $.comparison),
+    // _concat_comparison: ($) => seq($.comparison, $.logical_op, $.comparison),
 
     num_comparison: ($) =>
       prec(
@@ -628,11 +622,11 @@ module.exports = grammar({
     scal_input: ($) => seq($.scalar_in, $.scal_value),
     scal_value: ($) =>
       choice(
+        $.flow_args,
         $.char_value,
         $.char_literal,
         $.num_variable,
         $.text_value,
-        $.flow_args,
       ),
 
     // A forgiving fallback for unquoted free-text values (e.g. menu prompts
@@ -677,10 +671,6 @@ module.exports = grammar({
 
     numeric_parenthesized: ($) =>
       prec(PREC.parenthesized, seq("(", $.numeric_expression, ")")),
-
-    // // TODO there is not everything possible here, but we leave it for now
-    // general_value: ($) =>
-    //   repeat1(choice($.char_literal, $.identifier, $.char_variable)),
 
     // File Procedure stuff
     file_operation: ($) => choice($.file_open, $.file_copy, $.mkdir),
