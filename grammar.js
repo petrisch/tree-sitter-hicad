@@ -436,7 +436,7 @@ module.exports = grammar({
       choice(
         $.windows_path,
         $.quoted_char,
-        $.concat_arithmetic,
+        $.concat_char,
         $.char_variable,
         $.char_sys_var,
       ),
@@ -455,10 +455,12 @@ module.exports = grammar({
     local_path: ($) => seq(/[A-Z]:\\/, /[A-Za-z0-9_.\\]{1,256}/),
 
     // For concatenating variables.
-    concat_arithmetic: ($) =>
+    concat_char: ($) =>
       seq(
-        choice($.quoted_char, $.char_variable),
-        repeat1(seq("+", $.char_variable)),
+        choice($.quoted_char, $.char_variable, $.char_sys_var),
+        repeat1(
+          seq("+", choice($.char_variable, $.char_sys_var, $.quoted_char)),
+        ),
       ),
 
     // TODO: Supporting parenthesis

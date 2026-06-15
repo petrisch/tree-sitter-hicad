@@ -1265,7 +1265,7 @@
         },
         {
           "type": "SYMBOL",
-          "name": "concat_arithmetic"
+          "name": "concat_char"
         },
         {
           "type": "SYMBOL",
@@ -1340,7 +1340,7 @@
         }
       ]
     },
-    "concat_arithmetic": {
+    "concat_char": {
       "type": "SEQ",
       "members": [
         {
@@ -1353,6 +1353,10 @@
             {
               "type": "SYMBOL",
               "name": "char_variable"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "char_sys_var"
             }
           ]
         },
@@ -1366,8 +1370,21 @@
                 "value": "+"
               },
               {
-                "type": "SYMBOL",
-                "name": "char_variable"
+                "type": "CHOICE",
+                "members": [
+                  {
+                    "type": "SYMBOL",
+                    "name": "char_variable"
+                  },
+                  {
+                    "type": "SYMBOL",
+                    "name": "char_sys_var"
+                  },
+                  {
+                    "type": "SYMBOL",
+                    "name": "quoted_char"
+                  }
+                ]
               }
             ]
           }

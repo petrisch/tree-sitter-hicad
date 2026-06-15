@@ -21,6 +21,7 @@ IF $PROG <> "xxxx" THEN
       STRING  XXXX
       STRING  $PROG
       STRING  10-30%181mµéàèçai
+      STRING  "HCM_"+$@9
 
    IFEND
 IFEND
@@ -110,7 +111,16 @@ END
                   (scal_input
                     (scalar_in)
                     (scal_value
-                      (text_value)))))
+                      (text_value))))
+                (input
+                  (scal_input
+                    (scalar_in)
+                    (scal_value
+                      (char_value
+                        (concat_char
+                          (quoted_char
+                            (char_literal))
+                          (char_sys_var)))))))
               (ifend_kw)))))
       (ifend_kw)))
   (expression

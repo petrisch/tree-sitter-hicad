@@ -251,7 +251,7 @@
           "named": true
         },
         {
-          "type": "concat_arithmetic",
+          "type": "concat_char",
           "named": true
         },
         {
@@ -321,13 +321,17 @@
     }
   },
   {
-    "type": "concat_arithmetic",
+    "type": "concat_char",
     "named": true,
     "fields": {},
     "children": {
       "multiple": true,
       "required": true,
       "types": [
+        {
+          "type": "char_sys_var",
+          "named": true
+        },
         {
           "type": "char_variable",
           "named": true
