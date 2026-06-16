@@ -1,4 +1,4 @@
-// Version HiCAD 2020
+// Version HiCAD 20ri20
 // - Neuer Befehl ab 2022 "ASK"
 
 const ci = (word) =>
@@ -21,13 +21,14 @@ const PREC = {
   plus: 6,
   times: 7,
   power: 8,
-  arithmetic: 9,
-  file: 10,
-  sys: 11,
-  flow: 12,
+  flow: 9,
+  arithmetic: 10,
+  file: 11,
+  sys: 12,
   jump: 13,
   keyword: 14,
   echo: 15,
+  menu: 16,
   comment: 30,
   echo_text: 31,
 };
@@ -97,12 +98,6 @@ const antwort = kw("ANTWORT");
 
 const scalar_input = [string, real, integer, antwort];
 
-const point = kw("POINT");
-const distanz = kw("DISTANZ");
-const winkel = kw("WINKEL");
-
-const geometric_input = [distanz, winkel];
-
 const lastlinedelete = kw("LLL");
 const lastlinediscard = kw("LLA");
 
@@ -113,6 +108,8 @@ const ret_kw = kw("RET");
 const esc_kw = kw("ESC");
 
 const flow_arguments = [free_kw, ret_kw, esc_kw];
+
+const zei_kw = kw("ZEI");
 
 // User guidance keywords with no arguments
 const apein = kw("APEIN");
@@ -212,7 +209,7 @@ const wait_kw = kw("WAIT");
 const warte_kw = kw("WARTE");
 const echo_kw = kw("ECHO");
 
-const vai = kw("VAI");
+const vai_kw = kw("VAI");
 const var_kw = kw("VAR");
 const pfd = kw("PFD");
 const del = kw("DEL");
@@ -246,7 +243,12 @@ const mkdir_kw = kw("MKDIR");
 
 const goto_kw = kw("GOTO");
 const wert_kw = kw("WERT");
+
 const point_kw = kw("POINT");
+const distance_kw = kw("DISTANZ");
+const angle_kw = kw("WINKEL");
+
+// const geometric_input = [distanz, winkel];
 
 const start_kw = kw("START");
 const end_kw = kw("END");
@@ -254,6 +256,8 @@ const hnext_kw = kw("HNEXT");
 
 module.exports = grammar({
   name: "hicad",
+
+  conflicts: ($) => [[$.menu_geo_item, $.input]],
 
   extras: ($) => [/\s+/, $.comment],
 
@@ -270,30 +274,33 @@ module.exports = grammar({
 
     _macro_body: ($) =>
       choice(
-        // label-only line
+        // label only
         seq($.jump_to, $._eol),
 
-        // normal statement line
+        // normal statement
         seq(
           optional($.jump_to),
           choice(
             prec(PREC.parenthesized, $.parenthesis),
             $.expression,
             $.loop,
-            $.input,
             $.file_operation,
-            // A jump without condition is only possible if the jump goes upwards. Hence creating a loop.
-            // which should be avoided, but is valid. Also GOTO 99 with immediat 99: would be valid too.
-            // otherwise its dead code
             $.jump,
+            $.input,
+            $.scal_input,
+            $.esc_statement,
           ),
+          $._eol,
         ),
+        // seq(optional($.jump_to), $.menu, $._eol),
 
-        // inline IF already contains its own _eol
+        // condition handles its own structure
         $.condition,
+        $.menu,
       ),
 
     _eol: ($) => /\r?\n/,
+    esc_statement: ($) => esc_kw,
 
     expression: ($) =>
       choice(
@@ -302,7 +309,7 @@ module.exports = grammar({
         $.wait,
         $.warte,
         $.guidance_noarg,
-        $.menu,
+        // $.menu,
         $.logic_operation,
         $.function,
       ),
@@ -346,7 +353,7 @@ module.exports = grammar({
     // TODO VAI, VAR, PFD and DEL take a optional Benutzerführungstext, but actually not all of them
     assignment: ($) =>
       choice(
-        seq(vai, $.num_variable, optional(/.*/)),
+        seq(vai_kw, $.num_variable, optional(/.*/)),
         seq(
           var_kw,
           choice(
@@ -399,17 +406,18 @@ module.exports = grammar({
     // The whole thing limited to 31 characters. Allowing underscores.
     num_variable: ($) => seq($.num_var_sign, $.num_var_name),
     num_var_sign: ($) => /%/,
-    num_var_name: ($) => /([A-Z]|[a-z])([A-Z]|[a-z]|[0-9]|_){0,29}/,
+    num_var_name: ($) => token(/([A-Z]|[a-z])([A-Z]|[a-z]|[0-9]|_){0,29}/),
 
     // For supporting VAR=VAR comparisons a silly exception in the language
-    general_variable: ($) => /([A-Z]|[a-z])([A-Z]|[a-z]|[0-9]|_){0,29}/,
+    general_variable: ($) =>
+      token(prec(PREC.general, /([A-Z]|[a-z])([A-Z]|[a-z]|[0-9]|_){0,29}/)),
 
     num_value: ($) => choice($.real, $.int),
 
     real: ($) => /[+-]?([0-9]*[.])?[0-9]+/,
 
     // From 0-99 mainly for the WAIT keyword
-    int: ($) => /([0-9]|[1-9][0-9])/,
+    int: ($) => token(/([0-9]|[1-9][0-9])/),
 
     char_variable: ($) =>
       prec.right(
@@ -450,9 +458,9 @@ module.exports = grammar({
     windows_path: ($) => choice($.unc_path, $.local_path),
 
     // Either a "C:\FOO" or a \\GDCHSXX\FOO\BLA.txt
-    unc_path: ($) => seq(/\\\\[A-Za-z0-9_.]+\\/, /[A-Za-z0-9_.\\]{1,256}/),
+    unc_path: ($) => seq(/\\\\[A-Za-z0-9_.-]+\\/, /[A-Za-z0-9_.\\-]{1,256}/),
 
-    local_path: ($) => seq(/[A-Z]:\\/, /[A-Za-z0-9_.\\]{1,256}/),
+    local_path: ($) => seq(/[A-Z]:\\/, /[A-Za-z0-9_.\\-]{1,256}/),
 
     // For concatenating variables.
     concat_char: ($) =>
@@ -523,6 +531,77 @@ module.exports = grammar({
         ),
       ),
 
+    // This supports a IF..THEN..IFEND, a IF..THEN..ELSE..IFEND or any of those
+    // with an (optionally empty) body. The body may also contain GOTO jumps.
+    condition_alt: ($) =>
+      choice(
+        seq(optional($.condition_block), $.ifend_kw),
+        $.condition_alt_case,
+      ),
+
+    // A nested IF block with only one ELSE is ambiguous, we assume that the ELSE belongs to the
+    // last called IF.
+    condition_alt_case: ($) =>
+      seq(
+        optional($.condition_block),
+        $.else_kw,
+        optional($.condition_block),
+        $.ifend_kw,
+      ),
+
+    condition_block: ($) =>
+      repeat1(
+        choice(
+          prec(PREC.parenthesized, $.parenthesis),
+          $.expression,
+          $.condition,
+          $.loop,
+          $.block_menu,
+          $.scal_input,
+          $.jump,
+          $.jump_to,
+          $.file_operation,
+        ),
+      ),
+
+    menu_condition: ($) =>
+      prec(
+        PREC.flow,
+        choice(
+          seq($.if_kw, $.logical_expression, prec(PREC.jump, $.jump), $._eol),
+          seq($.if_kw, $.logical_expression, $.then_kw, $.menu_condition_alt),
+        ),
+      ),
+
+    menu_condition_alt: ($) =>
+      choice(
+        seq(optional($.menu_condition_block), $.ifend_kw),
+        $.menu_condition_alt_case,
+      ),
+
+    menu_condition_alt_case: ($) =>
+      seq(
+        optional($.menu_condition_block),
+        $.else_kw,
+        optional($.menu_condition_block),
+        $.ifend_kw,
+      ),
+
+    menu_condition_block: ($) =>
+      repeat1(
+        choice(
+          prec(PREC.parenthesized, $.parenthesis),
+          $.expression,
+          $.menu_condition,
+          $.loop,
+          $.menu_item,
+          $.jump,
+          $.jump_to,
+          $.file_operation,
+          $.block_menu,
+        ),
+      ),
+
     loop: ($) =>
       prec(PREC.flow, choice($.for_loop, $.while_loop, $.repeat_loop)),
 
@@ -588,47 +667,94 @@ module.exports = grammar({
 
     comparative_operator: ($) => choice(...comparative_operators),
 
-    // This supports a IF..THEN..IFEND, a IF..THEN..ELSE..IFEND or any of those
-    // with an (optionally empty) body. The body may also contain GOTO jumps.
-    condition_alt: ($) =>
-      choice(
-        seq(optional($.condition_block), $.ifend_kw),
-        $.condition_alt_case,
+    menu: ($) =>
+      prec.left(PREC.menu, seq(option_kw, choice($.menu_esc, $.menu_indexed))),
+
+    block_menu: ($) =>
+      prec.left(
+        PREC.menu,
+        seq(option_kw, choice($.menu_esc, $.block_menu_indexed)),
       ),
 
-    // A nested IF block with only one ELSE is ambiguous, we assume that the ELSE belongs to the
-    // last called IF.
-    condition_alt_case: ($) =>
-      seq(
-        optional($.condition_block),
-        $.else_kw,
-        optional($.condition_block),
-        $.ifend_kw,
-      ),
-
-    condition_block: ($) =>
-      repeat1(
+    block_menu_indexed: ($) =>
+      prec.right(
+        PREC.menu,
         choice(
-          prec(PREC.parenthesized, $.parenthesis),
-          $.expression,
-          $.condition,
-          $.loop,
-          $.input,
-          $.jump,
-          $.jump_to,
-          $.file_operation,
+          prec(
+            PREC.menu + 3,
+            seq($.menu_index, $.menu_code, repeat($.menu_content), $.menu_esc),
+          ),
+          prec(
+            PREC.menu + 2,
+            seq($.menu_index, $.menu_code, repeat1($.menu_content)),
+          ),
+          seq($.menu_index, $.menu_code),
         ),
       ),
 
-    // TODO, there is more than just numbers here, they are limited, and what follows as well.
-    //Also we want the whole OPTION Menu hunk as one entity between.
-    menu: ($) => seq(option_kw, choice(seq($.menu_index, $.menu_code), esc_kw)),
+    // _option_args: ($) => seq($.menu_index, $.menu_code),
+
+    menu_esc: ($) => seq(esc_kw),
+    // menu_block_empty: ($) => seq($._option_args, esc_kw),
+
+    menu_indexed: ($) =>
+      prec.right(
+        PREC.menu,
+        choice(
+          // ESC-terminated menu: full menu context
+          prec(
+            PREC.menu + 3,
+            seq($.menu_index, $.menu_code, repeat($.menu_content), $.menu_esc),
+          ),
+
+          prec(
+            PREC.menu + 2,
+            seq($.menu_index, $.menu_code, repeat1($.menu_geo_item)),
+          ),
+
+          // Plain single-line OPTION call
+          seq($.menu_index, $.menu_code),
+        ),
+      ),
+
+    menu_content: ($) =>
+      choice(
+        $.menu_item,
+        $.menu_condition,
+        $.loop,
+        $.jump,
+        $.file_operation,
+        $.block_menu,
+        prec(PREC.parenthesized, $.parenthesis),
+      ),
+
+    menu_geo_item: ($) => choice($.point, $.distance, $.angle),
+
+    menu_continuation_body: ($) =>
+      prec.right(PREC.menu + 2, repeat1(choice($.menu_line, $.menu_esc))),
+
+    menu_line: ($) =>
+      choice(
+        $.menu_item,
+        $.menu_condition,
+        $.loop,
+        $.jump,
+        $.file_operation,
+        prec(PREC.parenthesized, $.parenthesis),
+      ),
+
+    menu_item: ($) =>
+      prec.right(
+        PREC.menu + 1,
+        seq(optional($.jump_to), choice($.input, $.scal_input)),
+      ),
 
     menu_index: ($) => /([1-9]|[12][0-9]|3[0])/,
 
     menu_code: ($) => /([0-9]|[1-9][0-9]|1[0-9][0-9]|2[0-1][0-9]|22[0-5])/,
 
-    input: ($) => choice($.scal_input, $.geo_input, $.point),
+    // input: ($) => choice($.scal_input, $.geo_input),
+    input: ($) => choice($.point, $.angle, $.distance),
 
     scalar_in: ($) => choice(...scalar_input),
     scal_input: ($) => seq($.scalar_in, $.scal_value),
@@ -649,40 +775,42 @@ module.exports = grammar({
     // over `char_literal` when the value spans more than a single word.
     text_value: ($) => token(prec(PREC.char, /[^\s"$%#][^\n\r]*/)),
 
-    geometric_in: ($) => choice(...geometric_input),
+    // geometric_in: ($) => choice(...geometric_input),
 
     // POINT punktoption / # / ESC / END/ LLL / LLA
     // point_args
 
-    geo_input: ($) =>
-      seq($.geometric_in, choice(...point_args, $.numeric_expression)),
+    // geo_input: ($) =>
+    //   choice($.point, $.angle, $.distance),
 
-    numeric_expression: ($) =>
-      choice(
-        $.num_value,
-        $.num_variable,
-        $.num_sys_var,
-        $.general_variable,
-        $.numeric_binary,
-        $.numeric_unary,
-        $.numeric_parenthesized,
-      ),
+    //   seq($.geometric_in, choice(...point_args, $.numeric_expression)),
+    //
+    // numeric_expression: ($) =>
+    //   choice(
+    //     $.num_value,
+    //     $.num_variable,
+    //     $.num_sys_var,
+    //     $.general_variable,
+    //     $.numeric_binary,
+    //     $.numeric_unary,
+    //     $.numeric_parenthesized,
+    //   ),
 
-    numeric_binary: ($) =>
-      prec.left(
-        PREC.plus,
-        seq(
-          $.numeric_expression,
-          choice("+", "-", "*", "/", "^"),
-          $.numeric_expression,
-        ),
-      ),
+    // numeric_binary: ($) =>
+    //   prec.left(
+    //     PREC.plus,
+    //     seq(
+    //       $.numeric_expression,
+    //       choice("+", "-", "*", "/", "^"),
+    //       $.numeric_expression,
+    //     ),
+    //   ),
 
-    numeric_unary: ($) =>
-      prec.right(PREC.power, seq(choice("-", "+"), $.numeric_expression)),
+    // numeric_unary: ($) =>
+    //   prec.right(PREC.power, seq(choice("-", "+"), $.numeric_expression)),
 
-    numeric_parenthesized: ($) =>
-      prec(PREC.parenthesized, seq("(", $.numeric_expression, ")")),
+    // numeric_parenthesized: ($) =>
+    //   prec(PREC.parenthesized, seq("(", $.numeric_expression, ")")),
 
     // File Procedure stuff
     file_operation: ($) => choice($.file_open, $.file_copy, $.mkdir),
@@ -741,6 +869,7 @@ module.exports = grammar({
     // A/K/R/N, a logical keyword like INT, a point/line reference like P0/L0,
     // the free/escape markers) followed by an arbitrary number of numeric
     // arguments. Kept deliberately forgiving.
+    // But can also have arithmetic
     point: ($) =>
       prec.right(
         seq(
@@ -754,15 +883,27 @@ module.exports = grammar({
                 $.point_literal,
                 $.line_literal,
                 $.logical_var,
-                $.numeric_expression,
+                // $.numeric_expression,
+                $.arithmetic,
               ),
-              repeat($.numeric_expression),
+              optional(repeat($.arithmetic)),
             ),
           ),
         ),
       ),
     point_option: ($) => choice("A", "K", "R", "N"),
     point_literal: ($) => /P[0-9]/,
+
+    distance: ($) =>
+      prec.right(
+        seq(distance_kw, choice($.flow_args, zei_kw, repeat1($.arithmetic))),
+      ),
+
+    angle: ($) =>
+      prec.right(
+        seq(angle_kw, choice($.flow_args, zei_kw, repeat1($.arithmetic))),
+      ),
+
     line_literal: ($) => /L[0-9]/,
 
     // basically it wouldn't be  case sensitive, but this is a opiniated grammar to find such things.

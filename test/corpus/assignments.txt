@@ -11,12 +11,8 @@ VAI %FOO
 REM VAR takes %, $, POINT, LINE
 VAR %FOO
 
-REM Point takes arithmetic
-POINT   A 0 -(AKB-AKBV+BKY2+60)
-DISTANZ -LH
-
+REM Point assignment to untyped variable
 $FOOO:=Test
-VAR $FOOO
 
 VAR P0 1.Punkt eingeben
 VAR L0 Linie eingeben
@@ -62,38 +58,6 @@ END
           (num_var_sign)
           (num_var_name)))))
   (comment)
-  (input
-    (point
-      (point_option)
-      (numeric_expression
-        (num_value
-          (real)))
-      (numeric_expression
-        (numeric_unary
-          (numeric_expression
-            (numeric_parenthesized
-              (numeric_expression
-                (numeric_binary
-                  (numeric_expression
-                    (numeric_binary
-                      (numeric_expression
-                        (numeric_binary
-                          (numeric_expression
-                            (general_variable))
-                          (numeric_expression
-                            (general_variable))))
-                      (numeric_expression
-                        (general_variable))))
-                  (numeric_expression
-                    (num_value
-                      (real)))))))))))
-  (input
-    (geo_input
-      (geometric_in)
-      (numeric_expression
-        (numeric_unary
-          (numeric_expression
-            (general_variable))))))
   (expression
     (definition
       (char_definition
@@ -101,12 +65,6 @@ END
           (char_var_sign)
           (identifier))
         (free_text))))
-  (expression
-    (definition
-      (assignment
-        (char_variable
-          (char_var_sign)
-          (identifier)))))
   (expression
     (definition
       (assignment

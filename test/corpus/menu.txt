@@ -3,32 +3,39 @@ Return menu
 ================================================================================
 
 START   59
+
+REM simple menu call
 OPTION 2 59
+ESC
+
+REM Is not tied to OPTION here
 SAUS
 
-IF $PROG <> "xxxx" THEN
-
-   OPTION  30   0
-   REM     Dateiname :
-
-   IF K99 <= 500 THEN
-
-      STRING  $PROG
-      STRING  RET
-
-   ELSE
-
-      STRING  XXXX
-      STRING  $PROG
-      STRING  10-30%181mµéàèçai
-      STRING  "HCM_"+$@9
-
-   IFEND
-IFEND
-
-
+REM Option with just ESC
 OPTION ESC
 
+REM Continuation of option. Point takes arithmetic
+OPTION 1 2
+  POINT   A 0 -(AKB-AKBV+BKY2+60)
+  DISTANZ -LH
+
+REM Nested menu
+IF $PROG <> "xxxx" THEN
+   OPTION  30   0
+   REM     Dateiname :
+   IF K99 <= 500 THEN
+      STRING  $PROG
+      STRING  RET
+   ELSE
+      STRING  XXXX
+   IFEND
+IFEND
+ESC
+
+REM various string examples
+STRING  $PROG
+STRING  10-30%181mµéàèçai
+STRING  "HCM_"+$@9
 STRING #
 
 REAL RET
@@ -39,100 +46,145 @@ END
 
 (source_file
   (start_marker)
-  (expression
-    (menu
+  (comment)
+  (menu
+    (menu_indexed
       (menu_index)
-      (menu_code)))
+      (menu_code)
+      (menu_esc)))
+  (comment)
   (expression
     (guidance_noarg))
-  (condition
-    (if_kw)
-    (logical_expression
-      (comparison
-        (char_comparison
-          (char_variable
-            (char_var_sign)
-            (identifier))
-          (comparative_operator)
-          (quoted_char
-            (char_literal)))))
-    (then_kw)
-    (condition_alt
-      (condition_block
-        (expression
-          (menu
-            (menu_index)
-            (menu_code)))
-        (comment)
-        (condition
+  (comment)
+  (menu
+    (menu_esc))
+  (comment)
+  (menu
+    (menu_indexed
+      (menu_index)
+      (menu_code)
+      (menu_content
+        (menu_item
+          (input
+            (point
+              (arithmetic
+                (general_variable))
+              (arithmetic
+                (binary_operator
+                  (arithmetic
+                    (num_value
+                      (real)))
+                  (arithmetic
+                    (parenthesized_expression
+                      (arithmetic
+                        (binary_operator
+                          (arithmetic
+                            (binary_operator
+                              (arithmetic
+                                (binary_operator
+                                  (arithmetic
+                                    (general_variable))
+                                  (arithmetic
+                                    (general_variable))))
+                              (arithmetic
+                                (general_variable))))
+                          (arithmetic
+                            (num_value
+                              (real)))))))))))))
+      (menu_content
+        (menu_item
+          (input
+            (distance
+              (arithmetic
+                (unary_operator
+                  (arithmetic
+                    (general_variable))))))))
+      (comment)
+      (menu_content
+        (menu_condition
           (if_kw)
           (logical_expression
             (comparison
-              (num_comparison
-                (arithmetic
-                  (general_variable))
+              (char_comparison
+                (char_variable
+                  (char_var_sign)
+                  (identifier))
                 (comparative_operator)
-                (arithmetic
-                  (num_value
-                    (real))))))
+                (quoted_char
+                  (char_literal)))))
           (then_kw)
-          (condition_alt
-            (condition_alt_case
-              (condition_block
-                (input
-                  (scal_input
-                    (scalar_in)
-                    (scal_value
-                      (char_value
-                        (char_variable
-                          (char_var_sign)
-                          (identifier))))))
-                (input
-                  (scal_input
-                    (scalar_in)
-                    (scal_value
-                      (flow_args)))))
-              (else_kw)
-              (condition_block
-                (input
-                  (scal_input
-                    (scalar_in)
-                    (scal_value
-                      (text_value))))
-                (input
-                  (scal_input
-                    (scalar_in)
-                    (scal_value
-                      (char_value
-                        (char_variable
-                          (char_var_sign)
-                          (identifier))))))
-                (input
-                  (scal_input
-                    (scalar_in)
-                    (scal_value
-                      (text_value))))
-                (input
-                  (scal_input
-                    (scalar_in)
-                    (scal_value
-                      (char_value
-                        (concat_char
-                          (quoted_char
-                            (char_literal))
-                          (char_sys_var)))))))
-              (ifend_kw)))))
-      (ifend_kw)))
-  (expression
-    (menu))
-  (input
-    (scal_input
-      (scalar_in)
-      (scal_value
-        (flow_args))))
-  (input
-    (scal_input
-      (scalar_in)
-      (scal_value
-        (flow_args))))
+          (menu_condition_alt
+            (menu_condition_block
+              (block_menu
+                (block_menu_indexed
+                  (menu_index)
+                  (menu_code)
+                  (comment)
+                  (menu_content
+                    (menu_condition
+                      (if_kw)
+                      (logical_expression
+                        (comparison
+                          (num_comparison
+                            (arithmetic
+                              (general_variable))
+                            (comparative_operator)
+                            (arithmetic
+                              (num_value
+                                (real))))))
+                      (then_kw)
+                      (menu_condition_alt
+                        (menu_condition_alt_case
+                          (menu_condition_block
+                            (menu_item
+                              (scal_input
+                                (scalar_in)
+                                (scal_value
+                                  (char_value
+                                    (char_variable
+                                      (char_var_sign)
+                                      (identifier))))))
+                            (menu_item
+                              (scal_input
+                                (scalar_in)
+                                (scal_value
+                                  (flow_args)))))
+                          (else_kw)
+                          (menu_condition_block
+                            (menu_item
+                              (scal_input
+                                (scalar_in)
+                                (scal_value
+                                  (text_value)))))
+                          (ifend_kw))))))))
+            (ifend_kw))))
+      (menu_esc)))
+  (comment)
+  (scal_input
+    (scalar_in)
+    (scal_value
+      (char_value
+        (char_variable
+          (char_var_sign)
+          (identifier)))))
+  (scal_input
+    (scalar_in)
+    (scal_value
+      (text_value)))
+  (scal_input
+    (scalar_in)
+    (scal_value
+      (char_value
+        (concat_char
+          (quoted_char
+            (char_literal))
+          (char_sys_var)))))
+  (scal_input
+    (scalar_in)
+    (scal_value
+      (flow_args)))
+  (scal_input
+    (scalar_in)
+    (scal_value
+      (flow_args)))
   (end_marker))
