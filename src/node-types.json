@@ -177,52 +177,6 @@
     }
   },
   {
-    "type": "block_menu",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": false,
-      "required": true,
-      "types": [
-        {
-          "type": "block_menu_indexed",
-          "named": true
-        },
-        {
-          "type": "menu_esc",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "block_menu_indexed",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": true,
-      "required": true,
-      "types": [
-        {
-          "type": "menu_code",
-          "named": true
-        },
-        {
-          "type": "menu_content",
-          "named": true
-        },
-        {
-          "type": "menu_esc",
-          "named": true
-        },
-        {
-          "type": "menu_index",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
     "type": "char_comparison",
     "named": true,
     "fields": {},
@@ -494,10 +448,6 @@
       "required": true,
       "types": [
         {
-          "type": "block_menu",
-          "named": true
-        },
-        {
           "type": "condition",
           "named": true
         },
@@ -507,6 +457,10 @@
         },
         {
           "type": "file_operation",
+          "named": true
+        },
+        {
+          "type": "input",
           "named": true
         },
         {
@@ -523,10 +477,6 @@
         },
         {
           "type": "parenthesis",
-          "named": true
-        },
-        {
-          "type": "scal_input",
           "named": true
         }
       ]
@@ -625,6 +575,10 @@
         },
         {
           "type": "logic_operation",
+          "named": true
+        },
+        {
+          "type": "menu",
           "named": true
         },
         {
@@ -830,10 +784,6 @@
           "named": true
         },
         {
-          "type": "menu",
-          "named": true
-        },
-        {
           "type": "next_kw",
           "named": true
         },
@@ -843,10 +793,6 @@
         },
         {
           "type": "parenthesis",
-          "named": true
-        },
-        {
-          "type": "scal_input",
           "named": true
         },
         {
@@ -926,6 +872,10 @@
         },
         {
           "type": "point",
+          "named": true
+        },
+        {
+          "type": "scal_input",
           "named": true
         }
       ]
@@ -1046,260 +996,15 @@
     "named": true,
     "fields": {},
     "children": {
-      "multiple": false,
-      "required": true,
-      "types": [
-        {
-          "type": "menu_esc",
-          "named": true
-        },
-        {
-          "type": "menu_indexed",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "menu_condition",
-    "named": true,
-    "fields": {},
-    "children": {
       "multiple": true,
-      "required": true,
-      "types": [
-        {
-          "type": "if_kw",
-          "named": true
-        },
-        {
-          "type": "jump",
-          "named": true
-        },
-        {
-          "type": "logical_expression",
-          "named": true
-        },
-        {
-          "type": "menu_condition_alt",
-          "named": true
-        },
-        {
-          "type": "then_kw",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "menu_condition_alt",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": true,
-      "required": true,
-      "types": [
-        {
-          "type": "ifend_kw",
-          "named": true
-        },
-        {
-          "type": "menu_condition_alt_case",
-          "named": true
-        },
-        {
-          "type": "menu_condition_block",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "menu_condition_alt_case",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": true,
-      "required": true,
-      "types": [
-        {
-          "type": "else_kw",
-          "named": true
-        },
-        {
-          "type": "ifend_kw",
-          "named": true
-        },
-        {
-          "type": "menu_condition_block",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "menu_condition_block",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": true,
-      "required": true,
-      "types": [
-        {
-          "type": "block_menu",
-          "named": true
-        },
-        {
-          "type": "expression",
-          "named": true
-        },
-        {
-          "type": "file_operation",
-          "named": true
-        },
-        {
-          "type": "jump",
-          "named": true
-        },
-        {
-          "type": "jump_to",
-          "named": true
-        },
-        {
-          "type": "loop",
-          "named": true
-        },
-        {
-          "type": "menu_condition",
-          "named": true
-        },
-        {
-          "type": "menu_item",
-          "named": true
-        },
-        {
-          "type": "parenthesis",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "menu_content",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": false,
-      "required": true,
-      "types": [
-        {
-          "type": "block_menu",
-          "named": true
-        },
-        {
-          "type": "file_operation",
-          "named": true
-        },
-        {
-          "type": "jump",
-          "named": true
-        },
-        {
-          "type": "loop",
-          "named": true
-        },
-        {
-          "type": "menu_condition",
-          "named": true
-        },
-        {
-          "type": "menu_item",
-          "named": true
-        },
-        {
-          "type": "parenthesis",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "menu_esc",
-    "named": true,
-    "fields": {}
-  },
-  {
-    "type": "menu_geo_item",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": false,
-      "required": true,
-      "types": [
-        {
-          "type": "angle",
-          "named": true
-        },
-        {
-          "type": "distance",
-          "named": true
-        },
-        {
-          "type": "point",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "menu_indexed",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": true,
-      "required": true,
+      "required": false,
       "types": [
         {
           "type": "menu_code",
           "named": true
         },
         {
-          "type": "menu_content",
-          "named": true
-        },
-        {
-          "type": "menu_esc",
-          "named": true
-        },
-        {
-          "type": "menu_geo_item",
-          "named": true
-        },
-        {
           "type": "menu_index",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "menu_item",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": true,
-      "required": true,
-      "types": [
-        {
-          "type": "input",
-          "named": true
-        },
-        {
-          "type": "jump_to",
-          "named": true
-        },
-        {
-          "type": "scal_input",
           "named": true
         }
       ]
@@ -1441,15 +1146,7 @@
           "named": true
         },
         {
-          "type": "menu",
-          "named": true
-        },
-        {
           "type": "parenthesis",
-          "named": true
-        },
-        {
-          "type": "scal_input",
           "named": true
         }
       ]
@@ -1566,19 +1263,11 @@
           "named": true
         },
         {
-          "type": "menu",
-          "named": true
-        },
-        {
           "type": "parenthesis",
           "named": true
         },
         {
           "type": "repeat_kw",
-          "named": true
-        },
-        {
-          "type": "scal_input",
           "named": true
         },
         {
@@ -1689,15 +1378,7 @@
           "named": true
         },
         {
-          "type": "menu",
-          "named": true
-        },
-        {
           "type": "parenthesis",
-          "named": true
-        },
-        {
-          "type": "scal_input",
           "named": true
         },
         {
@@ -1849,15 +1530,7 @@
           "named": true
         },
         {
-          "type": "menu",
-          "named": true
-        },
-        {
           "type": "parenthesis",
-          "named": true
-        },
-        {
-          "type": "scal_input",
           "named": true
         },
         {
