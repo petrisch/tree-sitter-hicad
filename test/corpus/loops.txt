@@ -25,16 +25,15 @@ END
   (loop
     (for_loop
       (for_kw)
-      (definition
-        (num_definition
-          (num_variable
-            (num_var_sign)
-            (num_var_name))
-          (arithmetic
-            (num_value
-              (real)))))
+      (num_variable
+        (num_var_sign)
+        (num_var_name))
+      (arithmetic
+        (num_value
+          (real)))
       (to_kw)
-      (general_variable)
+      (arithmetic
+        (general_variable))
       (expression
         (wait))
       (next_kw)

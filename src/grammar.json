@@ -1982,25 +1982,41 @@
           "name": "for_kw"
         },
         {
-          "type": "SYMBOL",
-          "name": "definition"
+          "type": "FIELD",
+          "name": "variable",
+          "content": {
+            "type": "SYMBOL",
+            "name": "num_variable"
+          }
+        },
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "STRING",
+              "value": ":="
+            }
+          ]
+        },
+        {
+          "type": "FIELD",
+          "name": "from",
+          "content": {
+            "type": "SYMBOL",
+            "name": "arithmetic"
+          }
         },
         {
           "type": "SYMBOL",
           "name": "to_kw"
         },
         {
-          "type": "CHOICE",
-          "members": [
-            {
-              "type": "SYMBOL",
-              "name": "num_value"
-            },
-            {
-              "type": "SYMBOL",
-              "name": "general_variable"
-            }
-          ]
+          "type": "FIELD",
+          "name": "to",
+          "content": {
+            "type": "SYMBOL",
+            "name": "arithmetic"
+          }
         },
         {
           "type": "REPEAT",
@@ -2014,8 +2030,21 @@
           "name": "next_kw"
         },
         {
-          "type": "SYMBOL",
-          "name": "general_variable"
+          "type": "FIELD",
+          "name": "next_variable",
+          "content": {
+            "type": "CHOICE",
+            "members": [
+              {
+                "type": "SYMBOL",
+                "name": "general_variable"
+              },
+              {
+                "type": "SYMBOL",
+                "name": "num_variable"
+              }
+            ]
+          }
         }
       ]
     },

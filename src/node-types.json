@@ -734,17 +734,58 @@
   {
     "type": "for_loop",
     "named": true,
-    "fields": {},
+    "fields": {
+      "from": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "arithmetic",
+            "named": true
+          }
+        ]
+      },
+      "next_variable": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "general_variable",
+            "named": true
+          },
+          {
+            "type": "num_variable",
+            "named": true
+          }
+        ]
+      },
+      "to": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "arithmetic",
+            "named": true
+          }
+        ]
+      },
+      "variable": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "num_variable",
+            "named": true
+          }
+        ]
+      }
+    },
     "children": {
       "multiple": true,
       "required": true,
       "types": [
         {
           "type": "condition",
-          "named": true
-        },
-        {
-          "type": "definition",
           "named": true
         },
         {
@@ -761,10 +802,6 @@
         },
         {
           "type": "for_kw",
-          "named": true
-        },
-        {
-          "type": "general_variable",
           "named": true
         },
         {
@@ -785,10 +822,6 @@
         },
         {
           "type": "next_kw",
-          "named": true
-        },
-        {
-          "type": "num_value",
           "named": true
         },
         {

@@ -549,12 +549,14 @@ module.exports = grammar({
     for_loop: ($) =>
       seq(
         $.for_kw,
-        $.definition,
+        field("variable", $.num_variable),
+        choice(...assignment_operator),
+        field("from", $.arithmetic),
         $.to_kw,
-        choice($.num_value, $.general_variable),
+        field("to", $.arithmetic),
         repeat($._macro_body),
         $.next_kw,
-        $.general_variable,
+        field("next_variable", choice($.general_variable, $.num_variable)),
       ),
 
     while_loop: ($) =>
