@@ -626,7 +626,7 @@ module.exports = grammar({
 
     menu_index: ($) => /([1-9]|[12][0-9]|3[0])/,
 
-    menu_code: ($) => /([0-9]|[1-9][0-9]|1[0-9][0-9]|2[0-1][0-9]|22[0-5])/,
+    menu_code: ($) => /[0-9]{1,3}/,
 
     input: ($) => choice($.scal_input, $.point, $.distance, $.angle),
 
