@@ -559,7 +559,7 @@ module.exports = grammar({
     loop: ($) =>
       prec(PREC.flow, choice($.for_loop, $.while_loop, $.repeat_loop)),
 
-    for_loop: ($) =>
+    for_header: ($) =>
       seq(
         $.for_kw,
         field("variable", $.num_variable),
@@ -567,10 +567,16 @@ module.exports = grammar({
         field("from", $.arithmetic),
         $.to_kw,
         field("to", $.arithmetic),
-        repeat($._macro_body),
+      ),
+
+    for_end: ($) =>
+      seq(
         $.next_kw,
         field("next_variable", choice($.general_variable, $.num_variable)),
       ),
+
+    for_loop: ($) =>
+      prec(PREC.flow, seq($.for_header, repeat($._macro_body), $.for_end)),
 
     while_loop: ($) =>
       seq($.while_kw, $.logical_expression, repeat($._macro_body), $.whend_kw),

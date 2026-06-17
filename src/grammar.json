@@ -2037,7 +2037,7 @@
         ]
       }
     },
-    "for_loop": {
+    "for_header": {
       "type": "SEQ",
       "members": [
         {
@@ -2080,14 +2080,12 @@
             "type": "SYMBOL",
             "name": "arithmetic"
           }
-        },
-        {
-          "type": "REPEAT",
-          "content": {
-            "type": "SYMBOL",
-            "name": "_macro_body"
-          }
-        },
+        }
+      ]
+    },
+    "for_end": {
+      "type": "SEQ",
+      "members": [
         {
           "type": "SYMBOL",
           "name": "next_kw"
@@ -2110,6 +2108,30 @@
           }
         }
       ]
+    },
+    "for_loop": {
+      "type": "PREC",
+      "value": 9,
+      "content": {
+        "type": "SEQ",
+        "members": [
+          {
+            "type": "SYMBOL",
+            "name": "for_header"
+          },
+          {
+            "type": "REPEAT",
+            "content": {
+              "type": "SYMBOL",
+              "name": "_macro_body"
+            }
+          },
+          {
+            "type": "SYMBOL",
+            "name": "for_end"
+          }
+        ]
+      }
     },
     "while_loop": {
       "type": "SEQ",

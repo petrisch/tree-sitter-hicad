@@ -731,19 +731,9 @@
     "fields": {}
   },
   {
-    "type": "for_loop",
+    "type": "for_end",
     "named": true,
     "fields": {
-      "from": {
-        "multiple": false,
-        "required": true,
-        "types": [
-          {
-            "type": "arithmetic",
-            "named": true
-          }
-        ]
-      },
       "next_variable": {
         "multiple": false,
         "required": true,
@@ -754,6 +744,32 @@
           },
           {
             "type": "num_variable",
+            "named": true
+          }
+        ]
+      }
+    },
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "next_kw",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "for_header",
+    "named": true,
+    "fields": {
+      "from": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "arithmetic",
             "named": true
           }
         ]
@@ -784,6 +800,25 @@
       "required": true,
       "types": [
         {
+          "type": "for_kw",
+          "named": true
+        },
+        {
+          "type": "to_kw",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "for_loop",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
           "type": "condition",
           "named": true
         },
@@ -800,7 +835,11 @@
           "named": true
         },
         {
-          "type": "for_kw",
+          "type": "for_end",
+          "named": true
+        },
+        {
+          "type": "for_header",
           "named": true
         },
         {
@@ -820,15 +859,7 @@
           "named": true
         },
         {
-          "type": "next_kw",
-          "named": true
-        },
-        {
           "type": "parenthesis",
-          "named": true
-        },
-        {
-          "type": "to_kw",
           "named": true
         }
       ]
