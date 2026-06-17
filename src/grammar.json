@@ -2786,6 +2786,10 @@
               "value": "[aA][nN][tT][wW][oO][rR][tT]"
             }
           }
+        },
+        {
+          "type": "SYMBOL",
+          "name": "input_kw"
         }
       ]
     },
@@ -2801,6 +2805,17 @@
           "name": "scal_value"
         }
       ]
+    },
+    "input_kw": {
+      "type": "TOKEN",
+      "content": {
+        "type": "PREC",
+        "value": 14,
+        "content": {
+          "type": "PATTERN",
+          "value": "[iI][nN][pP][uU][tT]"
+        }
+      }
     },
     "scal_value": {
       "type": "CHOICE",
@@ -2847,6 +2862,14 @@
         },
         {
           "type": "SYMBOL",
+          "name": "file_close"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "file_write"
+        },
+        {
+          "type": "SYMBOL",
           "name": "file_copy"
         },
         {
@@ -2863,85 +2886,23 @@
           "name": "open_kw"
         },
         {
-          "type": "SYMBOL",
-          "name": "hc_path"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "file_read_write"
-        },
-        {
           "type": "CHOICE",
           "members": [
             {
-              "type": "CHOICE",
-              "members": [
-                {
-                  "type": "SYMBOL",
-                  "name": "expression"
-                },
-                {
-                  "type": "SYMBOL",
-                  "name": "condition"
-                },
-                {
-                  "type": "SYMBOL",
-                  "name": "loop"
-                },
-                {
-                  "type": "SYMBOL",
-                  "name": "input"
-                }
-              ]
+              "type": "SYMBOL",
+              "name": "hc_path"
             },
             {
-              "type": "BLANK"
+              "type": "SYMBOL",
+              "name": "flow_args"
             }
           ]
-        },
-        {
-          "type": "SYMBOL",
-          "name": "close_kw"
         }
       ]
     },
-    "open_kw": {
-      "type": "TOKEN",
-      "content": {
-        "type": "PREC",
-        "value": 14,
-        "content": {
-          "type": "PATTERN",
-          "value": "[oO][pP][eE][nN]"
-        }
-      }
-    },
-    "close_kw": {
-      "type": "TOKEN",
-      "content": {
-        "type": "PREC",
-        "value": 14,
-        "content": {
-          "type": "PATTERN",
-          "value": "[cC][lL][oO][sS][eE]"
-        }
-      }
-    },
-    "file_read_write": {
-      "type": "REPEAT1",
-      "content": {
-        "type": "CHOICE",
-        "members": [
-          {
-            "type": "SYMBOL",
-            "name": "file_write"
-          },
-          {
-            "type": "SYMBOL",
-            "name": "file_read"
-          }
-        ]
-      }
+    "file_close": {
+      "type": "SYMBOL",
+      "name": "close_kw"
     },
     "file_write": {
       "type": "SEQ",
@@ -2976,36 +2937,25 @@
         }
       }
     },
-    "file_read": {
-      "type": "SEQ",
-      "members": [
-        {
-          "type": "SYMBOL",
-          "name": "input_kw"
-        },
-        {
-          "type": "CHOICE",
-          "members": [
-            {
-              "type": "SYMBOL",
-              "name": "char_variable"
-            },
-            {
-              "type": "SYMBOL",
-              "name": "num_variable"
-            }
-          ]
-        }
-      ]
-    },
-    "input_kw": {
+    "open_kw": {
       "type": "TOKEN",
       "content": {
         "type": "PREC",
         "value": 14,
         "content": {
           "type": "PATTERN",
-          "value": "[iI][nN][pP][uU][tT]"
+          "value": "[oO][pP][eE][nN]"
+        }
+      }
+    },
+    "close_kw": {
+      "type": "TOKEN",
+      "content": {
+        "type": "PREC",
+        "value": 14,
+        "content": {
+          "type": "PATTERN",
+          "value": "[cC][lL][oO][sS][eE]"
         }
       }
     },

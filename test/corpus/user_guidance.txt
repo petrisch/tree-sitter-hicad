@@ -63,6 +63,7 @@ MKDIR C:\bla
 OPEN Y:FOO
   OUTPUT $FOO
   INPUT $FOO
+  INPUT %ANZF
 CLOSE
 
 DEL $FOO
@@ -168,18 +169,32 @@ END
       (open_kw)
       (hc_path
         (path_indicator)
-        (filename))
-      (file_read_write
-        (file_write
-          (output_kw)
+        (filename))))
+  (file_operation
+    (file_write
+      (output_kw)
+      (char_variable
+        (char_var_sign)
+        (identifier))))
+  (input
+    (scal_input
+      (scalar_in
+        (input_kw))
+      (scal_value
+        (char_value
           (char_variable
             (char_var_sign)
-            (identifier)))
-        (file_read
-          (input_kw)
-          (char_variable
-            (char_var_sign)
-            (identifier))))
+            (identifier))))))
+  (input
+    (scal_input
+      (scalar_in
+        (input_kw))
+      (scal_value
+        (num_variable
+          (num_var_sign)
+          (num_var_name)))))
+  (file_operation
+    (file_close
       (close_kw)))
   (expression
     (definition

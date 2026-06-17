@@ -626,6 +626,21 @@
     }
   },
   {
+    "type": "file_close",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "close_kw",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "file_copy",
     "named": true,
     "fields": {},
@@ -657,31 +672,11 @@
       "required": true,
       "types": [
         {
-          "type": "close_kw",
-          "named": true
-        },
-        {
-          "type": "condition",
-          "named": true
-        },
-        {
-          "type": "expression",
-          "named": true
-        },
-        {
-          "type": "file_read_write",
+          "type": "flow_args",
           "named": true
         },
         {
           "type": "hc_path",
-          "named": true
-        },
-        {
-          "type": "input",
-          "named": true
-        },
-        {
-          "type": "loop",
           "named": true
         },
         {
@@ -700,6 +695,10 @@
       "required": true,
       "types": [
         {
+          "type": "file_close",
+          "named": true
+        },
+        {
           "type": "file_copy",
           "named": true
         },
@@ -708,49 +707,11 @@
           "named": true
         },
         {
-          "type": "mkdir",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "file_read",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": true,
-      "required": true,
-      "types": [
-        {
-          "type": "char_variable",
-          "named": true
-        },
-        {
-          "type": "input_kw",
-          "named": true
-        },
-        {
-          "type": "num_variable",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "file_read_write",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": true,
-      "required": true,
-      "types": [
-        {
-          "type": "file_read",
-          "named": true
-        },
-        {
           "type": "file_write",
+          "named": true
+        },
+        {
+          "type": "mkdir",
           "named": true
         }
       ]
@@ -1484,7 +1445,17 @@
   {
     "type": "scalar_in",
     "named": true,
-    "fields": {}
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": false,
+      "types": [
+        {
+          "type": "input_kw",
+          "named": true
+        }
+      ]
+    }
   },
   {
     "type": "source_file",

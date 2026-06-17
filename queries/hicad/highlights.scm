@@ -206,7 +206,7 @@
 (file_copy) @function.macro
 (mkdir) @function.macro
 (file_write) @function.macro
-(file_read) @function.macro
+(file_close) @function.macro
 
 (input) @function.macro
 (scal_input) @function.macro

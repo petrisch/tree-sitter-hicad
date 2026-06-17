@@ -655,9 +655,10 @@ module.exports = grammar({
 
     input: ($) => choice($.scal_input, $.point, $.distance, $.angle),
 
-    scalar_in: ($) => choice(...scalar_input),
+    scalar_in: ($) => choice(...scalar_input, $.input_kw),
 
     scal_input: ($) => seq($.scalar_in, $.scal_value),
+    input_kw: ($) => input_kw,
 
     scal_value: ($) =>
       choice(
@@ -670,28 +671,19 @@ module.exports = grammar({
 
     text_value: ($) => token(prec(PREC.char, /[^\s"$%#][^\n\r]*/)),
 
-    file_operation: ($) => choice($.file_open, $.file_copy, $.mkdir),
+    file_operation: ($) =>
+      choice($.file_open, $.file_close, $.file_write, $.file_copy, $.mkdir),
 
-    file_open: ($) =>
-      seq(
-        $.open_kw,
-        $.hc_path,
-        $.file_read_write,
-        optional(choice($.expression, $.condition, $.loop, $.input)),
-        $.close_kw,
-      ),
+    file_open: ($) => seq($.open_kw, choice($.hc_path, $.flow_args)),
 
-    open_kw: ($) => open_kw,
-    close_kw: ($) => close_kw,
-
-    file_read_write: ($) => repeat1(choice($.file_write, $.file_read)),
+    file_close: ($) => $.close_kw,
 
     file_write: ($) =>
       seq($.output_kw, choice($.char_variable, $.num_variable)),
     output_kw: ($) => output_kw,
 
-    file_read: ($) => seq($.input_kw, choice($.char_variable, $.num_variable)),
-    input_kw: ($) => input_kw,
+    open_kw: ($) => open_kw,
+    close_kw: ($) => close_kw,
 
     file_copy: ($) =>
       prec(
