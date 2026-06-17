@@ -39,6 +39,10 @@
           "named": true
         },
         {
+          "type": "len_function",
+          "named": true
+        },
+        {
           "type": "num_sys_var",
           "named": true
         },
@@ -64,11 +68,6 @@
         }
       ]
     }
-  },
-  {
-    "type": "arithmetic_func",
-    "named": true,
-    "fields": {}
   },
   {
     "type": "arithmetic_function",
@@ -945,6 +944,33 @@
     }
   },
   {
+    "type": "len_function",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "char_sys_var",
+          "named": true
+        },
+        {
+          "type": "char_variable",
+          "named": true
+        },
+        {
+          "type": "concat_char",
+          "named": true
+        },
+        {
+          "type": "quoted_char",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "local_path",
     "named": true,
     "fields": {}
@@ -1675,6 +1701,10 @@
   {
     "type": "^",
     "named": false
+  },
+  {
+    "type": "arithmetic_func",
+    "named": true
   },
   {
     "type": "char_literal",

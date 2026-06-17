@@ -28,6 +28,9 @@ REM Delete takes any variable argument
 DEL $AB
 DEL %BA
 
+REM String length function
+%LEN_ATYP2:=LEN($ATYP_2)
+
 END
 
 --------------------------------------------------------------------------------
@@ -109,4 +112,16 @@ END
         (num_variable
           (num_var_sign)
           (num_var_name)))))
+  (comment)
+  (expression
+    (definition
+      (num_definition
+        (num_variable
+          (num_var_sign)
+          (num_var_name))
+        (arithmetic
+          (len_function
+            (char_variable
+              (char_var_sign)
+              (identifier)))))))
   (end_marker))

@@ -189,7 +189,6 @@ const arithmetic_functions = [
   cosh,
   exp,
   grd,
-  len,
   log,
   log10,
   nint,
@@ -357,11 +356,12 @@ module.exports = grammar({
         $.binary_operator,
         $.unary_operator,
         $.parenthesized_expression,
+        $.arithmetic_function,
         $.num_value,
         $.num_variable,
         $.num_sys_var,
-        $.arithmetic_function,
         $.val_function,
+        $.len_function,
         $.general_variable,
       ),
 
@@ -374,7 +374,8 @@ module.exports = grammar({
         ),
       ),
 
-    arithmetic_func: ($) => choice(...arithmetic_functions),
+    arithmetic_func: ($) =>
+      token(prec(PREC.keyword, choice(...arithmetic_functions))),
 
     arithmetic_function: ($) =>
       prec(PREC.arithmetic, seq($.arithmetic_func, "(", $.arithmetic, ")")),
@@ -385,6 +386,15 @@ module.exports = grammar({
         val,
         "(",
         choice($.char_variable, $.char_sys_var, $.quoted_char),
+        ")",
+      ),
+
+    // LEN takes a string and returns a int, special case
+    len_function: ($) =>
+      seq(
+        len,
+        "(",
+        choice($.char_variable, $.char_sys_var, $.quoted_char, $.concat_char),
         ")",
       ),
 
