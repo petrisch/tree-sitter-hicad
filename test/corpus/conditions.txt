@@ -68,6 +68,11 @@ OPTION   1  25
   IFEND
 ESC
 
+REM String comparison
+IF $ENTRI="foo bar" THEN
+  %FOO:=1
+IFEND
+
 END
 
 --------------------------------------------------------------------------------

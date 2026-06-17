@@ -1370,14 +1370,32 @@
           "value": "\""
         },
         {
-          "type": "SYMBOL",
-          "name": "char_literal"
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "_quoted_char_content"
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
         },
         {
-          "type": "STRING",
-          "value": "\""
+          "type": "IMMEDIATE_TOKEN",
+          "content": {
+            "type": "STRING",
+            "value": "\""
+          }
         }
       ]
+    },
+    "_quoted_char_content": {
+      "type": "IMMEDIATE_TOKEN",
+      "content": {
+        "type": "PATTERN",
+        "value": "[^\"\\n\\r]+"
+      }
     },
     "char_literal": {
       "type": "TOKEN",

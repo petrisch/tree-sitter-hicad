@@ -1265,17 +1265,7 @@
   {
     "type": "quoted_char",
     "named": true,
-    "fields": {},
-    "children": {
-      "multiple": false,
-      "required": true,
-      "types": [
-        {
-          "type": "char_literal",
-          "named": true
-        }
-      ]
-    }
+    "fields": {}
   },
   {
     "type": "repeat_loop",

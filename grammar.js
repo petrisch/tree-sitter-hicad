@@ -441,7 +441,10 @@ module.exports = grammar({
         $.char_sys_var,
       ),
 
-    quoted_char: ($) => seq('"', $.char_literal, '"'),
+    quoted_char: ($) =>
+      seq('"', optional($._quoted_char_content), token.immediate('"')),
+
+    _quoted_char_content: ($) => token.immediate(/[^"\n\r]+/),
 
     char_literal: ($) => token(/[^$%\s"()]+/),
 
