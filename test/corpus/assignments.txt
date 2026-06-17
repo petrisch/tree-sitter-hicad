@@ -50,6 +50,7 @@ END
   (expression
     (definition
       (assignment
+        (vai_kw)
         (num_variable
           (num_var_sign)
           (num_var_name)))))
@@ -57,6 +58,7 @@ END
   (expression
     (definition
       (assignment
+        (var_kw)
         (num_variable
           (num_var_sign)
           (num_var_name)))))
@@ -71,15 +73,18 @@ END
   (expression
     (definition
       (assignment
+        (var_kw)
         (point_literal))))
   (expression
     (definition
       (assignment
+        (var_kw)
         (line_literal))))
   (comment)
   (expression
     (definition
       (assignment
+        (pfd_kw)
         (path_indicator))))
   (expression
     (definition
@@ -91,6 +96,7 @@ END
   (expression
     (definition
       (assignment
+        (pfd_kw)
         (file_extension))))
   (expression
     (definition
@@ -103,12 +109,14 @@ END
   (expression
     (definition
       (assignment
+        (del_kw)
         (char_variable
           (char_var_sign)
           (identifier)))))
   (expression
     (definition
       (assignment
+        (del_kw)
         (num_variable
           (num_var_sign)
           (num_var_name)))))

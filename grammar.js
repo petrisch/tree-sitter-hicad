@@ -305,11 +305,12 @@ module.exports = grammar({
 
     parenthesis: ($) => seq("(", repeat($._macro_body), ")"),
 
-    echo: ($) => seq(echo_kw, token(prec(PREC.echo_text, /[^\n\r]+/))),
+    echo: ($) => seq($.echo_kw, token(prec(PREC.echo_text, /[^\n\r]+/))),
+    echo_kw: ($) => echo_kw,
 
     wait: ($) =>
       seq(
-        wait_kw,
+        $.wait_kw,
         choice(
           $.num_variable,
           $.char_variable,
@@ -317,7 +318,11 @@ module.exports = grammar({
         ),
       ),
 
-    warte: ($) => seq(warte_kw, $.int),
+    wait_kw: ($) => wait_kw,
+
+    warte: ($) => seq($.warte_kw, $.int),
+
+    warte_kw: ($) => warte_kw,
 
     definition: ($) =>
       choice($.num_definition, $.char_definition, $.assignment),
@@ -336,9 +341,9 @@ module.exports = grammar({
 
     assignment: ($) =>
       choice(
-        seq(vai_kw, $.num_variable, optional(/.*/)),
+        seq($.vai_kw, $.num_variable, optional(/.*/)),
         seq(
-          var_kw,
+          $.var_kw,
           choice(
             $.num_variable,
             $.char_variable,
@@ -347,9 +352,19 @@ module.exports = grammar({
           ),
           optional(/.*/),
         ),
-        seq(pfd, choice($.char_variable, $.path_indicator, $.file_extension)),
-        seq(del, choice($.char_variable, $.num_variable)),
+        seq(
+          $.pfd_kw,
+          choice($.char_variable, $.path_indicator, $.file_extension),
+        ),
+        seq($.del_kw, choice($.char_variable, $.num_variable)),
       ),
+
+    vai_kw: ($) => vai_kw,
+    var_kw: ($) => var_kw,
+    pfd_kw: ($) => pfd,
+    del_kw: ($) => del,
+
+    wert_kw: ($) => wert_kw,
 
     arithmetic: ($) =>
       choice(
@@ -498,7 +513,6 @@ module.exports = grammar({
     if_kw: ($) => if_kw,
     then_kw: ($) => then_kw,
     else_kw: ($) => else_kw,
-    elseif_kw: ($) => elseif_kw,
     ifend_kw: ($) => ifend_kw,
 
     for_kw: ($) => for_kw,
@@ -630,8 +644,10 @@ module.exports = grammar({
     menu: ($) =>
       prec(
         PREC.menu,
-        seq(option_kw, choice(seq($.menu_index, $.menu_code), esc_kw)),
+        seq($.option_kw, choice(seq($.menu_index, $.menu_code), esc_kw)),
       ),
+
+    option_kw: ($) => option_kw,
 
     menu_index: ($) => /([1-9]|[12][0-9]|3[0])/,
 
@@ -658,31 +674,39 @@ module.exports = grammar({
 
     file_open: ($) =>
       seq(
-        open_kw,
+        $.open_kw,
         $.hc_path,
         $.file_read_write,
         optional(choice($.expression, $.condition, $.loop, $.input)),
-        close_kw,
+        $.close_kw,
       ),
+
+    open_kw: ($) => open_kw,
+    close_kw: ($) => close_kw,
 
     file_read_write: ($) => repeat1(choice($.file_write, $.file_read)),
 
-    file_write: ($) => seq(output_kw, choice($.char_variable, $.num_variable)),
+    file_write: ($) =>
+      seq($.output_kw, choice($.char_variable, $.num_variable)),
+    output_kw: ($) => output_kw,
 
-    file_read: ($) => seq(input_kw, choice($.char_variable, $.num_variable)),
+    file_read: ($) => seq($.input_kw, choice($.char_variable, $.num_variable)),
+    input_kw: ($) => input_kw,
 
     file_copy: ($) =>
       prec(
         PREC.file,
         seq(
-          copy_kw,
+          $.copy_kw,
           choice($.char_variable, $.windows_path),
           choice($.char_variable, $.windows_path),
         ),
       ),
+    copy_kw: ($) => copy_kw,
 
     mkdir: ($) =>
-      prec(PREC.file, seq(mkdir_kw, choice($.char_variable, $.windows_path))),
+      prec(PREC.file, seq($.mkdir_kw, choice($.char_variable, $.windows_path))),
+    mkdir_kw: ($) => mkdir_kw,
 
     hc_path: ($) => seq(optional($.path_indicator), $.filename),
 
@@ -696,19 +720,20 @@ module.exports = grammar({
 
     function: ($) => seq($.function_c, choice($.char_variable, $.hc_path)),
 
-    jump: ($) => seq(goto_kw, $.label),
+    jump: ($) => seq($.goto_kw, $.label),
+    goto_kw: ($) => goto_kw,
 
     label: ($) => /[0-9]{1,6}/,
 
     jump_to: ($) => seq($.label, ":"),
 
     logic_operation: ($) =>
-      seq(wert_kw, choice($.num_variable, $.char_variable)),
+      seq($.wert_kw, choice($.num_variable, $.char_variable)),
 
     point: ($) =>
       prec.right(
         seq(
-          point_kw,
+          $.point_kw,
           choice(
             free_kw,
             esc_kw,
@@ -730,6 +755,8 @@ module.exports = grammar({
         ),
       ),
 
+    point_kw: ($) => point_kw,
+
     point_option: ($) => choice("A", "K", "R", "N"),
 
     point_literal: ($) => /P[0-9]/,
@@ -737,10 +764,14 @@ module.exports = grammar({
     line_literal: ($) => /L[0-9]/,
 
     distance: ($) =>
-      prec.right(seq(distance_kw, choice($.flow_args, zei_kw, $.arithmetic))),
+      prec.right(seq($.distance_kw, choice($.flow_args, zei_kw, $.arithmetic))),
+
+    distance_kw: ($) => distance_kw,
 
     angle: ($) =>
-      prec.right(seq(angle_kw, choice($.flow_args, zei_kw, $.arithmetic))),
+      prec.right(seq($.angle_kw, choice($.flow_args, zei_kw, $.arithmetic))),
+
+    angle_kw: ($) => angle_kw,
 
     comment: ($) => token(prec(PREC.comment, /REM.*/i)),
 

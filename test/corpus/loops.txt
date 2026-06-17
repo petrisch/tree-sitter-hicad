@@ -24,20 +24,23 @@ END
   (start_marker)
   (loop
     (for_loop
-      (for_kw)
-      (num_variable
-        (num_var_sign)
-        (num_var_name))
-      (arithmetic
-        (num_value
-          (real)))
-      (to_kw)
-      (arithmetic
-        (general_variable))
+      (for_header
+        (for_kw)
+        (num_variable
+          (num_var_sign)
+          (num_var_name))
+        (arithmetic
+          (num_value
+            (real)))
+        (to_kw)
+        (arithmetic
+          (general_variable)))
       (expression
-        (wait))
-      (next_kw)
-      (general_variable)))
+        (wait
+          (wait_kw)))
+      (for_end
+        (next_kw)
+        (general_variable))))
   (loop
     (while_loop
       (while_kw)
@@ -45,7 +48,8 @@ END
         (comparison
           (logical_var)))
       (expression
-        (wait))
+        (wait
+          (wait_kw)))
       (whend_kw)))
   (loop
     (while_loop

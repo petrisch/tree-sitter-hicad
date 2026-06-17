@@ -438,15 +438,8 @@
       "type": "SEQ",
       "members": [
         {
-          "type": "TOKEN",
-          "content": {
-            "type": "PREC",
-            "value": 14,
-            "content": {
-              "type": "PATTERN",
-              "value": "[eE][cC][hH][oO]"
-            }
-          }
+          "type": "SYMBOL",
+          "name": "echo_kw"
         },
         {
           "type": "TOKEN",
@@ -461,19 +454,23 @@
         }
       ]
     },
+    "echo_kw": {
+      "type": "TOKEN",
+      "content": {
+        "type": "PREC",
+        "value": 14,
+        "content": {
+          "type": "PATTERN",
+          "value": "[eE][cC][hH][oO]"
+        }
+      }
+    },
     "wait": {
       "type": "SEQ",
       "members": [
         {
-          "type": "TOKEN",
-          "content": {
-            "type": "PREC",
-            "value": 14,
-            "content": {
-              "type": "PATTERN",
-              "value": "[wW][aA][iI][tT]"
-            }
-          }
+          "type": "SYMBOL",
+          "name": "wait_kw"
         },
         {
           "type": "CHOICE",
@@ -501,25 +498,40 @@
         }
       ]
     },
+    "wait_kw": {
+      "type": "TOKEN",
+      "content": {
+        "type": "PREC",
+        "value": 14,
+        "content": {
+          "type": "PATTERN",
+          "value": "[wW][aA][iI][tT]"
+        }
+      }
+    },
     "warte": {
       "type": "SEQ",
       "members": [
         {
-          "type": "TOKEN",
-          "content": {
-            "type": "PREC",
-            "value": 14,
-            "content": {
-              "type": "PATTERN",
-              "value": "[wW][aA][rR][tT][eE]"
-            }
-          }
+          "type": "SYMBOL",
+          "name": "warte_kw"
         },
         {
           "type": "SYMBOL",
           "name": "int"
         }
       ]
+    },
+    "warte_kw": {
+      "type": "TOKEN",
+      "content": {
+        "type": "PREC",
+        "value": 14,
+        "content": {
+          "type": "PATTERN",
+          "value": "[wW][aA][rR][tT][eE]"
+        }
+      }
     },
     "definition": {
       "type": "CHOICE",
@@ -613,15 +625,8 @@
           "type": "SEQ",
           "members": [
             {
-              "type": "TOKEN",
-              "content": {
-                "type": "PREC",
-                "value": 14,
-                "content": {
-                  "type": "PATTERN",
-                  "value": "[vV][aA][iI]"
-                }
-              }
+              "type": "SYMBOL",
+              "name": "vai_kw"
             },
             {
               "type": "SYMBOL",
@@ -645,15 +650,8 @@
           "type": "SEQ",
           "members": [
             {
-              "type": "TOKEN",
-              "content": {
-                "type": "PREC",
-                "value": 14,
-                "content": {
-                  "type": "PATTERN",
-                  "value": "[vV][aA][rR]"
-                }
-              }
+              "type": "SYMBOL",
+              "name": "var_kw"
             },
             {
               "type": "CHOICE",
@@ -694,15 +692,8 @@
           "type": "SEQ",
           "members": [
             {
-              "type": "TOKEN",
-              "content": {
-                "type": "PREC",
-                "value": 14,
-                "content": {
-                  "type": "PATTERN",
-                  "value": "[pP][fF][dD]"
-                }
-              }
+              "type": "SYMBOL",
+              "name": "pfd_kw"
             },
             {
               "type": "CHOICE",
@@ -727,15 +718,8 @@
           "type": "SEQ",
           "members": [
             {
-              "type": "TOKEN",
-              "content": {
-                "type": "PREC",
-                "value": 14,
-                "content": {
-                  "type": "PATTERN",
-                  "value": "[dD][eE][lL]"
-                }
-              }
+              "type": "SYMBOL",
+              "name": "del_kw"
             },
             {
               "type": "CHOICE",
@@ -753,6 +737,61 @@
           ]
         }
       ]
+    },
+    "vai_kw": {
+      "type": "TOKEN",
+      "content": {
+        "type": "PREC",
+        "value": 14,
+        "content": {
+          "type": "PATTERN",
+          "value": "[vV][aA][iI]"
+        }
+      }
+    },
+    "var_kw": {
+      "type": "TOKEN",
+      "content": {
+        "type": "PREC",
+        "value": 14,
+        "content": {
+          "type": "PATTERN",
+          "value": "[vV][aA][rR]"
+        }
+      }
+    },
+    "pfd_kw": {
+      "type": "TOKEN",
+      "content": {
+        "type": "PREC",
+        "value": 14,
+        "content": {
+          "type": "PATTERN",
+          "value": "[pP][fF][dD]"
+        }
+      }
+    },
+    "del_kw": {
+      "type": "TOKEN",
+      "content": {
+        "type": "PREC",
+        "value": 14,
+        "content": {
+          "type": "PATTERN",
+          "value": "[dD][eE][lL]"
+        }
+      }
+    },
+    "wert_kw": {
+      "type": "TOKEN",
+      "content": {
+        "type": "PREC",
+        "value": 14,
+        "content": {
+          "type": "PATTERN",
+          "value": "[wW][eE][rR][tT]"
+        }
+      }
     },
     "arithmetic": {
       "type": "CHOICE",
@@ -1743,17 +1782,6 @@
         }
       }
     },
-    "elseif_kw": {
-      "type": "TOKEN",
-      "content": {
-        "type": "PREC",
-        "value": 14,
-        "content": {
-          "type": "PATTERN",
-          "value": "[eE][lL][sS][eE][iI][fF]"
-        }
-      }
-    },
     "ifend_kw": {
       "type": "TOKEN",
       "content": {
@@ -2637,15 +2665,8 @@
         "type": "SEQ",
         "members": [
           {
-            "type": "TOKEN",
-            "content": {
-              "type": "PREC",
-              "value": 14,
-              "content": {
-                "type": "PATTERN",
-                "value": "[oO][pP][tT][iI][oO][nN]"
-              }
-            }
+            "type": "SYMBOL",
+            "name": "option_kw"
           },
           {
             "type": "CHOICE",
@@ -2677,6 +2698,17 @@
             ]
           }
         ]
+      }
+    },
+    "option_kw": {
+      "type": "TOKEN",
+      "content": {
+        "type": "PREC",
+        "value": 14,
+        "content": {
+          "type": "PATTERN",
+          "value": "[oO][pP][tT][iI][oO][nN]"
+        }
       }
     },
     "menu_index": {
@@ -2827,15 +2859,8 @@
       "type": "SEQ",
       "members": [
         {
-          "type": "TOKEN",
-          "content": {
-            "type": "PREC",
-            "value": 14,
-            "content": {
-              "type": "PATTERN",
-              "value": "[oO][pP][eE][nN]"
-            }
-          }
+          "type": "SYMBOL",
+          "name": "open_kw"
         },
         {
           "type": "SYMBOL",
@@ -2875,17 +2900,32 @@
           ]
         },
         {
-          "type": "TOKEN",
-          "content": {
-            "type": "PREC",
-            "value": 14,
-            "content": {
-              "type": "PATTERN",
-              "value": "[cC][lL][oO][sS][eE]"
-            }
-          }
+          "type": "SYMBOL",
+          "name": "close_kw"
         }
       ]
+    },
+    "open_kw": {
+      "type": "TOKEN",
+      "content": {
+        "type": "PREC",
+        "value": 14,
+        "content": {
+          "type": "PATTERN",
+          "value": "[oO][pP][eE][nN]"
+        }
+      }
+    },
+    "close_kw": {
+      "type": "TOKEN",
+      "content": {
+        "type": "PREC",
+        "value": 14,
+        "content": {
+          "type": "PATTERN",
+          "value": "[cC][lL][oO][sS][eE]"
+        }
+      }
     },
     "file_read_write": {
       "type": "REPEAT1",
@@ -2907,15 +2947,8 @@
       "type": "SEQ",
       "members": [
         {
-          "type": "TOKEN",
-          "content": {
-            "type": "PREC",
-            "value": 14,
-            "content": {
-              "type": "PATTERN",
-              "value": "[oO][uU][tT][pP][uU][tT]"
-            }
-          }
+          "type": "SYMBOL",
+          "name": "output_kw"
         },
         {
           "type": "CHOICE",
@@ -2932,19 +2965,23 @@
         }
       ]
     },
+    "output_kw": {
+      "type": "TOKEN",
+      "content": {
+        "type": "PREC",
+        "value": 14,
+        "content": {
+          "type": "PATTERN",
+          "value": "[oO][uU][tT][pP][uU][tT]"
+        }
+      }
+    },
     "file_read": {
       "type": "SEQ",
       "members": [
         {
-          "type": "TOKEN",
-          "content": {
-            "type": "PREC",
-            "value": 14,
-            "content": {
-              "type": "PATTERN",
-              "value": "[iI][nN][pP][uU][tT]"
-            }
-          }
+          "type": "SYMBOL",
+          "name": "input_kw"
         },
         {
           "type": "CHOICE",
@@ -2960,6 +2997,17 @@
           ]
         }
       ]
+    },
+    "input_kw": {
+      "type": "TOKEN",
+      "content": {
+        "type": "PREC",
+        "value": 14,
+        "content": {
+          "type": "PATTERN",
+          "value": "[iI][nN][pP][uU][tT]"
+        }
+      }
     },
     "file_copy": {
       "type": "PREC",
@@ -2968,15 +3016,8 @@
         "type": "SEQ",
         "members": [
           {
-            "type": "TOKEN",
-            "content": {
-              "type": "PREC",
-              "value": 14,
-              "content": {
-                "type": "PATTERN",
-                "value": "[cC][oO][pP][yY]"
-              }
-            }
+            "type": "SYMBOL",
+            "name": "copy_kw"
           },
           {
             "type": "CHOICE",
@@ -3007,6 +3048,17 @@
         ]
       }
     },
+    "copy_kw": {
+      "type": "TOKEN",
+      "content": {
+        "type": "PREC",
+        "value": 14,
+        "content": {
+          "type": "PATTERN",
+          "value": "[cC][oO][pP][yY]"
+        }
+      }
+    },
     "mkdir": {
       "type": "PREC",
       "value": 11,
@@ -3014,15 +3066,8 @@
         "type": "SEQ",
         "members": [
           {
-            "type": "TOKEN",
-            "content": {
-              "type": "PREC",
-              "value": 14,
-              "content": {
-                "type": "PATTERN",
-                "value": "[mM][kK][dD][iI][rR]"
-              }
-            }
+            "type": "SYMBOL",
+            "name": "mkdir_kw"
           },
           {
             "type": "CHOICE",
@@ -3038,6 +3083,17 @@
             ]
           }
         ]
+      }
+    },
+    "mkdir_kw": {
+      "type": "TOKEN",
+      "content": {
+        "type": "PREC",
+        "value": 14,
+        "content": {
+          "type": "PATTERN",
+          "value": "[mM][kK][dD][iI][rR]"
+        }
       }
     },
     "hc_path": {
@@ -3137,21 +3193,25 @@
       "type": "SEQ",
       "members": [
         {
-          "type": "TOKEN",
-          "content": {
-            "type": "PREC",
-            "value": 14,
-            "content": {
-              "type": "PATTERN",
-              "value": "[gG][oO][tT][oO]"
-            }
-          }
+          "type": "SYMBOL",
+          "name": "goto_kw"
         },
         {
           "type": "SYMBOL",
           "name": "label"
         }
       ]
+    },
+    "goto_kw": {
+      "type": "TOKEN",
+      "content": {
+        "type": "PREC",
+        "value": 14,
+        "content": {
+          "type": "PATTERN",
+          "value": "[gG][oO][tT][oO]"
+        }
+      }
     },
     "label": {
       "type": "PATTERN",
@@ -3174,15 +3234,8 @@
       "type": "SEQ",
       "members": [
         {
-          "type": "TOKEN",
-          "content": {
-            "type": "PREC",
-            "value": 14,
-            "content": {
-              "type": "PATTERN",
-              "value": "[wW][eE][rR][tT]"
-            }
-          }
+          "type": "SYMBOL",
+          "name": "wert_kw"
         },
         {
           "type": "CHOICE",
@@ -3206,15 +3259,8 @@
         "type": "SEQ",
         "members": [
           {
-            "type": "TOKEN",
-            "content": {
-              "type": "PREC",
-              "value": 14,
-              "content": {
-                "type": "PATTERN",
-                "value": "[pP][oO][iI][nN][tT]"
-              }
-            }
+            "type": "SYMBOL",
+            "name": "point_kw"
           },
           {
             "type": "CHOICE",
@@ -3351,6 +3397,17 @@
         ]
       }
     },
+    "point_kw": {
+      "type": "TOKEN",
+      "content": {
+        "type": "PREC",
+        "value": 14,
+        "content": {
+          "type": "PATTERN",
+          "value": "[pP][oO][iI][nN][tT]"
+        }
+      }
+    },
     "point_option": {
       "type": "CHOICE",
       "members": [
@@ -3387,15 +3444,8 @@
         "type": "SEQ",
         "members": [
           {
-            "type": "TOKEN",
-            "content": {
-              "type": "PREC",
-              "value": 14,
-              "content": {
-                "type": "PATTERN",
-                "value": "[dD][iI][sS][tT][aA][nN][zZ]"
-              }
-            }
+            "type": "SYMBOL",
+            "name": "distance_kw"
           },
           {
             "type": "CHOICE",
@@ -3424,6 +3474,17 @@
         ]
       }
     },
+    "distance_kw": {
+      "type": "TOKEN",
+      "content": {
+        "type": "PREC",
+        "value": 14,
+        "content": {
+          "type": "PATTERN",
+          "value": "[dD][iI][sS][tT][aA][nN][zZ]"
+        }
+      }
+    },
     "angle": {
       "type": "PREC_RIGHT",
       "value": 0,
@@ -3431,15 +3492,8 @@
         "type": "SEQ",
         "members": [
           {
-            "type": "TOKEN",
-            "content": {
-              "type": "PREC",
-              "value": 14,
-              "content": {
-                "type": "PATTERN",
-                "value": "[wW][iI][nN][kK][eE][lL]"
-              }
-            }
+            "type": "SYMBOL",
+            "name": "angle_kw"
           },
           {
             "type": "CHOICE",
@@ -3466,6 +3520,17 @@
             ]
           }
         ]
+      }
+    },
+    "angle_kw": {
+      "type": "TOKEN",
+      "content": {
+        "type": "PREC",
+        "value": 14,
+        "content": {
+          "type": "PATTERN",
+          "value": "[wW][iI][nN][kK][eE][lL]"
+        }
       }
     },
     "comment": {

@@ -191,6 +191,7 @@ END
   (expression
     (definition
       (assignment
+        (pfd_kw)
         (char_variable
           (char_var_sign)
           (identifier)))))

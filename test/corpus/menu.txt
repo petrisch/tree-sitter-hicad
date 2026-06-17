@@ -49,6 +49,7 @@ END
   (comment)
   (expression
     (menu
+      (option_kw)
       (menu_index)
       (menu_code)))
   (esc_statement)
@@ -57,14 +58,17 @@ END
     (guidance_noarg))
   (comment)
   (expression
-    (menu))
+    (menu
+      (option_kw)))
   (comment)
   (expression
     (menu
+      (option_kw)
       (menu_index)
       (menu_code)))
   (input
     (point
+      (point_kw)
       (arithmetic
         (general_variable))
       (arithmetic
@@ -91,6 +95,7 @@ END
                       (real)))))))))))
   (input
     (distance
+      (distance_kw)
       (arithmetic
         (unary_operator
           (arithmetic
@@ -111,6 +116,7 @@ END
       (condition_block
         (expression
           (menu
+            (option_kw)
             (menu_index)
             (menu_code)))
         (comment)

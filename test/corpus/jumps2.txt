@@ -16,6 +16,7 @@ GOTO 99
   (comment)
   (start_marker)
   (jump
+    (goto_kw)
     (label))
   (end_marker
     (jump_to

@@ -160,7 +160,8 @@ END
     (condition_alt
       (condition_block
         (expression
-          (wait))
+          (wait
+            (wait_kw)))
         (condition
           (if_kw)
           (logical_expression
@@ -176,11 +177,13 @@ END
             (condition_alt_case
               (condition_block
                 (expression
-                  (wait)))
+                  (wait
+                    (wait_kw))))
               (else_kw)
               (condition_block
                 (expression
-                  (wait)))
+                  (wait
+                    (wait_kw))))
               (ifend_kw)))))
       (ifend_kw)))
   (comment)
@@ -199,7 +202,8 @@ END
     (condition_alt
       (condition_block
         (expression
-          (wait)))
+          (wait
+            (wait_kw))))
       (ifend_kw)))
   (comment)
   (condition
@@ -214,7 +218,8 @@ END
     (condition_alt
       (condition_block
         (expression
-          (wait)))
+          (wait
+            (wait_kw))))
       (ifend_kw)))
   (comment)
   (condition
@@ -242,7 +247,8 @@ END
     (condition_alt
       (condition_block
         (expression
-          (wait)))
+          (wait
+            (wait_kw))))
       (ifend_kw)))
   (comment)
   (condition
@@ -266,7 +272,8 @@ END
     (condition_alt
       (condition_block
         (expression
-          (wait)))
+          (wait
+            (wait_kw))))
       (ifend_kw)))
   (comment)
   (condition
@@ -284,7 +291,8 @@ END
     (condition_alt
       (condition_block
         (expression
-          (wait)))
+          (wait
+            (wait_kw))))
       (ifend_kw)))
   (condition
     (if_kw)
@@ -295,6 +303,7 @@ END
       (comparison
         (logical_var)))
     (jump
+      (goto_kw)
       (label)))
   (condition
     (if_kw)
@@ -310,14 +319,17 @@ END
             (num_value
               (real))))))
     (jump
+      (goto_kw)
       (label)))
   (comment)
   (expression
     (menu
+      (option_kw)
       (menu_index)
       (menu_code)))
   (input
     (point
+      (point_kw)
       (arithmetic
         (general_variable))))
   (condition
@@ -344,6 +356,7 @@ END
         (condition_block
           (input
             (point
+              (point_kw)
               (arithmetic
                 (num_value
                   (real))))))
@@ -351,6 +364,7 @@ END
         (condition_block
           (input
             (point
+              (point_kw)
               (arithmetic
                 (num_value
                   (real))))))
