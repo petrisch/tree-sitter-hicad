@@ -706,15 +706,19 @@ module.exports = grammar({
           choice(
             free_kw,
             esc_kw,
+            ...point_args,
+
+            seq($.point_option, optional($.arithmetic), optional($.arithmetic)),
+
             seq(
-              optional($.point_option),
               choice(
                 $.point_literal,
                 $.line_literal,
                 $.logical_var,
                 $.arithmetic,
               ),
-              repeat($.arithmetic),
+              optional($.arithmetic),
+              optional($.arithmetic),
             ),
           ),
         ),
@@ -727,14 +731,10 @@ module.exports = grammar({
     line_literal: ($) => /L[0-9]/,
 
     distance: ($) =>
-      prec.right(
-        seq(distance_kw, choice($.flow_args, zei_kw, repeat1($.arithmetic))),
-      ),
+      prec.right(seq(distance_kw, choice($.flow_args, zei_kw, $.arithmetic))),
 
     angle: ($) =>
-      prec.right(
-        seq(angle_kw, choice($.flow_args, zei_kw, repeat1($.arithmetic))),
-      ),
+      prec.right(seq(angle_kw, choice($.flow_args, zei_kw, $.arithmetic))),
 
     comment: ($) => token(prec(PREC.comment, /REM.*/i)),
 
