@@ -104,6 +104,14 @@
 
 (val_function) @function.builtin
 (len_function) @function.builtin
+(idx_function) @function.builtin
+(asc_function) @function.builtin
+
+(string_function) @function.builtin
+(string_alt_function) @function.builtin
+(string_alt_function) @function.builtin
+(time_function) @function.builtin
+(chr_function) @function.builtin
 
 ; ----------------------------
 ; VARIABLES

@@ -35,11 +35,19 @@
           "named": true
         },
         {
+          "type": "asc_function",
+          "named": true
+        },
+        {
           "type": "binary_operator",
           "named": true
         },
         {
           "type": "general_variable",
+          "named": true
+        },
+        {
+          "type": "idx_function",
           "named": true
         },
         {
@@ -87,6 +95,21 @@
         },
         {
           "type": "arithmetic_func",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "asc_function",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "string_argument",
           "named": true
         }
       ]
@@ -204,19 +227,11 @@
       "required": true,
       "types": [
         {
-          "type": "char_sys_var",
-          "named": true
-        },
-        {
-          "type": "char_variable",
+          "type": "char_expression",
           "named": true
         },
         {
           "type": "comparative_operator",
-          "named": true
-        },
-        {
-          "type": "quoted_char",
           "named": true
         }
       ]
@@ -244,6 +259,37 @@
         },
         {
           "type": "free_text",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "char_expression",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "char_sys_var",
+          "named": true
+        },
+        {
+          "type": "char_variable",
+          "named": true
+        },
+        {
+          "type": "concat_char",
+          "named": true
+        },
+        {
+          "type": "quoted_char",
+          "named": true
+        },
+        {
+          "type": "string_function",
           "named": true
         }
       ]
@@ -297,6 +343,10 @@
           "named": true
         },
         {
+          "type": "string_function",
+          "named": true
+        },
+        {
           "type": "windows_path",
           "named": true
         }
@@ -321,6 +371,21 @@
         },
         {
           "type": "identifier",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "chr_function",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "chr_num_literal",
           "named": true
         }
       ]
@@ -612,6 +677,10 @@
         },
         {
           "type": "menu",
+          "named": true
+        },
+        {
+          "type": "string_function",
           "named": true
         },
         {
@@ -927,6 +996,21 @@
         },
         {
           "type": "path_indicator",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "idx_function",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "string_argument",
           "named": true
         }
       ]
@@ -1519,6 +1603,84 @@
     "fields": {}
   },
   {
+    "type": "string_alt_function",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "string_argument",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "string_argument",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "char_literal",
+          "named": true
+        },
+        {
+          "type": "char_sys_var",
+          "named": true
+        },
+        {
+          "type": "char_variable",
+          "named": true
+        },
+        {
+          "type": "concat_char",
+          "named": true
+        },
+        {
+          "type": "quoted_char",
+          "named": true
+        },
+        {
+          "type": "string_function",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "string_function",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "chr_function",
+          "named": true
+        },
+        {
+          "type": "string_alt_function",
+          "named": true
+        },
+        {
+          "type": "time_function",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "time_function",
+    "named": true,
+    "fields": {}
+  },
+  {
     "type": "unary_operator",
     "named": true,
     "fields": {
@@ -1717,6 +1879,10 @@
     "named": false
   },
   {
+    "type": ",",
+    "named": false
+  },
+  {
     "type": "-",
     "named": false
   },
@@ -1761,7 +1927,19 @@
     "named": false
   },
   {
+    "type": "CHR$",
+    "named": false
+  },
+  {
+    "type": "DAT$",
+    "named": false
+  },
+  {
     "type": "K",
+    "named": false
+  },
+  {
+    "type": "LTU$",
     "named": false
   },
   {
@@ -1770,6 +1948,14 @@
   },
   {
     "type": "R",
+    "named": false
+  },
+  {
+    "type": "TIM$",
+    "named": false
+  },
+  {
+    "type": "UTL$",
     "named": false
   },
   {
@@ -1794,6 +1980,10 @@
   },
   {
     "type": "char_var_sign",
+    "named": true
+  },
+  {
+    "type": "chr_num_literal",
     "named": true
   },
   {

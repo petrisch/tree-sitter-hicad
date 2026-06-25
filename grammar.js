@@ -95,6 +95,19 @@ const antwort = kw("ANTWORT");
 
 const scalar_input = [string, real, integer, antwort];
 
+// LEN is treated as arithmetic
+const asc_kw = kw("ASC");
+const val_kw = kw("VAL");
+const idx_kw = kw("IDX");
+
+const ltu_kw = token(prec(PREC.keyword, "LTU$")); // dont allows lowercase because the $ would be dangerous in the regex
+const utl_kw = token(prec(PREC.keyword, "UTL$"));
+
+const chr_kw = token(prec(PREC.keyword, "CHR$"));
+
+const time_kw = token(prec(PREC.keyword, "TIM$"));
+const date_kw = token(prec(PREC.keyword, "DAT$"));
+
 const lastlinedelete = kw("LLL");
 const lastlinediscard = kw("LLA");
 
@@ -155,7 +168,6 @@ const abs = kw("ABS");
 const acos = kw("ACOS");
 const aint = kw("AINT");
 const arc = kw("ARC");
-const asc = kw("ASC");
 const asin = kw("ASIN");
 const atan = kw("ATAN");
 const cos = kw("COS");
@@ -174,15 +186,11 @@ const sqrt = kw("SQRT");
 const tan = kw("TAN");
 const tanh = kw("TANH");
 
-// Type conversion special case
-const val = kw("VAL");
-
 const arithmetic_functions = [
   abs,
   acos,
   aint,
   arc,
-  asc,
   asin,
   atan,
   cos,
@@ -213,7 +221,6 @@ const del = kw("DEL");
 const if_kw = kw("IF");
 const then_kw = kw("THEN");
 const else_kw = kw("ELSE");
-const elseif_kw = kw("ELSEIF");
 const ifend_kw = kw("IFEND");
 
 const for_kw = kw("FOR");
@@ -299,6 +306,7 @@ module.exports = grammar({
         $.menu,
         $.logic_operation,
         $.function,
+        $.string_function,
       ),
 
     guidance_noarg: ($) => choice(...guidance_noargs),
@@ -377,6 +385,8 @@ module.exports = grammar({
         $.num_sys_var,
         $.val_function,
         $.len_function,
+        $.idx_function,
+        $.asc_function,
         $.general_variable,
       ),
 
@@ -395,10 +405,10 @@ module.exports = grammar({
     arithmetic_function: ($) =>
       prec(PREC.arithmetic, seq($.arithmetic_func, "(", $.arithmetic, ")")),
 
-    // VAL is intentionally special: char -> numeric conversion.
+    // String functions that return int
     val_function: ($) =>
       seq(
-        val,
+        val_kw,
         "(",
         choice($.char_variable, $.char_sys_var, $.quoted_char),
         ")",
@@ -412,6 +422,40 @@ module.exports = grammar({
         choice($.char_variable, $.char_sys_var, $.quoted_char, $.concat_char),
         ")",
       ),
+
+    // ASC takes a string, returns int
+    asc_function: ($) => seq(asc_kw, "(", $.string_argument, ")"),
+
+    // IDX takes two strings
+    idx_function: ($) =>
+      seq(idx_kw, "(", $.string_argument, ",", $.string_argument, ")"),
+
+    // String functions that return char
+    string_function: ($) =>
+      choice($.string_alt_function, $.chr_function, $.time_function),
+
+    string_argument: ($) =>
+      choice(
+        $.char_variable,
+        $.char_sys_var,
+        $.quoted_char,
+        $.char_literal,
+        $.concat_char,
+        $.string_function,
+      ),
+
+    // String case alteration
+    string_alt_function: ($) =>
+      seq(choice(ltu_kw, utl_kw), "(", $.string_argument, ")"),
+
+    // CHR function takes number between 0 255
+    chr_function: ($) => seq(chr_kw, "(", $.chr_num_literal, ")"),
+
+    // Single token functions
+    time_function: ($) => choice(time_kw, date_kw),
+
+    chr_num_literal: ($) =>
+      token(/25[0-5]|2[0-4][0-9]|1[0-9]{2}|[1-9][0-9]|[0-9]/),
 
     num_variable: ($) => seq($.num_var_sign, $.num_var_name),
 
@@ -454,6 +498,7 @@ module.exports = grammar({
         $.concat_char,
         $.char_variable,
         $.char_sys_var,
+        $.string_function,
       ),
 
     quoted_char: ($) =>
@@ -630,11 +675,16 @@ module.exports = grammar({
     char_comparison: ($) =>
       prec(
         PREC.char,
-        seq(
-          choice($.char_variable, $.char_sys_var),
-          $.comparative_operator,
-          choice($.quoted_char, $.char_variable, $.char_sys_var),
-        ),
+        seq($.char_expression, $.comparative_operator, $.char_expression),
+      ),
+
+    char_expression: ($) =>
+      choice(
+        $.char_variable,
+        $.char_sys_var,
+        $.quoted_char,
+        $.concat_char,
+        $.string_function,
       ),
 
     comparative_operator: ($) => choice(...comparative_operators),

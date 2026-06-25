@@ -1,0 +1,119 @@
+================================================================================
+String
+================================================================================
+
+START 59
+
+REM ASC function
+%ASC:=ASC($Foo)
+
+REM CHR$ function
+IF CHR$(65) = "A" GOTO 99
+
+REM LTU$ function
+$LOW:=LTU$("foo")
+
+REM UTL$ function
+$HIGH:=UTL$("FOO")
+
+REM IDX function
+%INDEX:=IDX("FOO", $Foo)
+
+REM Time functions
+$TIME:=TIM$
+$DATE:=DAT$
+
+END
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (start_marker)
+  (comment)
+  (expression
+    (definition
+      (num_definition
+        (num_variable
+          (num_var_sign)
+          (num_var_name))
+        (arithmetic
+          (asc_function
+            (string_argument
+              (char_variable
+                (char_var_sign)
+                (identifier))))))))
+  (comment)
+  (condition
+    (if_kw)
+    (logical_expression
+      (comparison
+        (char_comparison
+          (char_expression
+            (string_function
+              (chr_function
+                (chr_num_literal))))
+          (comparative_operator)
+          (char_expression
+            (quoted_char)))))
+    (jump
+      (goto_kw)
+      (label))
+    (comment))
+  (expression
+    (definition
+      (char_definition
+        (char_variable
+          (char_var_sign)
+          (identifier))
+        (char_value
+          (string_function
+            (string_alt_function
+              (string_argument
+                (quoted_char))))))))
+  (comment)
+  (expression
+    (definition
+      (char_definition
+        (char_variable
+          (char_var_sign)
+          (identifier))
+        (char_value
+          (string_function
+            (string_alt_function
+              (string_argument
+                (quoted_char))))))))
+  (comment)
+  (expression
+    (definition
+      (num_definition
+        (num_variable
+          (num_var_sign)
+          (num_var_name))
+        (arithmetic
+          (idx_function
+            (string_argument
+              (quoted_char))
+            (string_argument
+              (char_variable
+                (char_var_sign)
+                (identifier))))))))
+  (comment)
+  (expression
+    (definition
+      (char_definition
+        (char_variable
+          (char_var_sign)
+          (identifier))
+        (char_value
+          (string_function
+            (time_function))))))
+  (expression
+    (definition
+      (char_definition
+        (char_variable
+          (char_var_sign)
+          (identifier))
+        (char_value
+          (string_function
+            (time_function))))))
+  (end_marker))
