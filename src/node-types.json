@@ -71,6 +71,10 @@
           "named": true
         },
         {
+          "type": "special2Dvariable",
+          "named": true
+        },
+        {
           "type": "unary_operator",
           "named": true
         },
@@ -2133,6 +2137,10 @@
   },
   {
     "type": "repeat_kw",
+    "named": true
+  },
+  {
+    "type": "special2Dvariable",
     "named": true
   },
   {

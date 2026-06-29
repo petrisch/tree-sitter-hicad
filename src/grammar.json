@@ -797,6 +797,258 @@
         }
       }
     },
+    "special2Dvariable": {
+      "type": "TOKEN",
+      "content": {
+        "type": "PREC",
+        "value": 1,
+        "content": {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "STRING",
+              "value": "Z"
+            },
+            {
+              "type": "STRING",
+              "value": "Z0"
+            },
+            {
+              "type": "STRING",
+              "value": "Z1"
+            },
+            {
+              "type": "STRING",
+              "value": "Z2"
+            },
+            {
+              "type": "STRING",
+              "value": "Z0"
+            },
+            {
+              "type": "STRING",
+              "value": "Z1"
+            },
+            {
+              "type": "STRING",
+              "value": "Z2"
+            },
+            {
+              "type": "STRING",
+              "value": "Z3"
+            },
+            {
+              "type": "STRING",
+              "value": "Z4"
+            },
+            {
+              "type": "STRING",
+              "value": "Z5"
+            },
+            {
+              "type": "STRING",
+              "value": "Z6"
+            },
+            {
+              "type": "STRING",
+              "value": "Z7"
+            },
+            {
+              "type": "STRING",
+              "value": "Z8"
+            },
+            {
+              "type": "STRING",
+              "value": "Z9"
+            },
+            {
+              "type": "STRING",
+              "value": "ZA"
+            },
+            {
+              "type": "STRING",
+              "value": "ZB"
+            },
+            {
+              "type": "STRING",
+              "value": "ZC"
+            },
+            {
+              "type": "STRING",
+              "value": "ZD"
+            },
+            {
+              "type": "STRING",
+              "value": "ZCX"
+            },
+            {
+              "type": "STRING",
+              "value": "ZCY"
+            },
+            {
+              "type": "STRING",
+              "value": "ZE"
+            },
+            {
+              "type": "STRING",
+              "value": "ZF"
+            },
+            {
+              "type": "STRING",
+              "value": "ZG"
+            },
+            {
+              "type": "STRING",
+              "value": "ZGA1"
+            },
+            {
+              "type": "STRING",
+              "value": "ZGA2"
+            },
+            {
+              "type": "STRING",
+              "value": "ZGA3"
+            },
+            {
+              "type": "STRING",
+              "value": "ZGA4"
+            },
+            {
+              "type": "STRING",
+              "value": "ZJ"
+            },
+            {
+              "type": "STRING",
+              "value": "ZK"
+            },
+            {
+              "type": "STRING",
+              "value": "ZL"
+            },
+            {
+              "type": "STRING",
+              "value": "ZM"
+            },
+            {
+              "type": "STRING",
+              "value": "ZN"
+            },
+            {
+              "type": "STRING",
+              "value": "ZP"
+            },
+            {
+              "type": "STRING",
+              "value": "ZQ"
+            },
+            {
+              "type": "STRING",
+              "value": "ZS"
+            },
+            {
+              "type": "STRING",
+              "value": "ZSC1"
+            },
+            {
+              "type": "STRING",
+              "value": "ZSC2"
+            },
+            {
+              "type": "STRING",
+              "value": "ZSD1"
+            },
+            {
+              "type": "STRING",
+              "value": "ZSD2"
+            },
+            {
+              "type": "STRING",
+              "value": "ZSW1"
+            },
+            {
+              "type": "STRING",
+              "value": "ZSW2"
+            },
+            {
+              "type": "STRING",
+              "value": "ZT"
+            },
+            {
+              "type": "STRING",
+              "value": "ZU"
+            },
+            {
+              "type": "STRING",
+              "value": "ZV"
+            },
+            {
+              "type": "STRING",
+              "value": "ZW"
+            },
+            {
+              "type": "STRING",
+              "value": "ZX"
+            },
+            {
+              "type": "STRING",
+              "value": "ZY"
+            },
+            {
+              "type": "STRING",
+              "value": "ZZ"
+            },
+            {
+              "type": "STRING",
+              "value": "Z8"
+            },
+            {
+              "type": "STRING",
+              "value": "Z9"
+            },
+            {
+              "type": "STRING",
+              "value": "ZB"
+            },
+            {
+              "type": "STRING",
+              "value": "ZBTP"
+            },
+            {
+              "type": "STRING",
+              "value": "ZBWY"
+            },
+            {
+              "type": "STRING",
+              "value": "ZBWX"
+            },
+            {
+              "type": "STRING",
+              "value": "ZC"
+            },
+            {
+              "type": "STRING",
+              "value": "ZD"
+            },
+            {
+              "type": "STRING",
+              "value": "ZE"
+            },
+            {
+              "type": "STRING",
+              "value": "ZCTY"
+            },
+            {
+              "type": "STRING",
+              "value": "ZEDZ"
+            },
+            {
+              "type": "STRING",
+              "value": "ZFCZ"
+            }
+          ]
+        }
+      }
+    },
     "arithmetic": {
       "type": "CHOICE",
       "members": [
@@ -815,6 +1067,10 @@
         {
           "type": "SYMBOL",
           "name": "arithmetic_function"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "special2Dvariable"
         },
         {
           "type": "SYMBOL",

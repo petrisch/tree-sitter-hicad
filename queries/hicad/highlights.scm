@@ -129,6 +129,7 @@
 
 (num_sys_var) @variable.builtin
 (char_sys_var) @variable.builtin
+(special2Dvariable) @variable.builtin
 
 ; ----------------------------
 ; NUMBERS

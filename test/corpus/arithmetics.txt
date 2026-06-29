@@ -25,6 +25,9 @@ REM Exponential
 REM Nested function with leading negative
 %V1:=-V*(COS(BW1))
 
+REM Calculating with a special variable
+%DIHC:=Z3-5
+
 END
 
 --------------------------------------------------------------------------------
@@ -143,4 +146,18 @@ END
                     (arithmetic_func)
                     (arithmetic
                       (general_variable)))))))))))
+  (comment)
+  (expression
+    (definition
+      (num_definition
+        (num_variable
+          (num_var_sign)
+          (num_var_name))
+        (arithmetic
+          (binary_operator
+            (arithmetic
+              (special2Dvariable))
+            (arithmetic
+              (num_value
+                (real))))))))
   (end_marker))
