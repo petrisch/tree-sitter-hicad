@@ -1389,6 +1389,44 @@
       "required": true,
       "types": [
         {
+          "type": "point_kw",
+          "named": true
+        },
+        {
+          "type": "point_reference",
+          "named": true
+        },
+        {
+          "type": "point_with_option",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "point_argument",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "arithmetic",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "point_reference",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
           "type": "arithmetic",
           "named": true
         },
@@ -1401,11 +1439,22 @@
           "named": true
         },
         {
-          "type": "point_kw",
-          "named": true
-        },
-        {
           "type": "point_literal",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "point_with_option",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "point_argument",
           "named": true
         },
         {

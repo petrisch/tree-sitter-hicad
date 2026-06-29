@@ -849,18 +849,26 @@ module.exports = grammar({
             free_kw,
             esc_kw,
             ...point_args,
-
-            seq($.point_option, optional($.arithmetic), optional($.arithmetic)),
-
-            choice(
-              $.point_literal,
-              $.line_literal,
-              $.logical_var,
-              $.arithmetic,
-            ),
+            $.point_with_option,
+            $.point_reference,
           ),
         ),
       ),
+
+    point_with_option: ($) =>
+      prec.right(
+        PREC.keyword + 1,
+        choice(
+          seq($.point_option, $.point_argument, $.point_argument),
+          seq($.point_option, $.point_argument),
+          $.point_option,
+        ),
+      ),
+
+    point_reference: ($) =>
+      choice($.point_literal, $.line_literal, $.logical_var, $.arithmetic),
+
+    point_argument: ($) => $.arithmetic,
 
     point_kw: ($) => point_kw,
 

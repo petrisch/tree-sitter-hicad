@@ -69,29 +69,31 @@ END
   (input
     (point
       (point_kw)
-      (point_option)
-      (arithmetic
-        (num_value
-          (real)))
-      (arithmetic
-        (unary_operator
+      (point_with_option
+        (point_option)
+        (point_argument
           (arithmetic
-            (parenthesized_expression
+            (binary_operator
               (arithmetic
-                (binary_operator
+                (num_value
+                  (real)))
+              (arithmetic
+                (parenthesized_expression
                   (arithmetic
                     (binary_operator
                       (arithmetic
                         (binary_operator
                           (arithmetic
-                            (general_variable))
+                            (binary_operator
+                              (arithmetic
+                                (general_variable))
+                              (arithmetic
+                                (general_variable))))
                           (arithmetic
                             (general_variable))))
                       (arithmetic
-                        (general_variable))))
-                  (arithmetic
-                    (num_value
-                      (real)))))))))))
+                        (num_value
+                          (real)))))))))))))
   (input
     (distance
       (distance_kw)

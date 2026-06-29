@@ -338,7 +338,8 @@ END
   (input
     (point
       (point_kw)
-      (point_option)))
+      (point_with_option
+        (point_option))))
   (condition
     (if_kw)
     (logical_expression
@@ -368,17 +369,19 @@ END
           (input
             (point
               (point_kw)
-              (arithmetic
-                (num_value
-                  (real))))))
+              (point_reference
+                (arithmetic
+                  (num_value
+                    (real)))))))
         (else_kw)
         (condition_block
           (input
             (point
               (point_kw)
-              (arithmetic
-                (num_value
-                  (real))))))
+              (point_reference
+                (arithmetic
+                  (num_value
+                    (real)))))))
         (ifend_kw))))
   (esc_statement)
   (comment)

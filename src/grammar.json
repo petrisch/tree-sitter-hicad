@@ -3748,63 +3748,85 @@
                 }
               },
               {
-                "type": "SEQ",
-                "members": [
-                  {
-                    "type": "SYMBOL",
-                    "name": "point_option"
-                  },
-                  {
-                    "type": "CHOICE",
-                    "members": [
-                      {
-                        "type": "SYMBOL",
-                        "name": "arithmetic"
-                      },
-                      {
-                        "type": "BLANK"
-                      }
-                    ]
-                  },
-                  {
-                    "type": "CHOICE",
-                    "members": [
-                      {
-                        "type": "SYMBOL",
-                        "name": "arithmetic"
-                      },
-                      {
-                        "type": "BLANK"
-                      }
-                    ]
-                  }
-                ]
+                "type": "SYMBOL",
+                "name": "point_with_option"
               },
               {
-                "type": "CHOICE",
-                "members": [
-                  {
-                    "type": "SYMBOL",
-                    "name": "point_literal"
-                  },
-                  {
-                    "type": "SYMBOL",
-                    "name": "line_literal"
-                  },
-                  {
-                    "type": "SYMBOL",
-                    "name": "logical_var"
-                  },
-                  {
-                    "type": "SYMBOL",
-                    "name": "arithmetic"
-                  }
-                ]
+                "type": "SYMBOL",
+                "name": "point_reference"
               }
             ]
           }
         ]
       }
+    },
+    "point_with_option": {
+      "type": "PREC_RIGHT",
+      "value": 15,
+      "content": {
+        "type": "CHOICE",
+        "members": [
+          {
+            "type": "SEQ",
+            "members": [
+              {
+                "type": "SYMBOL",
+                "name": "point_option"
+              },
+              {
+                "type": "SYMBOL",
+                "name": "point_argument"
+              },
+              {
+                "type": "SYMBOL",
+                "name": "point_argument"
+              }
+            ]
+          },
+          {
+            "type": "SEQ",
+            "members": [
+              {
+                "type": "SYMBOL",
+                "name": "point_option"
+              },
+              {
+                "type": "SYMBOL",
+                "name": "point_argument"
+              }
+            ]
+          },
+          {
+            "type": "SYMBOL",
+            "name": "point_option"
+          }
+        ]
+      }
+    },
+    "point_reference": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "point_literal"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "line_literal"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "logical_var"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "arithmetic"
+        }
+      ]
+    },
+    "point_argument": {
+      "type": "SYMBOL",
+      "name": "arithmetic"
     },
     "point_kw": {
       "type": "TOKEN",
