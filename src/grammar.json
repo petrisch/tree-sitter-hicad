@@ -3379,6 +3379,10 @@
             {
               "type": "SYMBOL",
               "name": "flow_args"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "char_variable"
             }
           ]
         }

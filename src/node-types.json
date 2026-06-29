@@ -745,6 +745,10 @@
       "required": true,
       "types": [
         {
+          "type": "char_variable",
+          "named": true
+        },
+        {
           "type": "flow_args",
           "named": true
         },

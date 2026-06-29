@@ -792,7 +792,8 @@ module.exports = grammar({
     file_operation: ($) =>
       choice($.file_open, $.file_close, $.file_write, $.file_copy, $.mkdir),
 
-    file_open: ($) => seq($.open_kw, choice($.hc_path, $.flow_args)),
+    file_open: ($) =>
+      seq($.open_kw, choice($.hc_path, $.flow_args, $.char_variable)),
 
     file_close: ($) => $.close_kw,
 
