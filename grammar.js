@@ -13,6 +13,7 @@ const ci = (word) =>
 
 // Higher value is higher priority
 const PREC = {
+  literals: -1,
   general: 1,
   char: 2,
   definition: 3,
@@ -573,7 +574,7 @@ module.exports = grammar({
 
     _quoted_char_content: ($) => token.immediate(/[^"\n\r]+/),
 
-    char_literal: ($) => token(/[^$%\s"()]+/),
+    char_literal: ($) => token(prec(PREC.literals, /[^$%\s"()]+/)),
 
     windows_path: ($) => choice($.unc_path, $.local_path),
 
@@ -786,7 +787,7 @@ module.exports = grammar({
         $.text_value,
       ),
 
-    text_value: ($) => token(prec(PREC.char, /[^\s"$%#][^\n\r]*/)),
+    text_value: ($) => token(prec(PREC.literals, /[^\s"$%#][^\n\r]*/)),
 
     file_operation: ($) =>
       choice($.file_open, $.file_close, $.file_write, $.file_copy, $.mkdir),
@@ -850,15 +851,11 @@ module.exports = grammar({
 
             seq($.point_option, optional($.arithmetic), optional($.arithmetic)),
 
-            seq(
-              choice(
-                $.point_literal,
-                $.line_literal,
-                $.logical_var,
-                $.arithmetic,
-              ),
-              optional($.arithmetic),
-              optional($.arithmetic),
+            choice(
+              $.point_literal,
+              $.line_literal,
+              $.logical_var,
+              $.arithmetic,
             ),
           ),
         ),
@@ -866,7 +863,7 @@ module.exports = grammar({
 
     point_kw: ($) => point_kw,
 
-    point_option: ($) => choice("A", "K", "R", "N"),
+    point_option: ($) => token(prec(PREC.keyword, /[AKRN]/)),
 
     point_literal: ($) => /P[0-9]/,
 

@@ -338,8 +338,7 @@ END
   (input
     (point
       (point_kw)
-      (arithmetic
-        (general_variable))))
+      (point_option)))
   (condition
     (if_kw)
     (logical_expression

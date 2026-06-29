@@ -69,8 +69,7 @@ END
   (input
     (point
       (point_kw)
-      (arithmetic
-        (general_variable))
+      (point_option)
       (arithmetic
         (num_value
           (real)))
@@ -156,7 +155,7 @@ END
                   (scal_input
                     (scalar_in)
                     (scal_value
-                      (text_value)))))
+                      (char_literal)))))
               (ifend_kw)))))
       (ifend_kw)))
   (esc_statement)

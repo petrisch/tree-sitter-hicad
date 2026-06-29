@@ -1412,11 +1412,6 @@
     }
   },
   {
-    "type": "point_option",
-    "named": true,
-    "fields": {}
-  },
-  {
     "type": "quoted_char",
     "named": true,
     "fields": {}
@@ -1927,10 +1922,6 @@
     "named": false
   },
   {
-    "type": "A",
-    "named": false
-  },
-  {
     "type": "CHR$",
     "named": false
   },
@@ -1939,19 +1930,7 @@
     "named": false
   },
   {
-    "type": "K",
-    "named": false
-  },
-  {
     "type": "LTU$",
-    "named": false
-  },
-  {
-    "type": "N",
-    "named": false
-  },
-  {
-    "type": "R",
     "named": false
   },
   {
@@ -2129,6 +2108,10 @@
   },
   {
     "type": "point_literal",
+    "named": true
+  },
+  {
+    "type": "point_option",
     "named": true
   },
   {

@@ -27,6 +27,7 @@ REM Nested function with leading negative
 
 REM Calculating with a special variable
 %DIHC:=Z3-5
+%DIHC:=Z3-FOO
 
 END
 
@@ -160,4 +161,16 @@ END
             (arithmetic
               (num_value
                 (real))))))))
+  (expression
+    (definition
+      (num_definition
+        (num_variable
+          (num_var_sign)
+          (num_var_name))
+        (arithmetic
+          (binary_operator
+            (arithmetic
+              (special2Dvariable))
+            (arithmetic
+              (general_variable)))))))
   (end_marker))

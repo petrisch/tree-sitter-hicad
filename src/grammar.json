@@ -1916,8 +1916,12 @@
     "char_literal": {
       "type": "TOKEN",
       "content": {
-        "type": "PATTERN",
-        "value": "[^$%\\s\"()]+"
+        "type": "PREC",
+        "value": -1,
+        "content": {
+          "type": "PATTERN",
+          "value": "[^$%\\s\"()]+"
+        }
       }
     },
     "windows_path": {
@@ -3326,7 +3330,7 @@
       "type": "TOKEN",
       "content": {
         "type": "PREC",
-        "value": 2,
+        "value": -1,
         "content": {
           "type": "PATTERN",
           "value": "[^\\s\"$%#][^\\n\\r]*"
@@ -3773,52 +3777,23 @@
                 ]
               },
               {
-                "type": "SEQ",
+                "type": "CHOICE",
                 "members": [
                   {
-                    "type": "CHOICE",
-                    "members": [
-                      {
-                        "type": "SYMBOL",
-                        "name": "point_literal"
-                      },
-                      {
-                        "type": "SYMBOL",
-                        "name": "line_literal"
-                      },
-                      {
-                        "type": "SYMBOL",
-                        "name": "logical_var"
-                      },
-                      {
-                        "type": "SYMBOL",
-                        "name": "arithmetic"
-                      }
-                    ]
+                    "type": "SYMBOL",
+                    "name": "point_literal"
                   },
                   {
-                    "type": "CHOICE",
-                    "members": [
-                      {
-                        "type": "SYMBOL",
-                        "name": "arithmetic"
-                      },
-                      {
-                        "type": "BLANK"
-                      }
-                    ]
+                    "type": "SYMBOL",
+                    "name": "line_literal"
                   },
                   {
-                    "type": "CHOICE",
-                    "members": [
-                      {
-                        "type": "SYMBOL",
-                        "name": "arithmetic"
-                      },
-                      {
-                        "type": "BLANK"
-                      }
-                    ]
+                    "type": "SYMBOL",
+                    "name": "logical_var"
+                  },
+                  {
+                    "type": "SYMBOL",
+                    "name": "arithmetic"
                   }
                 ]
               }
@@ -3839,25 +3814,15 @@
       }
     },
     "point_option": {
-      "type": "CHOICE",
-      "members": [
-        {
-          "type": "STRING",
-          "value": "A"
-        },
-        {
-          "type": "STRING",
-          "value": "K"
-        },
-        {
-          "type": "STRING",
-          "value": "R"
-        },
-        {
-          "type": "STRING",
-          "value": "N"
+      "type": "TOKEN",
+      "content": {
+        "type": "PREC",
+        "value": 14,
+        "content": {
+          "type": "PATTERN",
+          "value": "[AKRN]"
         }
-      ]
+      }
     },
     "point_literal": {
       "type": "PATTERN",
