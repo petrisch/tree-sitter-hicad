@@ -1116,17 +1116,8 @@
             "type": "FIELD",
             "name": "operator",
             "content": {
-              "type": "CHOICE",
-              "members": [
-                {
-                  "type": "STRING",
-                  "value": "-"
-                },
-                {
-                  "type": "STRING",
-                  "value": "+"
-                }
-              ]
+              "type": "STRING",
+              "value": "-"
             }
           },
           {
@@ -3690,6 +3681,77 @@
         }
       ]
     },
+    "point_lit_ind": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "TOKEN",
+          "content": {
+            "type": "PREC",
+            "value": 14,
+            "content": {
+              "type": "PATTERN",
+              "value": "#"
+            }
+          }
+        },
+        {
+          "type": "TOKEN",
+          "content": {
+            "type": "PREC",
+            "value": 14,
+            "content": {
+              "type": "PATTERN",
+              "value": "[eE][sS][cC]"
+            }
+          }
+        },
+        {
+          "type": "TOKEN",
+          "content": {
+            "type": "PREC",
+            "value": 14,
+            "content": {
+              "type": "PATTERN",
+              "value": "[lL][lL][lL]"
+            }
+          }
+        },
+        {
+          "type": "TOKEN",
+          "content": {
+            "type": "PREC",
+            "value": 14,
+            "content": {
+              "type": "PATTERN",
+              "value": "[lL][lL][aA]"
+            }
+          }
+        },
+        {
+          "type": "TOKEN",
+          "content": {
+            "type": "PREC",
+            "value": 14,
+            "content": {
+              "type": "PATTERN",
+              "value": "[iI][nN][tT]"
+            }
+          }
+        }
+      ]
+    },
+    "point_kw": {
+      "type": "TOKEN",
+      "content": {
+        "type": "PREC",
+        "value": 14,
+        "content": {
+          "type": "PATTERN",
+          "value": "[pP][oO][iI][nN][tT]"
+        }
+      }
+    },
     "point": {
       "type": "PREC_RIGHT",
       "value": 0,
@@ -3704,52 +3766,20 @@
             "type": "CHOICE",
             "members": [
               {
-                "type": "TOKEN",
-                "content": {
-                  "type": "PREC",
-                  "value": 14,
-                  "content": {
-                    "type": "PATTERN",
-                    "value": "#"
-                  }
-                }
-              },
-              {
-                "type": "TOKEN",
-                "content": {
-                  "type": "PREC",
-                  "value": 14,
-                  "content": {
-                    "type": "PATTERN",
-                    "value": "[eE][sS][cC]"
-                  }
-                }
-              },
-              {
-                "type": "TOKEN",
-                "content": {
-                  "type": "PREC",
-                  "value": 14,
-                  "content": {
-                    "type": "PATTERN",
-                    "value": "[lL][lL][lL]"
-                  }
-                }
-              },
-              {
-                "type": "TOKEN",
-                "content": {
-                  "type": "PREC",
-                  "value": 14,
-                  "content": {
-                    "type": "PATTERN",
-                    "value": "[lL][lL][aA]"
-                  }
-                }
+                "type": "SYMBOL",
+                "name": "point_opt_option"
               },
               {
                 "type": "SYMBOL",
-                "name": "point_with_option"
+                "name": "point_1_option"
+              },
+              {
+                "type": "SYMBOL",
+                "name": "point_2p_option"
+              },
+              {
+                "type": "SYMBOL",
+                "name": "point_a_option"
               },
               {
                 "type": "SYMBOL",
@@ -3760,9 +3790,9 @@
         ]
       }
     },
-    "point_with_option": {
+    "point_opt_option": {
       "type": "PREC_RIGHT",
-      "value": 15,
+      "value": 14,
       "content": {
         "type": "CHOICE",
         "members": [
@@ -3771,11 +3801,19 @@
             "members": [
               {
                 "type": "SYMBOL",
-                "name": "point_option"
+                "name": "point_opt_argument_indicator"
+              },
+              {
+                "type": "SYMBOL",
+                "name": "_point_sep"
               },
               {
                 "type": "SYMBOL",
                 "name": "point_argument"
+              },
+              {
+                "type": "SYMBOL",
+                "name": "_point_sep"
               },
               {
                 "type": "SYMBOL",
@@ -3788,7 +3826,11 @@
             "members": [
               {
                 "type": "SYMBOL",
-                "name": "point_option"
+                "name": "point_opt_argument_indicator"
+              },
+              {
+                "type": "SYMBOL",
+                "name": "_point_sep"
               },
               {
                 "type": "SYMBOL",
@@ -3798,12 +3840,330 @@
           },
           {
             "type": "SYMBOL",
-            "name": "point_option"
+            "name": "point_opt_argument_indicator"
           }
         ]
       }
     },
+    "point_opt_argument_indicator": {
+      "type": "TOKEN",
+      "content": {
+        "type": "PREC",
+        "value": 14,
+        "content": {
+          "type": "PATTERN",
+          "value": "R"
+        }
+      }
+    },
+    "point_1_option": {
+      "type": "PREC_RIGHT",
+      "value": 14,
+      "content": {
+        "type": "SEQ",
+        "members": [
+          {
+            "type": "SYMBOL",
+            "name": "point_1_argument_indicator"
+          },
+          {
+            "type": "SYMBOL",
+            "name": "_point_sep"
+          },
+          {
+            "type": "SYMBOL",
+            "name": "point_argument"
+          }
+        ]
+      }
+    },
+    "point_1_argument_indicator": {
+      "type": "TOKEN",
+      "content": {
+        "type": "PREC",
+        "value": 14,
+        "content": {
+          "type": "PATTERN",
+          "value": "[NL]"
+        }
+      }
+    },
+    "point_2p_option": {
+      "type": "PREC_RIGHT",
+      "value": 14,
+      "content": {
+        "type": "CHOICE",
+        "members": [
+          {
+            "type": "SEQ",
+            "members": [
+              {
+                "type": "SYMBOL",
+                "name": "point_2_argument_indicator"
+              },
+              {
+                "type": "SYMBOL",
+                "name": "_point_sep"
+              },
+              {
+                "type": "SYMBOL",
+                "name": "point_argument"
+              },
+              {
+                "type": "SYMBOL",
+                "name": "_point_sep"
+              },
+              {
+                "type": "SYMBOL",
+                "name": "point_argument"
+              }
+            ]
+          },
+          {
+            "type": "SEQ",
+            "members": [
+              {
+                "type": "SYMBOL",
+                "name": "point_2_argument_indicator"
+              },
+              {
+                "type": "SYMBOL",
+                "name": "_point_sep"
+              },
+              {
+                "type": "SYMBOL",
+                "name": "point_argument"
+              },
+              {
+                "type": "SYMBOL",
+                "name": "_point_sep"
+              },
+              {
+                "type": "SYMBOL",
+                "name": "point_argument"
+              },
+              {
+                "type": "SYMBOL",
+                "name": "_point_sep"
+              },
+              {
+                "type": "SYMBOL",
+                "name": "point_argument"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "point_a_option": {
+      "type": "PREC_RIGHT",
+      "value": 14,
+      "content": {
+        "type": "CHOICE",
+        "members": [
+          {
+            "type": "PREC",
+            "value": 16,
+            "content": {
+              "type": "SEQ",
+              "members": [
+                {
+                  "type": "SYMBOL",
+                  "name": "point_a_indicator"
+                },
+                {
+                  "type": "SYMBOL",
+                  "name": "_point_sep"
+                },
+                {
+                  "type": "SYMBOL",
+                  "name": "point_argument"
+                },
+                {
+                  "type": "SYMBOL",
+                  "name": "_point_sep"
+                },
+                {
+                  "type": "SYMBOL",
+                  "name": "point_argument"
+                },
+                {
+                  "type": "SYMBOL",
+                  "name": "_point_sep"
+                },
+                {
+                  "type": "SYMBOL",
+                  "name": "point_argument"
+                }
+              ]
+            }
+          },
+          {
+            "type": "PREC",
+            "value": 15,
+            "content": {
+              "type": "SEQ",
+              "members": [
+                {
+                  "type": "SYMBOL",
+                  "name": "point_a_indicator"
+                },
+                {
+                  "type": "SYMBOL",
+                  "name": "_point_sep"
+                },
+                {
+                  "type": "SYMBOL",
+                  "name": "point_argument"
+                },
+                {
+                  "type": "SYMBOL",
+                  "name": "_point_sep"
+                },
+                {
+                  "type": "SYMBOL",
+                  "name": "point_argument"
+                }
+              ]
+            }
+          },
+          {
+            "type": "PREC",
+            "value": 16,
+            "content": {
+              "type": "SEQ",
+              "members": [
+                {
+                  "type": "SYMBOL",
+                  "name": "point_a_indicator"
+                },
+                {
+                  "type": "SYMBOL",
+                  "name": "point_immediate_argument"
+                },
+                {
+                  "type": "SYMBOL",
+                  "name": "_point_sep"
+                },
+                {
+                  "type": "SYMBOL",
+                  "name": "point_argument"
+                },
+                {
+                  "type": "SYMBOL",
+                  "name": "_point_sep"
+                },
+                {
+                  "type": "SYMBOL",
+                  "name": "point_argument"
+                }
+              ]
+            }
+          }
+        ]
+      }
+    },
+    "point_a_indicator": {
+      "type": "TOKEN",
+      "content": {
+        "type": "PREC",
+        "value": 14,
+        "content": {
+          "type": "PATTERN",
+          "value": "A"
+        }
+      }
+    },
+    "point_2_argument_indicator": {
+      "type": "TOKEN",
+      "content": {
+        "type": "PREC",
+        "value": 14,
+        "content": {
+          "type": "PATTERN",
+          "value": "[KP]"
+        }
+      }
+    },
+    "point_immediate_argument": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "point_immediate_real"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "point_immediate_int"
+        }
+      ]
+    },
+    "point_immediate_real": {
+      "type": "IMMEDIATE_TOKEN",
+      "content": {
+        "type": "PREC",
+        "value": 15,
+        "content": {
+          "type": "PATTERN",
+          "value": "[0-9]+\\.[0-9]+"
+        }
+      }
+    },
+    "point_immediate_int": {
+      "type": "IMMEDIATE_TOKEN",
+      "content": {
+        "type": "PREC",
+        "value": 15,
+        "content": {
+          "type": "PATTERN",
+          "value": "[0-9]+"
+        }
+      }
+    },
+    "_point_sep": {
+      "type": "IMMEDIATE_TOKEN",
+      "content": {
+        "type": "PATTERN",
+        "value": "[ \\t]+"
+      }
+    },
     "point_reference": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "point_ar_reference"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "point_number"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "point_literal"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "line_literal"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "point_lit_ind"
+        }
+      ]
+    },
+    "point_ar_reference": {
+      "type": "TOKEN",
+      "content": {
+        "type": "PREC",
+        "value": 15,
+        "content": {
+          "type": "PATTERN",
+          "value": "AR"
+        }
+      }
+    },
+    "point_argument": {
       "type": "CHOICE",
       "members": [
         {
@@ -3816,37 +4176,352 @@
         },
         {
           "type": "SYMBOL",
-          "name": "logical_var"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "arithmetic"
+          "name": "point_arithmetic"
         }
       ]
     },
-    "point_argument": {
-      "type": "SYMBOL",
-      "name": "arithmetic"
+    "point_arithmetic": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "point_binary_operator"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "point_unary_operator"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "point_parenthesized_expression"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "point_num_value"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "num_variable"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "num_sys_var"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "special2Dvariable"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "point_identifier"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "arithmetic_function"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "val_function"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "len_function"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "idx_function"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "asc_function"
+        }
+      ]
     },
-    "point_kw": {
+    "point_binary_operator": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "PREC_LEFT",
+          "value": 6,
+          "content": {
+            "type": "SEQ",
+            "members": [
+              {
+                "type": "FIELD",
+                "name": "left",
+                "content": {
+                  "type": "SYMBOL",
+                  "name": "point_arithmetic"
+                }
+              },
+              {
+                "type": "FIELD",
+                "name": "operator",
+                "content": {
+                  "type": "IMMEDIATE_TOKEN",
+                  "content": {
+                    "type": "STRING",
+                    "value": "+"
+                  }
+                }
+              },
+              {
+                "type": "FIELD",
+                "name": "right",
+                "content": {
+                  "type": "SYMBOL",
+                  "name": "point_arithmetic"
+                }
+              }
+            ]
+          }
+        },
+        {
+          "type": "PREC_LEFT",
+          "value": 6,
+          "content": {
+            "type": "SEQ",
+            "members": [
+              {
+                "type": "FIELD",
+                "name": "left",
+                "content": {
+                  "type": "SYMBOL",
+                  "name": "point_arithmetic"
+                }
+              },
+              {
+                "type": "FIELD",
+                "name": "operator",
+                "content": {
+                  "type": "IMMEDIATE_TOKEN",
+                  "content": {
+                    "type": "STRING",
+                    "value": "-"
+                  }
+                }
+              },
+              {
+                "type": "FIELD",
+                "name": "right",
+                "content": {
+                  "type": "SYMBOL",
+                  "name": "point_arithmetic"
+                }
+              }
+            ]
+          }
+        },
+        {
+          "type": "PREC_LEFT",
+          "value": 7,
+          "content": {
+            "type": "SEQ",
+            "members": [
+              {
+                "type": "FIELD",
+                "name": "left",
+                "content": {
+                  "type": "SYMBOL",
+                  "name": "point_arithmetic"
+                }
+              },
+              {
+                "type": "FIELD",
+                "name": "operator",
+                "content": {
+                  "type": "IMMEDIATE_TOKEN",
+                  "content": {
+                    "type": "STRING",
+                    "value": "/"
+                  }
+                }
+              },
+              {
+                "type": "FIELD",
+                "name": "right",
+                "content": {
+                  "type": "SYMBOL",
+                  "name": "point_arithmetic"
+                }
+              }
+            ]
+          }
+        },
+        {
+          "type": "PREC_LEFT",
+          "value": 7,
+          "content": {
+            "type": "SEQ",
+            "members": [
+              {
+                "type": "FIELD",
+                "name": "left",
+                "content": {
+                  "type": "SYMBOL",
+                  "name": "point_arithmetic"
+                }
+              },
+              {
+                "type": "FIELD",
+                "name": "operator",
+                "content": {
+                  "type": "IMMEDIATE_TOKEN",
+                  "content": {
+                    "type": "STRING",
+                    "value": "*"
+                  }
+                }
+              },
+              {
+                "type": "FIELD",
+                "name": "right",
+                "content": {
+                  "type": "SYMBOL",
+                  "name": "point_arithmetic"
+                }
+              }
+            ]
+          }
+        },
+        {
+          "type": "PREC_LEFT",
+          "value": 8,
+          "content": {
+            "type": "SEQ",
+            "members": [
+              {
+                "type": "FIELD",
+                "name": "left",
+                "content": {
+                  "type": "SYMBOL",
+                  "name": "point_arithmetic"
+                }
+              },
+              {
+                "type": "FIELD",
+                "name": "operator",
+                "content": {
+                  "type": "IMMEDIATE_TOKEN",
+                  "content": {
+                    "type": "STRING",
+                    "value": "^"
+                  }
+                }
+              },
+              {
+                "type": "FIELD",
+                "name": "right",
+                "content": {
+                  "type": "SYMBOL",
+                  "name": "point_arithmetic"
+                }
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "point_unary_operator": {
+      "type": "PREC_RIGHT",
+      "value": 8,
+      "content": {
+        "type": "SEQ",
+        "members": [
+          {
+            "type": "FIELD",
+            "name": "operator",
+            "content": {
+              "type": "STRING",
+              "value": "-"
+            }
+          },
+          {
+            "type": "FIELD",
+            "name": "operand",
+            "content": {
+              "type": "SYMBOL",
+              "name": "point_arithmetic"
+            }
+          }
+        ]
+      }
+    },
+    "point_parenthesized_expression": {
+      "type": "PREC",
+      "value": 4,
+      "content": {
+        "type": "SEQ",
+        "members": [
+          {
+            "type": "STRING",
+            "value": "("
+          },
+          {
+            "type": "SYMBOL",
+            "name": "point_arithmetic"
+          },
+          {
+            "type": "STRING",
+            "value": ")"
+          }
+        ]
+      }
+    },
+    "point_identifier": {
       "type": "TOKEN",
       "content": {
         "type": "PREC",
         "value": 14,
         "content": {
           "type": "PATTERN",
-          "value": "[pP][oO][iI][nN][tT]"
+          "value": "[A-Za-z][A-Za-z0-9_]*"
         }
       }
     },
-    "point_option": {
+    "point_num_value": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "point_real"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "point_int"
+        }
+      ]
+    },
+    "point_real": {
+      "type": "TOKEN",
+      "content": {
+        "type": "PREC",
+        "value": 1,
+        "content": {
+          "type": "PATTERN",
+          "value": "[0-9]+\\.[0-9]+"
+        }
+      }
+    },
+    "point_int": {
+      "type": "TOKEN",
+      "content": {
+        "type": "PREC",
+        "value": 1,
+        "content": {
+          "type": "PATTERN",
+          "value": "[0-9]+"
+        }
+      }
+    },
+    "point_number": {
       "type": "TOKEN",
       "content": {
         "type": "PREC",
         "value": 14,
         "content": {
           "type": "PATTERN",
-          "value": "[AKRN]"
+          "value": "[0-9]{1,6}"
         }
       }
     },

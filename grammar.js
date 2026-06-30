@@ -90,11 +90,11 @@ const logical_variable = [
 const assignment_operator = [":="];
 
 const string = kw("STRING");
-const real = kw("REAL");
+const real_kw = kw("REAL");
 const integer = kw("INTEGER");
 const antwort = kw("ANTWORT");
 
-const scalar_input = [string, real, integer, antwort];
+const scalar_input = [string, real_kw, integer, antwort];
 
 // LEN is treated as arithmetic
 const asc_kw = kw("ASC");
@@ -109,14 +109,19 @@ const chr_kw = token(prec(PREC.keyword, "CHR$"));
 const time_kw = token(prec(PREC.keyword, "TIM$"));
 const date_kw = token(prec(PREC.keyword, "DAT$"));
 
-const lastlinedelete = kw("LLL");
-const lastlinediscard = kw("LLA");
-
-const point_args = [lastlinedelete, lastlinediscard];
-
 const free_kw = kw("#");
 const ret_kw = kw("RET");
 const esc_kw = kw("ESC");
+const lastlinedelete = kw("LLL");
+const lastlinediscard = kw("LLA");
+
+const point_literal_indicators = [
+  free_kw,
+  esc_kw,
+  lastlinedelete,
+  lastlinediscard,
+  int,
+];
 
 const flow_arguments = [free_kw, ret_kw, esc_kw];
 
@@ -461,10 +466,7 @@ module.exports = grammar({
     unary_operator: ($) =>
       prec.right(
         PREC.power,
-        seq(
-          field("operator", choice("-", "+")),
-          field("operand", $.arithmetic),
-        ),
+        seq(field("operator", "-"), field("operand", $.arithmetic)),
       ),
 
     arithmetic_func: ($) =>
@@ -841,41 +843,206 @@ module.exports = grammar({
     logic_operation: ($) =>
       seq($.wert_kw, choice($.num_variable, $.char_variable)),
 
+    point_lit_ind: ($) => choice(...point_literal_indicators),
+
+    // POINT punktoption / # / ESC / END/ LLL / LLA
+    point_kw: ($) => point_kw,
     point: ($) =>
       prec.right(
         seq(
           $.point_kw,
           choice(
-            free_kw,
-            esc_kw,
-            ...point_args,
-            $.point_with_option,
+            $.point_opt_option,
+            $.point_1_option,
+            $.point_2p_option,
+            $.point_a_option,
             $.point_reference,
           ),
         ),
       ),
 
-    point_with_option: ($) =>
+    // Arguments are optional, but not more than two
+    point_opt_option: ($) =>
       prec.right(
-        PREC.keyword + 1,
+        PREC.keyword,
         choice(
-          seq($.point_option, $.point_argument, $.point_argument),
-          seq($.point_option, $.point_argument),
-          $.point_option,
+          seq(
+            $.point_opt_argument_indicator,
+            $._point_sep,
+            $.point_argument,
+            $._point_sep,
+            $.point_argument,
+          ),
+          seq($.point_opt_argument_indicator, $._point_sep, $.point_argument),
+          $.point_opt_argument_indicator,
         ),
       ),
 
+    point_opt_argument_indicator: ($) => token(prec(PREC.keyword, /R/)),
+
+    // Must have only one arg: TODO: never been used, dont really know
+    point_1_option: ($) =>
+      prec.right(
+        PREC.keyword,
+        seq($.point_1_argument_indicator, $._point_sep, $.point_argument),
+      ),
+
+    point_1_argument_indicator: ($) => token(prec(PREC.keyword, /[NL]/)),
+
+    // Must have 2 or 3 args
+    point_2p_option: ($) =>
+      prec.right(
+        PREC.keyword,
+        choice(
+          seq(
+            $.point_2_argument_indicator,
+            $._point_sep,
+            $.point_argument,
+            $._point_sep,
+            $.point_argument,
+          ),
+          seq(
+            $.point_2_argument_indicator,
+            $._point_sep,
+            $.point_argument,
+            $._point_sep,
+            $.point_argument,
+            $._point_sep,
+            $.point_argument,
+          ),
+        ),
+      ),
+
+    point_a_option: ($) =>
+      prec.right(
+        PREC.keyword,
+        choice(
+          // POINT A 0 0 0
+          prec(
+            PREC.keyword + 2,
+            seq(
+              $.point_a_indicator,
+              $._point_sep,
+              $.point_argument,
+              $._point_sep,
+              $.point_argument,
+              $._point_sep,
+              $.point_argument,
+            ),
+          ),
+          // POINT A 0 0
+          prec(
+            PREC.keyword + 1,
+            seq(
+              $.point_a_indicator,
+              $._point_sep,
+              $.point_argument,
+              $._point_sep,
+              $.point_argument,
+            ),
+          ),
+          // POINT A0 Y Z
+          prec(
+            PREC.keyword + 2,
+            seq(
+              $.point_a_indicator,
+              $.point_immediate_argument,
+              $._point_sep,
+              $.point_argument,
+              $._point_sep,
+              $.point_argument,
+            ),
+          ),
+        ),
+      ),
+
+    point_a_indicator: ($) => token(prec(PREC.keyword, /A/)),
+
+    point_2_argument_indicator: ($) => token(prec(PREC.keyword, /[KP]/)),
+    point_a_indicator: ($) => token(prec(PREC.keyword, /A/)),
+    point_immediate_argument: ($) =>
+      choice($.point_immediate_real, $.point_immediate_int),
+
+    point_immediate_real: ($) =>
+      token.immediate(prec(PREC.keyword + 1, /[0-9]+\.[0-9]+/)),
+
+    point_immediate_int: ($) =>
+      token.immediate(prec(PREC.keyword + 1, /[0-9]+/)),
+
+    // Explicitly tab or space. Normaly a space would be ignored,
+    // but we cant do that in POINT, because it separates the arguments.
+    _point_sep: ($) => token.immediate(/[ \t]+/),
+
     point_reference: ($) =>
-      choice($.point_literal, $.line_literal, $.logical_var, $.arithmetic),
+      choice(
+        $.point_ar_reference,
+        $.point_number,
+        $.point_literal,
+        $.line_literal,
+        $.point_lit_ind,
+      ),
 
-    point_argument: ($) => $.arithmetic,
+    point_ar_reference: ($) => token(prec(PREC.keyword + 1, /AR/)),
 
-    point_kw: ($) => point_kw,
+    point_argument: ($) =>
+      choice($.point_literal, $.line_literal, $.point_arithmetic),
 
-    point_option: ($) => token(prec(PREC.keyword, /[AKRN]/)),
+    point_arithmetic: ($) =>
+      choice(
+        $.point_binary_operator,
+        $.point_unary_operator,
+        $.point_parenthesized_expression,
+        $.point_num_value,
+        $.num_variable,
+        $.num_sys_var,
+        $.special2Dvariable,
+        $.point_identifier,
+        $.arithmetic_function,
+        $.val_function,
+        $.len_function,
+        $.idx_function,
+        $.asc_function,
+      ),
 
+    point_binary_operator: ($) => {
+      const arithmetic_operators = [
+        [prec.left, token.immediate("+"), PREC.plus],
+        [prec.left, token.immediate("-"), PREC.plus],
+        [prec.left, token.immediate("/"), PREC.times],
+        [prec.left, token.immediate("*"), PREC.times],
+        [prec.left, token.immediate("^"), PREC.power],
+      ];
+
+      return choice(
+        ...arithmetic_operators.map(([fn, operator, precedence]) =>
+          fn(
+            precedence,
+            seq(
+              field("left", $.point_arithmetic),
+              field("operator", operator),
+              field("right", $.point_arithmetic),
+            ),
+          ),
+        ),
+      );
+    },
+
+    point_unary_operator: ($) =>
+      prec.right(
+        PREC.power,
+        seq(field("operator", "-"), field("operand", $.point_arithmetic)),
+      ),
+
+    point_parenthesized_expression: ($) =>
+      prec(PREC.parenthesized, seq("(", $.point_arithmetic, ")")),
+
+    point_identifier: ($) => token(prec(PREC.keyword, /[A-Za-z][A-Za-z0-9_]*/)),
+
+    point_num_value: ($) => choice($.point_real, $.point_int),
+    point_real: ($) => token(prec(PREC.general, /[0-9]+\.[0-9]+/)),
+    point_int: ($) => token(prec(PREC.general, /[0-9]+/)),
+    point_number: ($) => token(prec(PREC.keyword, /[0-9]{1,6}/)),
     point_literal: ($) => /P[0-9]/,
-
     line_literal: ($) => /L[0-9]/,
 
     distance: ($) =>

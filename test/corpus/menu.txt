@@ -17,6 +17,21 @@ OPTION ESC
 REM Continuation of option. Point takes arithmetic
 OPTION 1 2
   POINT   A 0 -(AKB-AKBV+BKY2+60)
+  POINT R
+  POINT R D 0
+  POINT R D+DN*MZ4 0
+  POINT A 0 -(AKB-AKBV+BKY2+60)
+  POINT A AKB+BY13+20 10
+  POINT 69
+  POINT ESC
+  POINT #
+  POINT   A 0 0
+  POINT INT
+  POINT A FY+FSY+17.5+19 4.9
+  POINT AR
+  REM 3D, with special case where A0 is actually A 0 and 0 is X-coord.
+  POINT A 0 0 0
+  POINT A0 Y Z
   DISTANZ -LH
 
 REM Nested menu
@@ -69,31 +84,214 @@ END
   (input
     (point
       (point_kw)
-      (point_with_option
-        (point_option)
+      (point_a_option
+        (point_a_indicator)
         (point_argument
-          (arithmetic
-            (binary_operator
-              (arithmetic
-                (num_value
-                  (real)))
-              (arithmetic
-                (parenthesized_expression
-                  (arithmetic
-                    (binary_operator
-                      (arithmetic
-                        (binary_operator
-                          (arithmetic
-                            (binary_operator
-                              (arithmetic
-                                (general_variable))
-                              (arithmetic
-                                (general_variable))))
-                          (arithmetic
-                            (general_variable))))
-                      (arithmetic
-                        (num_value
-                          (real)))))))))))))
+          (point_arithmetic
+            (point_num_value
+              (point_int))))
+        (point_argument
+          (point_arithmetic
+            (point_unary_operator
+              (point_arithmetic
+                (point_parenthesized_expression
+                  (point_arithmetic
+                    (point_binary_operator
+                      (point_arithmetic
+                        (point_binary_operator
+                          (point_arithmetic
+                            (point_binary_operator
+                              (point_arithmetic
+                                (point_identifier))
+                              (point_arithmetic
+                                (point_identifier))))
+                          (point_arithmetic
+                            (point_identifier))))
+                      (point_arithmetic
+                        (point_num_value
+                          (point_int)))))))))))))
+  (input
+    (point
+      (point_kw)
+      (point_opt_option
+        (point_opt_argument_indicator))))
+  (input
+    (point
+      (point_kw)
+      (point_opt_option
+        (point_opt_argument_indicator)
+        (point_argument
+          (point_arithmetic
+            (point_identifier)))
+        (point_argument
+          (point_arithmetic
+            (point_num_value
+              (point_int)))))))
+  (input
+    (point
+      (point_kw)
+      (point_opt_option
+        (point_opt_argument_indicator)
+        (point_argument
+          (point_arithmetic
+            (point_binary_operator
+              (point_arithmetic
+                (point_identifier))
+              (point_arithmetic
+                (point_binary_operator
+                  (point_arithmetic
+                    (point_identifier))
+                  (point_arithmetic
+                    (point_identifier)))))))
+        (point_argument
+          (point_arithmetic
+            (point_num_value
+              (point_int)))))))
+  (input
+    (point
+      (point_kw)
+      (point_a_option
+        (point_a_indicator)
+        (point_argument
+          (point_arithmetic
+            (point_num_value
+              (point_int))))
+        (point_argument
+          (point_arithmetic
+            (point_unary_operator
+              (point_arithmetic
+                (point_parenthesized_expression
+                  (point_arithmetic
+                    (point_binary_operator
+                      (point_arithmetic
+                        (point_binary_operator
+                          (point_arithmetic
+                            (point_binary_operator
+                              (point_arithmetic
+                                (point_identifier))
+                              (point_arithmetic
+                                (point_identifier))))
+                          (point_arithmetic
+                            (point_identifier))))
+                      (point_arithmetic
+                        (point_num_value
+                          (point_int)))))))))))))
+  (input
+    (point
+      (point_kw)
+      (point_a_option
+        (point_a_indicator)
+        (point_argument
+          (point_arithmetic
+            (point_binary_operator
+              (point_arithmetic
+                (point_binary_operator
+                  (point_arithmetic
+                    (point_identifier))
+                  (point_arithmetic
+                    (point_identifier))))
+              (point_arithmetic
+                (point_num_value
+                  (point_int))))))
+        (point_argument
+          (point_arithmetic
+            (point_num_value
+              (point_int)))))))
+  (input
+    (point
+      (point_kw)
+      (point_reference
+        (point_number))))
+  (input
+    (point
+      (point_kw)
+      (point_reference
+        (point_lit_ind))))
+  (input
+    (point
+      (point_kw)
+      (point_reference
+        (point_lit_ind))))
+  (input
+    (point
+      (point_kw)
+      (point_a_option
+        (point_a_indicator)
+        (point_argument
+          (point_arithmetic
+            (point_num_value
+              (point_int))))
+        (point_argument
+          (point_arithmetic
+            (point_num_value
+              (point_int)))))))
+  (input
+    (point
+      (point_kw)
+      (point_reference
+        (point_lit_ind))))
+  (input
+    (point
+      (point_kw)
+      (point_a_option
+        (point_a_indicator)
+        (point_argument
+          (point_arithmetic
+            (point_binary_operator
+              (point_arithmetic
+                (point_binary_operator
+                  (point_arithmetic
+                    (point_binary_operator
+                      (point_arithmetic
+                        (point_identifier))
+                      (point_arithmetic
+                        (point_identifier))))
+                  (point_arithmetic
+                    (point_num_value
+                      (point_real)))))
+              (point_arithmetic
+                (point_num_value
+                  (point_int))))))
+        (point_argument
+          (point_arithmetic
+            (point_num_value
+              (point_real)))))))
+  (input
+    (point
+      (point_kw)
+      (point_reference
+        (point_ar_reference))))
+  (comment)
+  (input
+    (point
+      (point_kw)
+      (point_a_option
+        (point_a_indicator)
+        (point_argument
+          (point_arithmetic
+            (point_num_value
+              (point_int))))
+        (point_argument
+          (point_arithmetic
+            (point_num_value
+              (point_int))))
+        (point_argument
+          (point_arithmetic
+            (point_num_value
+              (point_int)))))))
+  (input
+    (point
+      (point_kw)
+      (point_a_option
+        (point_a_indicator)
+        (point_immediate_argument
+          (point_immediate_int))
+        (point_argument
+          (point_arithmetic
+            (point_identifier)))
+        (point_argument
+          (point_arithmetic
+            (point_identifier))))))
   (input
     (distance
       (distance_kw)

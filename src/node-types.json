@@ -1389,15 +1389,88 @@
       "required": true,
       "types": [
         {
+          "type": "point_1_option",
+          "named": true
+        },
+        {
+          "type": "point_2p_option",
+          "named": true
+        },
+        {
+          "type": "point_a_option",
+          "named": true
+        },
+        {
           "type": "point_kw",
+          "named": true
+        },
+        {
+          "type": "point_opt_option",
           "named": true
         },
         {
           "type": "point_reference",
           "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "point_1_option",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "point_1_argument_indicator",
+          "named": true
         },
         {
-          "type": "point_with_option",
+          "type": "point_argument",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "point_2p_option",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "point_2_argument_indicator",
+          "named": true
+        },
+        {
+          "type": "point_argument",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "point_a_option",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "point_a_indicator",
+          "named": true
+        },
+        {
+          "type": "point_argument",
+          "named": true
+        },
+        {
+          "type": "point_immediate_argument",
           "named": true
         }
       ]
@@ -1412,7 +1485,207 @@
       "required": true,
       "types": [
         {
-          "type": "arithmetic",
+          "type": "line_literal",
+          "named": true
+        },
+        {
+          "type": "point_arithmetic",
+          "named": true
+        },
+        {
+          "type": "point_literal",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "point_arithmetic",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "arithmetic_function",
+          "named": true
+        },
+        {
+          "type": "asc_function",
+          "named": true
+        },
+        {
+          "type": "idx_function",
+          "named": true
+        },
+        {
+          "type": "len_function",
+          "named": true
+        },
+        {
+          "type": "num_sys_var",
+          "named": true
+        },
+        {
+          "type": "num_variable",
+          "named": true
+        },
+        {
+          "type": "point_binary_operator",
+          "named": true
+        },
+        {
+          "type": "point_identifier",
+          "named": true
+        },
+        {
+          "type": "point_num_value",
+          "named": true
+        },
+        {
+          "type": "point_parenthesized_expression",
+          "named": true
+        },
+        {
+          "type": "point_unary_operator",
+          "named": true
+        },
+        {
+          "type": "special2Dvariable",
+          "named": true
+        },
+        {
+          "type": "val_function",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "point_binary_operator",
+    "named": true,
+    "fields": {
+      "left": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "point_arithmetic",
+            "named": true
+          }
+        ]
+      },
+      "operator": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "*",
+            "named": false
+          },
+          {
+            "type": "+",
+            "named": false
+          },
+          {
+            "type": "-",
+            "named": false
+          },
+          {
+            "type": "/",
+            "named": false
+          },
+          {
+            "type": "^",
+            "named": false
+          }
+        ]
+      },
+      "right": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "point_arithmetic",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "point_immediate_argument",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "point_immediate_int",
+          "named": true
+        },
+        {
+          "type": "point_immediate_real",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "point_lit_ind",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "point_num_value",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "point_int",
+          "named": true
+        },
+        {
+          "type": "point_real",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "point_opt_option",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "point_argument",
+          "named": true
+        },
+        {
+          "type": "point_opt_argument_indicator",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "point_parenthesized_expression",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "point_arithmetic",
           "named": true
         }
       ]
@@ -1427,41 +1700,52 @@
       "required": true,
       "types": [
         {
-          "type": "arithmetic",
-          "named": true
-        },
-        {
           "type": "line_literal",
           "named": true
         },
         {
-          "type": "logical_var",
+          "type": "point_ar_reference",
+          "named": true
+        },
+        {
+          "type": "point_lit_ind",
           "named": true
         },
         {
           "type": "point_literal",
+          "named": true
+        },
+        {
+          "type": "point_number",
           "named": true
         }
       ]
     }
   },
   {
-    "type": "point_with_option",
+    "type": "point_unary_operator",
     "named": true,
-    "fields": {},
-    "children": {
-      "multiple": true,
-      "required": true,
-      "types": [
-        {
-          "type": "point_argument",
-          "named": true
-        },
-        {
-          "type": "point_option",
-          "named": true
-        }
-      ]
+    "fields": {
+      "operand": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "point_arithmetic",
+            "named": true
+          }
+        ]
+      },
+      "operator": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "-",
+            "named": false
+          }
+        ]
+      }
     }
   },
   {
@@ -1750,10 +2034,6 @@
         "multiple": false,
         "required": true,
         "types": [
-          {
-            "type": "+",
-            "named": false
-          },
           {
             "type": "-",
             "named": false
@@ -2156,6 +2436,38 @@
     "named": true
   },
   {
+    "type": "point_1_argument_indicator",
+    "named": true
+  },
+  {
+    "type": "point_2_argument_indicator",
+    "named": true
+  },
+  {
+    "type": "point_a_indicator",
+    "named": true
+  },
+  {
+    "type": "point_ar_reference",
+    "named": true
+  },
+  {
+    "type": "point_identifier",
+    "named": true
+  },
+  {
+    "type": "point_immediate_int",
+    "named": true
+  },
+  {
+    "type": "point_immediate_real",
+    "named": true
+  },
+  {
+    "type": "point_int",
+    "named": true
+  },
+  {
     "type": "point_kw",
     "named": true
   },
@@ -2164,7 +2476,15 @@
     "named": true
   },
   {
-    "type": "point_option",
+    "type": "point_number",
+    "named": true
+  },
+  {
+    "type": "point_opt_argument_indicator",
+    "named": true
+  },
+  {
+    "type": "point_real",
     "named": true
   },
   {

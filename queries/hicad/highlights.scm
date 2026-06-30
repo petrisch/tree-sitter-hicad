@@ -14,10 +14,6 @@
 (else_kw) @keyword.conditional
 (ifend_kw) @keyword.conditional
 
-; elseif_kw exists in grammar source but is currently unused.
-; Do not enable unless $.elseif_kw is referenced by a rule.
-; (elseif_kw) @keyword.conditional
-
 ; ----------------------------
 ; LOOPS
 ; ----------------------------
@@ -50,13 +46,10 @@
 (pfd_kw) @keyword
 (del_kw) @keyword
 
-(esc_statement) @keyword
-
-; wert_kw is currently not used as $.wert_kw in logic_operation.
-; Enable only after changing logic_operation to use $.wert_kw.
-; (wert_kw) @keyword
-
+(wert_kw) @keyword
 (logic_operation) @keyword
+
+(esc_statement) @keyword
 
 ; ----------------------------
 ; FILE KEYWORDS
@@ -86,11 +79,54 @@
 
 (scalar_in) @keyword.type
 
-(point_option) @keyword
+(flow_args) @constant.builtin
+
+; ----------------------------
+; POINT
+; ----------------------------
+
+(point) @function.macro
+
+(point_opt_option) @function.macro
+(point_1_option) @function.macro
+(point_2p_option) @function.macro
+(point_reference) @constant
+
+(point_opt_argument_indicator) @keyword
+(point_opt_argument_indicator) @keyword
+(point_1_argument_indicator) @keyword
+(point_2_argument_indicator) @keyword
+
+(point_lit_ind) @constant.builtin
+(point_ar_reference) @constant.builtin
+
+(point_argument) @variable.parameter
+
 (point_literal) @constant
 (line_literal) @constant
 
-(flow_args) @constant.builtin
+(point_number) @number
+(point_num_value) @number
+(point_real) @number.float
+(point_int) @number
+
+(point_identifier) @variable
+
+(point_arithmetic) @none
+
+(point_binary_operator
+  operator: _ @operator)
+
+(point_unary_operator
+  operator: _ @operator)
+
+(point_parenthesized_expression) @none
+(point_a_option) @function.macro
+(point_a_indicator) @keyword
+(point_immediate_argument) @number
+(point_immediate_real) @number.float
+(point_immediate_int) @number
+(point_2p_option) @function.macro
 
 ; ----------------------------
 ; FUNCTIONS
@@ -108,7 +144,6 @@
 (asc_function) @function.builtin
 
 (string_function) @function.builtin
-(string_alt_function) @function.builtin
 (string_alt_function) @function.builtin
 (time_function) @function.builtin
 (chr_function) @function.builtin
@@ -141,6 +176,8 @@
 
 (menu_index) @number
 (menu_code) @number
+
+(chr_num_literal) @number
 
 ; ----------------------------
 ; STRINGS / TEXT
@@ -219,7 +256,6 @@
 
 (input) @function.macro
 (scal_input) @function.macro
-(point) @function.macro
 (distance) @function.macro
 (angle) @function.macro
 
