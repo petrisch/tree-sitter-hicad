@@ -61,6 +61,8 @@ IF %ABR=1 GOTO 99
 REM Menu interrupted by condition
 OPTION   1  25
   POINT   R
+  POINT   N
+  POINT   N 202
   IF $BHF="A1" OR $BHF="B1" THEN
     POINT   162
   ELSE
@@ -340,6 +342,20 @@ END
       (point_kw)
       (point_opt_option
         (point_opt_argument_indicator))))
+  (input
+    (point
+      (point_kw)
+      (point_opt_option
+        (point_opt_argument_indicator))))
+  (input
+    (point
+      (point_kw)
+      (point_opt_option
+        (point_opt_argument_indicator)
+        (point_argument
+          (point_arithmetic
+            (point_num_value
+              (point_int)))))))
   (condition
     (if_kw)
     (logical_expression

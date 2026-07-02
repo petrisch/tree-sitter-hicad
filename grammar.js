@@ -884,7 +884,7 @@ module.exports = grammar({
         ),
       ),
 
-    point_opt_argument_indicator: ($) => token(prec(PREC.keyword, /R/)),
+    point_opt_argument_indicator: ($) => token(prec(PREC.keyword, /[RN]/)),
 
     // Must have only one arg: TODO: never been used, dont really know
     point_1_option: ($) =>
@@ -893,7 +893,7 @@ module.exports = grammar({
         seq($.point_1_argument_indicator, $._point_sep, $.point_argument),
       ),
 
-    point_1_argument_indicator: ($) => token(prec(PREC.keyword, /[NL]/)),
+    point_1_argument_indicator: ($) => token(prec(PREC.keyword, /[L]/)),
 
     // Must have 2 or 3 args
     point_2p_option: ($) =>

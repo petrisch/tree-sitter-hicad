@@ -3883,7 +3883,7 @@
         "value": 14,
         "content": {
           "type": "PATTERN",
-          "value": "R"
+          "value": "[RN]"
         }
       }
     },
@@ -3915,7 +3915,7 @@
         "value": 14,
         "content": {
           "type": "PATTERN",
-          "value": "[NL]"
+          "value": "[L]"
         }
       }
     },
