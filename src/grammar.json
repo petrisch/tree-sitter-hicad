@@ -3802,10 +3802,6 @@
               },
               {
                 "type": "SYMBOL",
-                "name": "point_1_option"
-              },
-              {
-                "type": "SYMBOL",
                 "name": "point_2p_option"
               },
               {
@@ -3883,39 +3879,7 @@
         "value": 14,
         "content": {
           "type": "PATTERN",
-          "value": "[RN]"
-        }
-      }
-    },
-    "point_1_option": {
-      "type": "PREC_RIGHT",
-      "value": 14,
-      "content": {
-        "type": "SEQ",
-        "members": [
-          {
-            "type": "SYMBOL",
-            "name": "point_1_argument_indicator"
-          },
-          {
-            "type": "SYMBOL",
-            "name": "_point_sep"
-          },
-          {
-            "type": "SYMBOL",
-            "name": "point_argument"
-          }
-        ]
-      }
-    },
-    "point_1_argument_indicator": {
-      "type": "TOKEN",
-      "content": {
-        "type": "PREC",
-        "value": 14,
-        "content": {
-          "type": "PATTERN",
-          "value": "[L]"
+          "value": "[RNL]"
         }
       }
     },

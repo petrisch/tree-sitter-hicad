@@ -88,13 +88,11 @@
 (point) @function.macro
 
 (point_opt_option) @function.macro
-(point_1_option) @function.macro
 (point_2p_option) @function.macro
 (point_reference) @constant
 
 (point_opt_argument_indicator) @keyword
 (point_opt_argument_indicator) @keyword
-(point_1_argument_indicator) @keyword
 (point_2_argument_indicator) @keyword
 
 (point_lit_ind) @constant.builtin

@@ -1393,10 +1393,6 @@
       "required": true,
       "types": [
         {
-          "type": "point_1_option",
-          "named": true
-        },
-        {
           "type": "point_2p_option",
           "named": true
         },
@@ -1414,25 +1410,6 @@
         },
         {
           "type": "point_reference",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "point_1_option",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": true,
-      "required": true,
-      "types": [
-        {
-          "type": "point_1_argument_indicator",
-          "named": true
-        },
-        {
-          "type": "point_argument",
           "named": true
         }
       ]
@@ -2442,10 +2419,6 @@
   },
   {
     "type": "pfd_kw",
-    "named": true
-  },
-  {
-    "type": "point_1_argument_indicator",
     "named": true
   },
   {
