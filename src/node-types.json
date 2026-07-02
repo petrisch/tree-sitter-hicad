@@ -688,6 +688,10 @@
           "named": true
         },
         {
+          "type": "system_function",
+          "named": true
+        },
+        {
           "type": "wait",
           "named": true
         },
@@ -2010,6 +2014,11 @@
         }
       ]
     }
+  },
+  {
+    "type": "system_function",
+    "named": true,
+    "fields": {}
   },
   {
     "type": "time_function",

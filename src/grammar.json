@@ -234,6 +234,10 @@
         {
           "type": "SYMBOL",
           "name": "string_function"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "system_function"
         }
       ]
     },
@@ -1625,6 +1629,33 @@
         {
           "type": "STRING",
           "value": ")"
+        }
+      ]
+    },
+    "system_function": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "TOKEN",
+          "content": {
+            "type": "PREC",
+            "value": 14,
+            "content": {
+              "type": "PATTERN",
+              "value": "[fF][aA][aA]"
+            }
+          }
+        },
+        {
+          "type": "TOKEN",
+          "content": {
+            "type": "PREC",
+            "value": 14,
+            "content": {
+              "type": "PATTERN",
+              "value": "[fF][aA][eE]"
+            }
+          }
         }
       ]
     },

@@ -219,6 +219,9 @@ const wait_kw = kw("WAIT");
 const warte_kw = kw("WARTE");
 const echo_kw = kw("ECHO");
 
+const faa_kw = kw("FAA");
+const fae_kw = kw("FAE");
+
 const vai_kw = kw("VAI");
 const var_kw = kw("VAR");
 const pfd = kw("PFD");
@@ -376,6 +379,7 @@ module.exports = grammar({
         $.logic_operation,
         $.function,
         $.string_function,
+        $.system_function,
       ),
 
     guidance_noarg: ($) => choice(...guidance_noargs),
@@ -517,6 +521,8 @@ module.exports = grammar({
     // String case alteration
     string_alt_function: ($) =>
       seq(choice(ltu_kw, utl_kw), "(", $.string_argument, ")"),
+
+    system_function: ($) => choice(faa_kw, fae_kw),
 
     // CHR function takes number between 0 255
     chr_function: ($) => seq(chr_kw, "(", $.chr_num_literal, ")"),
