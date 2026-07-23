@@ -829,7 +829,7 @@ module.exports = grammar({
 
     hc_path: ($) => seq(optional($.path_indicator), $.filename),
 
-    path_indicator: ($) => /([A-Z]|[0-9]|#):/,
+    path_indicator: ($) => /([A-Z]|[a-z]|[0-9]|#):/,
 
     filename: ($) => /([A-Za-z]|[0-9]|_|-){1,40}/,
 
@@ -883,7 +883,7 @@ module.exports = grammar({
         ),
       ),
 
-    point_opt_argument_indicator: ($) => token(prec(PREC.keyword, /[RNL]/)),
+    point_opt_argument_indicator: ($) => token(prec(PREC.keyword, /[RNLM]/)),
 
     // Must have 2 or 3 args
     point_2p_option: ($) =>
@@ -972,6 +972,7 @@ module.exports = grammar({
     point_reference: ($) =>
       choice(
         $.point_ar_reference,
+        $.point_m_reference,
         $.point_number,
         $.point_literal,
         $.line_literal,
@@ -979,6 +980,7 @@ module.exports = grammar({
       ),
 
     point_ar_reference: ($) => token(prec(PREC.keyword + 1, /AR/)),
+    point_m_reference: ($) => token(prec(PREC.keyword + 1, /M[0-9]/)),
 
     point_argument: ($) =>
       choice($.point_literal, $.line_literal, $.point_arithmetic),

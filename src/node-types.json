@@ -1697,6 +1697,10 @@
           "named": true
         },
         {
+          "type": "point_m_reference",
+          "named": true
+        },
+        {
           "type": "point_number",
           "named": true
         }
@@ -2455,6 +2459,10 @@
   },
   {
     "type": "point_literal",
+    "named": true
+  },
+  {
+    "type": "point_m_reference",
     "named": true
   },
   {

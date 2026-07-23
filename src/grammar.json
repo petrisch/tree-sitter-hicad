@@ -3579,7 +3579,7 @@
     },
     "path_indicator": {
       "type": "PATTERN",
-      "value": "([A-Z]|[0-9]|#):"
+      "value": "([A-Z]|[a-z]|[0-9]|#):"
     },
     "filename": {
       "type": "PATTERN",
@@ -3879,7 +3879,7 @@
         "value": 14,
         "content": {
           "type": "PATTERN",
-          "value": "[RNL]"
+          "value": "[RNLM]"
         }
       }
     },
@@ -4131,6 +4131,10 @@
         },
         {
           "type": "SYMBOL",
+          "name": "point_m_reference"
+        },
+        {
+          "type": "SYMBOL",
           "name": "point_number"
         },
         {
@@ -4155,6 +4159,17 @@
         "content": {
           "type": "PATTERN",
           "value": "AR"
+        }
+      }
+    },
+    "point_m_reference": {
+      "type": "TOKEN",
+      "content": {
+        "type": "PREC",
+        "value": 15,
+        "content": {
+          "type": "PATTERN",
+          "value": "M[0-9]"
         }
       }
     },

@@ -63,6 +63,9 @@ OPTION   1  25
   POINT   R
   POINT   N
   POINT   N 202
+  POINT   L
+  POINT   M
+  POINT   M2
   IF $BHF="A1" OR $BHF="B1" THEN
     POINT   162
   ELSE
@@ -356,6 +359,21 @@ END
           (point_arithmetic
             (point_num_value
               (point_int)))))))
+  (input
+    (point
+      (point_kw)
+      (point_opt_option
+        (point_opt_argument_indicator))))
+  (input
+    (point
+      (point_kw)
+      (point_opt_option
+        (point_opt_argument_indicator))))
+  (input
+    (point
+      (point_kw)
+      (point_reference
+        (point_m_reference))))
   (condition
     (if_kw)
     (logical_expression
