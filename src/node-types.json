@@ -55,6 +55,10 @@
           "named": true
         },
         {
+          "type": "num_special_sys_var",
+          "named": true
+        },
+        {
           "type": "num_sys_var",
           "named": true
         },
@@ -2391,6 +2395,10 @@
   },
   {
     "type": "next_kw",
+    "named": true
+  },
+  {
+    "type": "num_special_sys_var",
     "named": true
   },
   {

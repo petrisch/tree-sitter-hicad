@@ -460,6 +460,7 @@ module.exports = grammar({
         $.num_value,
         $.num_variable,
         $.num_sys_var,
+        $.num_special_sys_var,
         $.val_function,
         $.len_function,
         $.idx_function,
@@ -628,6 +629,9 @@ module.exports = grammar({
     _sys_variable: ($) => prec(PREC.sys, choice($.num_sys_var, $.char_sys_var)),
 
     num_sys_var: ($) => /@([A-Z]|[a-z]|[0-9]){1,3}/,
+
+    num_special_sys_var: ($) =>
+      token(prec(PREC.sys, /%@([A-Z]|[a-z]|[0-9]){1,3}/)),
 
     char_sys_var: ($) => /\$@([A-Z]|[a-z]|[0-9]){1,3}/,
 

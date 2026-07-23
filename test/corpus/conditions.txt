@@ -78,6 +78,11 @@ IF $ENTRI="foo bar" THEN
   %FOO:=1
 IFEND
 
+REM Num compare with num_sys_var
+IF %@23=3 THEN
+  %FOO:=2
+IFEND
+
 END
 
 --------------------------------------------------------------------------------
@@ -427,6 +432,31 @@ END
           (comparative_operator)
           (char_expression
             (quoted_char)))))
+    (then_kw)
+    (condition_alt
+      (condition_block
+        (expression
+          (definition
+            (num_definition
+              (num_variable
+                (num_var_sign)
+                (num_var_name))
+              (arithmetic
+                (num_value
+                  (real)))))))
+      (ifend_kw)))
+  (comment)
+  (condition
+    (if_kw)
+    (logical_expression
+      (comparison
+        (num_comparison
+          (arithmetic
+            (num_special_sys_var))
+          (comparative_operator)
+          (arithmetic
+            (num_value
+              (real))))))
     (then_kw)
     (condition_alt
       (condition_block
