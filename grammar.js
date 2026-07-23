@@ -588,9 +588,12 @@ module.exports = grammar({
     windows_path: ($) => choice($.unc_path, $.local_path),
 
     // Allows hyphens in host/path parts.
-    unc_path: ($) => seq(/\\\\[A-Za-z0-9_.-]+\\/, /[A-Za-z0-9_.\\-]{1,256}/),
-
-    local_path: ($) => seq(/[A-Z]:\\/, /[A-Za-z0-9_.\\-]{1,256}/),
+    unc_path: ($) =>
+      token(
+        prec(PREC.keyword + 2, /\\\\[A-Za-z0-9_.-]+\\[A-Za-z0-9_.\\-]{1,256}/),
+      ),
+    local_path: ($) =>
+      token(prec(PREC.keyword + 2, /[A-Za-z]:\\[A-Za-z0-9_.\\-]{1,256}/)),
 
     concat_char: ($) =>
       seq(
@@ -821,8 +824,8 @@ module.exports = grammar({
         PREC.file,
         seq(
           $.copy_kw,
-          choice($.char_variable, $.windows_path),
-          choice($.char_variable, $.windows_path),
+          choice($.char_variable, $.windows_path, $.hc_path),
+          choice($.char_variable, $.windows_path, $.hc_path),
         ),
       ),
     copy_kw: ($) => copy_kw,
@@ -831,11 +834,13 @@ module.exports = grammar({
       prec(PREC.file, seq($.mkdir_kw, choice($.char_variable, $.windows_path))),
     mkdir_kw: ($) => mkdir_kw,
 
-    hc_path: ($) => seq(optional($.path_indicator), $.filename),
+    hc_path: ($) =>
+      prec(PREC.file, choice(seq($.path_indicator, $.filename), $.filename)),
 
-    path_indicator: ($) => /([A-Z]|[a-z]|[0-9]|#):/,
+    // prec higher than keyword since # is a point option by itself, that should not win here
+    path_indicator: ($) => token(prec(PREC.keyword + 1, /[A-Za-z0-9#]:/)),
 
-    filename: ($) => /([A-Za-z]|[0-9]|_|-){1,40}/,
+    filename: ($) => token(prec(PREC.file, /[A-Za-z0-9_.-]{1,80}/)),
 
     file_extension: ($) => /&:\.SZA/,
 
@@ -955,8 +960,6 @@ module.exports = grammar({
           ),
         ),
       ),
-
-    point_a_indicator: ($) => token(prec(PREC.keyword, /A/)),
 
     point_2_argument_indicator: ($) => token(prec(PREC.keyword, /[KP]/)),
     point_a_indicator: ($) => token(prec(PREC.keyword, /A/)),

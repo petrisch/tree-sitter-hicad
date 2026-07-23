@@ -738,6 +738,10 @@
           "named": true
         },
         {
+          "type": "hc_path",
+          "named": true
+        },
+        {
           "type": "windows_path",
           "named": true
         }
@@ -1119,11 +1123,6 @@
         }
       ]
     }
-  },
-  {
-    "type": "local_path",
-    "named": true,
-    "fields": {}
   },
   {
     "type": "logic_operation",
@@ -2037,11 +2036,6 @@
     }
   },
   {
-    "type": "unc_path",
-    "named": true,
-    "fields": {}
-  },
-  {
     "type": "val_function",
     "named": true,
     "fields": {},
@@ -2378,6 +2372,10 @@
     "named": true
   },
   {
+    "type": "local_path",
+    "named": true
+  },
+  {
     "type": "menu_code",
     "named": true
   },
@@ -2507,6 +2505,10 @@
   },
   {
     "type": "to_kw",
+    "named": true
+  },
+  {
+    "type": "unc_path",
     "named": true
   },
   {

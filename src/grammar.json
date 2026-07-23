@@ -1964,30 +1964,26 @@
       ]
     },
     "unc_path": {
-      "type": "SEQ",
-      "members": [
-        {
+      "type": "TOKEN",
+      "content": {
+        "type": "PREC",
+        "value": 16,
+        "content": {
           "type": "PATTERN",
-          "value": "\\\\\\\\[A-Za-z0-9_.-]+\\\\"
-        },
-        {
-          "type": "PATTERN",
-          "value": "[A-Za-z0-9_.\\\\-]{1,256}"
+          "value": "\\\\\\\\[A-Za-z0-9_.-]+\\\\[A-Za-z0-9_.\\\\-]{1,256}"
         }
-      ]
+      }
     },
     "local_path": {
-      "type": "SEQ",
-      "members": [
-        {
+      "type": "TOKEN",
+      "content": {
+        "type": "PREC",
+        "value": 16,
+        "content": {
           "type": "PATTERN",
-          "value": "[A-Z]:\\\\"
-        },
-        {
-          "type": "PATTERN",
-          "value": "[A-Za-z0-9_.\\\\-]{1,256}"
+          "value": "[A-Za-z]:\\\\[A-Za-z0-9_.\\\\-]{1,256}"
         }
-      ]
+      }
     },
     "concat_char": {
       "type": "SEQ",
@@ -3504,6 +3500,10 @@
               {
                 "type": "SYMBOL",
                 "name": "windows_path"
+              },
+              {
+                "type": "SYMBOL",
+                "name": "hc_path"
               }
             ]
           },
@@ -3517,6 +3517,10 @@
               {
                 "type": "SYMBOL",
                 "name": "windows_path"
+              },
+              {
+                "type": "SYMBOL",
+                "name": "hc_path"
               }
             ]
           }
@@ -3572,33 +3576,52 @@
       }
     },
     "hc_path": {
-      "type": "SEQ",
-      "members": [
-        {
-          "type": "CHOICE",
-          "members": [
-            {
-              "type": "SYMBOL",
-              "name": "path_indicator"
-            },
-            {
-              "type": "BLANK"
-            }
-          ]
-        },
-        {
-          "type": "SYMBOL",
-          "name": "filename"
-        }
-      ]
+      "type": "PREC",
+      "value": 11,
+      "content": {
+        "type": "CHOICE",
+        "members": [
+          {
+            "type": "SEQ",
+            "members": [
+              {
+                "type": "SYMBOL",
+                "name": "path_indicator"
+              },
+              {
+                "type": "SYMBOL",
+                "name": "filename"
+              }
+            ]
+          },
+          {
+            "type": "SYMBOL",
+            "name": "filename"
+          }
+        ]
+      }
     },
     "path_indicator": {
-      "type": "PATTERN",
-      "value": "([A-Z]|[a-z]|[0-9]|#):"
+      "type": "TOKEN",
+      "content": {
+        "type": "PREC",
+        "value": 15,
+        "content": {
+          "type": "PATTERN",
+          "value": "[A-Za-z0-9#]:"
+        }
+      }
     },
     "filename": {
-      "type": "PATTERN",
-      "value": "([A-Za-z]|[0-9]|_|-){1,40}"
+      "type": "TOKEN",
+      "content": {
+        "type": "PREC",
+        "value": 11,
+        "content": {
+          "type": "PATTERN",
+          "value": "[A-Za-z0-9_.-]{1,80}"
+        }
+      }
     },
     "file_extension": {
       "type": "PATTERN",
@@ -4073,17 +4096,6 @@
         ]
       }
     },
-    "point_a_indicator": {
-      "type": "TOKEN",
-      "content": {
-        "type": "PREC",
-        "value": 14,
-        "content": {
-          "type": "PATTERN",
-          "value": "A"
-        }
-      }
-    },
     "point_2_argument_indicator": {
       "type": "TOKEN",
       "content": {
@@ -4092,6 +4104,17 @@
         "content": {
           "type": "PATTERN",
           "value": "[KP]"
+        }
+      }
+    },
+    "point_a_indicator": {
+      "type": "TOKEN",
+      "content": {
+        "type": "PREC",
+        "value": 14,
+        "content": {
+          "type": "PATTERN",
+          "value": "A"
         }
       }
     },

@@ -56,6 +56,7 @@ ZAA
 
 COPY $PATHA $PATHB
 COPY $PATHA C:\bla
+COPY #:FOO.BAR $PATHC
 
 MKDIR $PATHX
 MKDIR C:\bla
@@ -156,6 +157,15 @@ END
         (identifier))
       (windows_path
         (local_path))))
+  (file_operation
+    (file_copy
+      (copy_kw)
+      (hc_path
+        (path_indicator)
+        (filename))
+      (char_variable
+        (char_var_sign)
+        (identifier))))
   (file_operation
     (mkdir
       (mkdir_kw)
