@@ -34,7 +34,8 @@ END
 --------------------------------------------------------------------------------
 
 (source_file
-  (start_marker)
+  (start_marker
+    (start_menu_index))
   (comment)
   (expression
     (definition

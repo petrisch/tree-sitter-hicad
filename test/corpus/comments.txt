@@ -18,7 +18,8 @@ REM Finally
 
 (source_file
   (comment)
-  (start_marker)
+  (start_marker
+    (start_menu_index))
   (comment)
   (comment)
   (end_marker)

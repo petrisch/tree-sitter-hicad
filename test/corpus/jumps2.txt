@@ -14,7 +14,8 @@ GOTO 99
 
 (source_file
   (comment)
-  (start_marker)
+  (start_marker
+    (start_menu_index))
   (jump
     (goto_kw)
     (label))

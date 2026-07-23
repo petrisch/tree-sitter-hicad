@@ -2,7 +2,10 @@
 Return menu
 ================================================================================
 
-START   59
+REM Use a different Menu start.
+START   101
+HNEXT
+
 
 REM simple menu call
 OPTION 2 59
@@ -60,7 +63,9 @@ END
 --------------------------------------------------------------------------------
 
 (source_file
-  (start_marker)
+  (comment)
+  (start_marker
+    (start_menu_index))
   (comment)
   (expression
     (menu

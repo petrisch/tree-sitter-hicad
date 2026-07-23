@@ -1924,7 +1924,17 @@
   {
     "type": "start_marker",
     "named": true,
-    "fields": {}
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "start_menu_index",
+          "named": true
+        }
+      ]
+    }
   },
   {
     "type": "string_alt_function",
@@ -2493,6 +2503,10 @@
   },
   {
     "type": "special2Dvariable",
+    "named": true
+  },
+  {
+    "type": "start_menu_index",
     "named": true
   },
   {

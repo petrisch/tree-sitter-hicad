@@ -32,7 +32,8 @@ END
 
 (source_file
   (comment)
-  (start_marker)
+  (start_marker
+    (start_menu_index))
   (condition
     (if_kw)
     (logical_expression

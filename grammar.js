@@ -337,7 +337,10 @@ module.exports = grammar({
 
     _top_item: ($) => choice($.start_marker, $.end_marker, $._macro_body),
 
-    start_marker: ($) => seq(start_kw, /59/, optional(hnext_kw)),
+    start_marker: ($) => seq(start_kw, $.start_menu_index, optional(hnext_kw)),
+
+    start_menu_index: ($) =>
+      token(prec(PREC.keyword, /(101|102|106|59|1|2|6)/)),
 
     end_marker: ($) => seq(optional($.jump_to), end_kw),
 

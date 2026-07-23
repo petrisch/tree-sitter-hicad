@@ -48,7 +48,8 @@ END
 --------------------------------------------------------------------------------
 
 (source_file
-  (start_marker)
+  (start_marker
+    (start_menu_index))
   (expression
     (definition
       (char_definition

@@ -41,8 +41,8 @@
           }
         },
         {
-          "type": "PATTERN",
-          "value": "59"
+          "type": "SYMBOL",
+          "name": "start_menu_index"
         },
         {
           "type": "CHOICE",
@@ -64,6 +64,17 @@
           ]
         }
       ]
+    },
+    "start_menu_index": {
+      "type": "TOKEN",
+      "content": {
+        "type": "PREC",
+        "value": 14,
+        "content": {
+          "type": "PATTERN",
+          "value": "(101|102|106|59|1|2|6)"
+        }
+      }
     },
     "end_marker": {
       "type": "SEQ",
