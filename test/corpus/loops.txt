@@ -4,17 +4,25 @@ Return loops
 
 START   59
 
+REM FOR loop
 FOR %IJ:=0 TO ANZB
     WAIT Test
 NEXT IJ
 
+REM While loop
 WHILE VORHD
   WAIT Test
 WHEND
 
+REM While loop2
 WHILE %XY>5
     $YZ:=42
 WHEND
+
+REM Repeat loop
+REPEAT
+  CALL 0:FOO
+UNTIL NOT VORHD
 
 END
 
@@ -23,6 +31,7 @@ END
 (source_file
   (start_marker
     (start_menu_index))
+  (comment)
   (loop
     (for_loop
       (for_header
@@ -42,6 +51,7 @@ END
       (for_end
         (next_kw)
         (general_variable))))
+  (comment)
   (loop
     (while_loop
       (while_kw)
@@ -52,6 +62,7 @@ END
         (wait
           (wait_kw)))
       (whend_kw)))
+  (comment)
   (loop
     (while_loop
       (while_kw)
@@ -74,4 +85,19 @@ END
               (identifier))
             (free_text))))
       (whend_kw)))
+  (comment)
+  (loop
+    (repeat_loop
+      (repeat_kw)
+      (expression
+        (function
+          (function_c)
+          (hc_path
+            (path_indicator)
+            (filename))))
+      (until_kw)
+      (logical_expression
+        (negation)
+        (comparison
+          (logical_var)))))
   (end_marker))

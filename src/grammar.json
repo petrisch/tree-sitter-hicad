@@ -2757,10 +2757,6 @@
           "name": "repeat_kw"
         },
         {
-          "type": "SYMBOL",
-          "name": "logical_expression"
-        },
-        {
           "type": "REPEAT",
           "content": {
             "type": "SYMBOL",
@@ -2770,6 +2766,10 @@
         {
           "type": "SYMBOL",
           "name": "until_kw"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "logical_expression"
         }
       ]
     },

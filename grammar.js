@@ -736,7 +736,7 @@ module.exports = grammar({
       seq($.while_kw, $.logical_expression, repeat($._macro_body), $.whend_kw),
 
     repeat_loop: ($) =>
-      seq($.repeat_kw, $.logical_expression, repeat($._macro_body), $.until_kw),
+      seq($.repeat_kw, repeat($._macro_body), $.until_kw, $.logical_expression),
 
     negation: ($) => not_kw,
 
