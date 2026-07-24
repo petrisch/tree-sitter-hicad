@@ -327,6 +327,8 @@ const special2Dvariables = [
   "ZFCZ",
 ];
 
+const func_kw = kw("FUNC");
+
 module.exports = grammar({
   name: "hicad",
 
@@ -383,6 +385,7 @@ module.exports = grammar({
         $.function,
         $.string_function,
         $.system_function,
+        $.func_api_call,
       ),
 
     guidance_noarg: ($) => choice(...guidance_noargs),
@@ -527,6 +530,12 @@ module.exports = grammar({
       seq(choice(ltu_kw, utl_kw), "(", $.string_argument, ")"),
 
     system_function: ($) => choice(faa_kw, fae_kw),
+
+    func_api_call: ($) => seq($.func_kw, $.func_api_payload),
+
+    func_kw: ($) => func_kw,
+
+    func_api_payload: ($) => token(prec(PREC.echo_text, /[^\r\n]+/)),
 
     // CHR function takes number between 0 255
     chr_function: ($) => seq(chr_kw, "(", $.chr_num_literal, ")"),

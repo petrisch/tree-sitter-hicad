@@ -145,6 +145,9 @@
 (string_alt_function) @function.builtin
 (time_function) @function.builtin
 (chr_function) @function.builtin
+(func_kw) @keyword
+(func_api_call) @function.call
+(func_api_payload) @string.special
 
 ; ----------------------------
 ; VARIABLES

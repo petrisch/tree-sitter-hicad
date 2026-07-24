@@ -249,6 +249,10 @@
         {
           "type": "SYMBOL",
           "name": "system_function"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "func_api_call"
         }
       ]
     },
@@ -1673,6 +1677,41 @@
           }
         }
       ]
+    },
+    "func_api_call": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "func_kw"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "func_api_payload"
+        }
+      ]
+    },
+    "func_kw": {
+      "type": "TOKEN",
+      "content": {
+        "type": "PREC",
+        "value": 14,
+        "content": {
+          "type": "PATTERN",
+          "value": "[fF][uU][nN][cC]"
+        }
+      }
+    },
+    "func_api_payload": {
+      "type": "TOKEN",
+      "content": {
+        "type": "PREC",
+        "value": 31,
+        "content": {
+          "type": "PATTERN",
+          "value": "[^\\r\\n]+"
+        }
+      }
     },
     "chr_function": {
       "type": "SEQ",

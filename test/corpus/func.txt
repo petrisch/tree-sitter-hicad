@@ -1,0 +1,50 @@
+================================================================================
+Return func
+================================================================================
+START   59
+
+REM Starting Func objects
+FUNC delete hicFN
+FUNC HicFileName hicFN
+
+FUNC hicFN.Set ("foo.cs")
+FUNC $fn := hicFN.GetOSName()
+
+FUNC delete a
+FUNC NetApp a
+FUNC a.StartScriptFile ($fn, "")
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (start_marker
+    (start_menu_index))
+  (comment)
+  (expression
+    (func_api_call
+      (func_kw)
+      (func_api_payload)))
+  (expression
+    (func_api_call
+      (func_kw)
+      (func_api_payload)))
+  (expression
+    (func_api_call
+      (func_kw)
+      (func_api_payload)))
+  (expression
+    (func_api_call
+      (func_kw)
+      (func_api_payload)))
+  (expression
+    (func_api_call
+      (func_kw)
+      (func_api_payload)))
+  (expression
+    (func_api_call
+      (func_kw)
+      (func_api_payload)))
+  (expression
+    (func_api_call
+      (func_kw)
+      (func_api_payload))))
