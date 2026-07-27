@@ -481,7 +481,7 @@ module.exports = grammar({
       ),
 
     arithmetic_func: ($) =>
-      token(prec(PREC.keyword, choice(...arithmetic_functions))),
+      token(prec(PREC.general, choice(...arithmetic_functions))),
 
     arithmetic_function: ($) =>
       prec(PREC.arithmetic, seq($.arithmetic_func, "(", $.arithmetic, ")")),

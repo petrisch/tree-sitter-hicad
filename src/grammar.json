@@ -1158,7 +1158,7 @@
       "type": "TOKEN",
       "content": {
         "type": "PREC",
-        "value": 14,
+        "value": 1,
         "content": {
           "type": "CHOICE",
           "members": [
