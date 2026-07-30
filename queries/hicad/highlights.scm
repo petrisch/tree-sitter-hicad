@@ -126,6 +126,10 @@
 (point_immediate_int) @number
 (point_2p_option) @function.macro
 
+(point_argument_lit_ind) @constant.builtin
+(point_insertion_marker) @constant.builtin
+(point_requesting_operator) @constant.builtin
+
 ; ----------------------------
 ; FUNCTIONS
 ; ----------------------------

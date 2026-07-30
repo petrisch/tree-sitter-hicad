@@ -1507,6 +1507,25 @@
     }
   },
   {
+    "type": "point_argument_lit_ind",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "point_insertion_marker",
+          "named": true
+        },
+        {
+          "type": "point_requesting_operator",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "point_arithmetic",
     "named": true,
     "fields": {},
@@ -1665,6 +1684,25 @@
     }
   },
   {
+    "type": "point_opt_argument",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "point_argument",
+          "named": true
+        },
+        {
+          "type": "point_argument_lit_ind",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "point_opt_option",
     "named": true,
     "fields": {},
@@ -1673,7 +1711,7 @@
       "required": true,
       "types": [
         {
-          "type": "point_argument",
+          "type": "point_opt_argument",
           "named": true
         },
         {
@@ -2497,6 +2535,10 @@
     "named": true
   },
   {
+    "type": "point_insertion_marker",
+    "named": true
+  },
+  {
     "type": "point_int",
     "named": true
   },
@@ -2522,6 +2564,10 @@
   },
   {
     "type": "point_real",
+    "named": true
+  },
+  {
+    "type": "point_requesting_operator",
     "named": true
   },
   {

@@ -366,10 +366,11 @@ END
       (point_kw)
       (point_opt_option
         (point_opt_argument_indicator)
-        (point_argument
-          (point_arithmetic
-            (point_num_value
-              (point_int)))))))
+        (point_opt_argument
+          (point_argument
+            (point_arithmetic
+              (point_num_value
+                (point_int))))))))
   (input
     (point
       (point_kw)

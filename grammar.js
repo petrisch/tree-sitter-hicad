@@ -895,16 +895,27 @@ module.exports = grammar({
           seq(
             $.point_opt_argument_indicator,
             $._point_sep,
-            $.point_argument,
+            $.point_opt_argument,
             $._point_sep,
-            $.point_argument,
+            $.point_opt_argument,
           ),
-          seq($.point_opt_argument_indicator, $._point_sep, $.point_argument),
+          seq(
+            $.point_opt_argument_indicator,
+            $._point_sep,
+            $.point_opt_argument,
+          ),
           $.point_opt_argument_indicator,
         ),
       ),
 
     point_opt_argument_indicator: ($) => token(prec(PREC.keyword, /[RNLM]/)),
+    point_opt_argument: ($) =>
+      choice($.point_argument, $.point_argument_lit_ind),
+    point_argument_lit_ind: ($) =>
+      choice($.point_insertion_marker, $.point_requesting_operator),
+    point_insertion_marker: ($) => token(prec(PREC.keyword, "!")),
+
+    point_requesting_operator: ($) => token(prec(PREC.keyword, "?")),
 
     // Must have 2 or 3 args
     point_2p_option: ($) =>

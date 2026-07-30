@@ -3924,7 +3924,7 @@
               },
               {
                 "type": "SYMBOL",
-                "name": "point_argument"
+                "name": "point_opt_argument"
               },
               {
                 "type": "SYMBOL",
@@ -3932,7 +3932,7 @@
               },
               {
                 "type": "SYMBOL",
-                "name": "point_argument"
+                "name": "point_opt_argument"
               }
             ]
           },
@@ -3949,7 +3949,7 @@
               },
               {
                 "type": "SYMBOL",
-                "name": "point_argument"
+                "name": "point_opt_argument"
               }
             ]
           },
@@ -3968,6 +3968,54 @@
         "content": {
           "type": "PATTERN",
           "value": "[RNLM]"
+        }
+      }
+    },
+    "point_opt_argument": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "point_argument"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "point_argument_lit_ind"
+        }
+      ]
+    },
+    "point_argument_lit_ind": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "point_insertion_marker"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "point_requesting_operator"
+        }
+      ]
+    },
+    "point_insertion_marker": {
+      "type": "TOKEN",
+      "content": {
+        "type": "PREC",
+        "value": 14,
+        "content": {
+          "type": "STRING",
+          "value": "!"
+        }
+      }
+    },
+    "point_requesting_operator": {
+      "type": "TOKEN",
+      "content": {
+        "type": "PREC",
+        "value": 14,
+        "content": {
+          "type": "STRING",
+          "value": "?"
         }
       }
     },

@@ -35,6 +35,7 @@ OPTION 1 2
   REM 3D, with special case where A0 is actually A 0 and 0 is X-coord.
   POINT A 0 0 0
   POINT A0 Y Z
+  POINT N !
   DISTANZ -LH
 
 REM Nested menu
@@ -125,33 +126,37 @@ END
       (point_kw)
       (point_opt_option
         (point_opt_argument_indicator)
-        (point_argument
-          (point_arithmetic
-            (point_identifier)))
-        (point_argument
-          (point_arithmetic
-            (point_num_value
-              (point_int)))))))
+        (point_opt_argument
+          (point_argument
+            (point_arithmetic
+              (point_identifier))))
+        (point_opt_argument
+          (point_argument
+            (point_arithmetic
+              (point_num_value
+                (point_int))))))))
   (input
     (point
       (point_kw)
       (point_opt_option
         (point_opt_argument_indicator)
-        (point_argument
-          (point_arithmetic
-            (point_binary_operator
-              (point_arithmetic
-                (point_identifier))
-              (point_arithmetic
-                (point_binary_operator
-                  (point_arithmetic
-                    (point_identifier))
-                  (point_arithmetic
-                    (point_identifier)))))))
-        (point_argument
-          (point_arithmetic
-            (point_num_value
-              (point_int)))))))
+        (point_opt_argument
+          (point_argument
+            (point_arithmetic
+              (point_binary_operator
+                (point_arithmetic
+                  (point_identifier))
+                (point_arithmetic
+                  (point_binary_operator
+                    (point_arithmetic
+                      (point_identifier))
+                    (point_arithmetic
+                      (point_identifier))))))))
+        (point_opt_argument
+          (point_argument
+            (point_arithmetic
+              (point_num_value
+                (point_int))))))))
   (input
     (point
       (point_kw)
@@ -297,6 +302,14 @@ END
         (point_argument
           (point_arithmetic
             (point_identifier))))))
+  (input
+    (point
+      (point_kw)
+      (point_opt_option
+        (point_opt_argument_indicator)
+        (point_opt_argument
+          (point_argument_lit_ind
+            (point_insertion_marker))))))
   (input
     (distance
       (distance_kw)

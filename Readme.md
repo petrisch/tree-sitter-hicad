@@ -1,8 +1,18 @@
 # Tree-sitter HiCAD
 
+- [ ] Solve this:
+
+```
+POINT   ESC
+
+IF AKH+LHAK+VHS=VH GOT0 10
+```
+
+- [ ] Solve the occurence of bare `R` on a line
+
 A [tree-sitter](https://tree-sitter.github.io/tree-sitter) grammar for the HCGS language from [ISD](https://www.isdgroup.com/), for its wonderful HiCAD program.
 
->[!CAUTION]
+> [!CAUTION]
 > This version works only for the main branch from nvim-treesitter.
 
 ## Disclaimer
