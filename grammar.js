@@ -145,6 +145,9 @@ const wein = kw("WEIN");
 const zae = kw("ZAE");
 const zaa = kw("ZAA");
 
+const dbein = kw("DBEIN");
+const dbaus = kw("DBAUS");
+
 const guidance_noargs = [
   apein,
   apaus,
@@ -162,6 +165,8 @@ const guidance_noargs = [
   wein,
   zae,
   zaa,
+  dbein,
+  dbaus,
 ];
 
 const call = kw("CALL");

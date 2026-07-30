@@ -70,6 +70,10 @@ CLOSE
 DEL $FOO
 DEL %FOO
 
+REM Start or end database connection. !This is probably not valid anymore, or only in older HiCAD versions!
+DBEIN
+DBAUS
+
 FAA
 FAE
 
@@ -224,6 +228,11 @@ END
         (num_variable
           (num_var_sign)
           (num_var_name)))))
+  (comment)
+  (expression
+    (guidance_noarg))
+  (expression
+    (guidance_noarg))
   (expression
     (system_function))
   (expression
