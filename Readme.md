@@ -1,15 +1,5 @@
 # Tree-sitter HiCAD
 
-- [ ] Solve this:
-
-```
-POINT   ESC
-
-IF AKH+LHAK+VHS=VH GOT0 10
-```
-
-- [ ] Solve the occurence of bare `R` on a line
-
 A [tree-sitter](https://tree-sitter.github.io/tree-sitter) grammar for the HCGS language from [ISD](https://www.isdgroup.com/), for its wonderful HiCAD program.
 
 > [!CAUTION]
@@ -43,7 +33,7 @@ but should at least work for any other theme that supports tree-sitter.
 ## Contributing
 
 Tree-sitter itself doesn't need to be installed unless you want to contribute to the grammar,
-or you want to use it for detecting syntactical errors in a pipline for example.
+or you want to use it for detecting syntactical errors in a pipeline for example.
 
 ## Stage
 
@@ -54,7 +44,13 @@ Also right now the grammar is somehow opiniated, since there are no other progra
 
 ## Roadmap
 
-- [ ] Stabilize the grammar, there are still lots of errors
-- [ ] Adding more features to the grammar
+- [x] Stabilize the grammar, there are still lots of errors
+- [x] Adding more features to the grammar
+- [x] I am fairly new to tree-sitter, so probably at some point refactor it completly
+- [ ] Solve the occurence of bare `R` on a line
+- [ ] What is a `LISTE` Keyword and how to tackle it. => Auch nicht in alter Doku!!
+- [ ] Check if this is valid `POINT R -D(DN*MZ4)`
+- [ ] Check what `POINT J Z8 Z9` is.
+- [ ] Check for relative paths like: `RMT ..\pmu\2dtext_neu.pmu`
+- [ ] Check for `MAA` Keyword.
 - [ ] Create queries for tagging, code navigation etc.
-- [ ] I am fairly new to tree-sitter, so probably at some point refactor it completly
