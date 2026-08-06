@@ -37,6 +37,7 @@ OPTION 1 2
   POINT A0 Y Z
   POINT N !
   DISTANZ -LH
+  POINT J Z8 Z9
 
 REM Nested menu
 IF $PROG <> "xxxx" THEN
@@ -317,6 +318,19 @@ END
         (unary_operator
           (arithmetic
             (general_variable))))))
+  (input
+    (point
+      (point_kw)
+      (point_opt_option
+        (point_opt_argument_indicator)
+        (point_opt_argument
+          (point_argument
+            (point_arithmetic
+              (point_identifier))))
+        (point_opt_argument
+          (point_argument
+            (point_arithmetic
+              (point_identifier)))))))
   (comment)
   (condition
     (if_kw)

@@ -913,7 +913,7 @@ module.exports = grammar({
         ),
       ),
 
-    point_opt_argument_indicator: ($) => token(prec(PREC.keyword, /[RNLM]/)),
+    point_opt_argument_indicator: ($) => token(prec(PREC.keyword, /[RNJLM]/)),
     point_opt_argument: ($) =>
       choice($.point_argument, $.point_argument_lit_ind),
     point_argument_lit_ind: ($) =>
