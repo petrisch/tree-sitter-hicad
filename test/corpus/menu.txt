@@ -60,6 +60,9 @@ STRING #
 
 REAL RET
 
+REM ignores the rest until a OPTION
+IGNORE
+
 END
 
 --------------------------------------------------------------------------------
@@ -423,4 +426,7 @@ END
       (scalar_in)
       (scal_value
         (flow_args))))
+  (comment)
+  (expression
+    (guidance_noarg))
   (end_marker))

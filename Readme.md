@@ -47,10 +47,11 @@ Also right now the grammar is somehow opiniated, since there are no other progra
 - [x] Stabilize the grammar, there are still lots of errors
 - [x] Adding more features to the grammar
 - [x] I am fairly new to tree-sitter, so probably at some point refactor it completly
+- [x] Check what `POINT J Z8 Z9` is.
+- [x] Support the `IGNORE` Keyword
 - [ ] Solve the occurence of bare `R` on a line
 - [ ] What is a `LISTE` Keyword and how to tackle it. => Auch nicht in alter Doku!!
 - [ ] Check if this is valid `POINT R -D(DN*MZ4)`
-- [ ] Check what `POINT J Z8 Z9` is.
 - [ ] Check for relative paths like: `RMT ..\pmu\2dtext_neu.pmu`
 - [ ] Check for `MAA` and `MAE` Keyword.
 - [ ] Create queries for tagging, code navigation etc.

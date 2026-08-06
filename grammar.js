@@ -132,6 +132,7 @@ const apein = kw("APEIN");
 const apaus = kw("APAUS");
 const hfein = kw("HFEIN");
 const hfaus = kw("HFAUS");
+const ignore = kw("IGNORE");
 const mein = kw("MEIN");
 const maus = kw("MAUS");
 const sein = kw("SEIN");
@@ -153,6 +154,7 @@ const guidance_noargs = [
   apaus,
   hfein,
   hfaus,
+  ignore,
   mein,
   maus,
   sein,
