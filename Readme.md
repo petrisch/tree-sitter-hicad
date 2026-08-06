@@ -52,5 +52,19 @@ Also right now the grammar is somehow opiniated, since there are no other progra
 - [ ] Check if this is valid `POINT R -D(DN*MZ4)`
 - [ ] Check what `POINT J Z8 Z9` is.
 - [ ] Check for relative paths like: `RMT ..\pmu\2dtext_neu.pmu`
-- [ ] Check for `MAA` Keyword.
+- [ ] Check for `MAA` and `MAE` Keyword.
 - [ ] Create queries for tagging, code navigation etc.
+- [ ] Check for `REAL    RET`.
+- [ ] CHECK this `$T2:=CHR$(NP)`
+- [ ] CHECK this `SZE`
+- [ ] CHECK this `POINT I`
+
+This is valid code but parses bad
+
+```hicad
+    IF BEMUEBSTL<>"0" THEN
+      DISTANZ BFPY+FOAPY+(BY16+20)*@2
+    ELSE
+      DISTANZ BFPY+FOAPY+(BY16+30)*@2
+    IFEND
+```

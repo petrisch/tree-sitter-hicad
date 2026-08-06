@@ -37,7 +37,7 @@ export def test_ts [
 
   let messages  = ($addLines | each {|entry|
       $entry | insert message {
-      bat -r ($entry.line - 4):($entry.line + 3)  $"($entry.file)"
+      bat -p -r ($entry.line - 3):($entry.line + 3)  $"($entry.file)" | decode utf-8
   }})
 
 # output
