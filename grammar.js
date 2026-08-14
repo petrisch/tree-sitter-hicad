@@ -148,13 +148,17 @@ const zaa = kw("ZAA");
 
 const dbein = kw("DBEIN");
 const dbaus = kw("DBAUS");
+const liste_kw = kw("LISTE");
 
 const guidance_noargs = [
   apein,
   apaus,
+  dbein,
+  dbaus,
   hfein,
   hfaus,
   ignore,
+  liste_kw,
   mein,
   maus,
   sein,
@@ -167,8 +171,6 @@ const guidance_noargs = [
   wein,
   zae,
   zaa,
-  dbein,
-  dbaus,
 ];
 
 const call = kw("CALL");

@@ -49,16 +49,15 @@ Also right now the grammar is somehow opiniated, since there are no other progra
 - [x] I am fairly new to tree-sitter, so probably at some point refactor it completly
 - [x] Check what `POINT J Z8 Z9` is.
 - [x] Support the `IGNORE` Keyword
+- [x] Check for `REAL    RET`.
 - [ ] Solve the occurence of bare `R` on a line
-- [ ] What is a `LISTE` Keyword and how to tackle it. => Auch nicht in alter Doku!!
+- [ ] Check for `POINT I`
+- [ ] Check for the `LISTE` and `WIED`
 - [ ] Check if this is valid `POINT R -D(DN*MZ4)`
 - [ ] Check for relative paths like: `RMT ..\pmu\2dtext_neu.pmu`
+- [ ] CHECK this `$T2:=CHR$(NP)`
 - [ ] Check for `MAA` and `MAE` Keyword.
 - [ ] Create queries for tagging, code navigation etc.
-- [ ] Check for `REAL    RET`.
-- [ ] CHECK this `$T2:=CHR$(NP)`
-- [ ] CHECK this `SZE`
-- [ ] CHECK this `POINT I`
 
 This is valid code but parses bad
 

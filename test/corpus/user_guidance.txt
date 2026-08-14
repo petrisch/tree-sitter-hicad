@@ -74,6 +74,9 @@ REM Start or end database connection. !This is probably not valid anymore, or on
 DBEIN
 DBAUS
 
+REM Bare Liste kw. Though pretty sure this is not all we support it like this for now
+LISTE
+
 FAA
 FAE
 
@@ -231,6 +234,9 @@ END
   (comment)
   (expression
     (guidance_noarg))
+  (expression
+    (guidance_noarg))
+  (comment)
   (expression
     (guidance_noarg))
   (expression
