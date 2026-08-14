@@ -54,10 +54,11 @@ Also right now the grammar is somehow opiniated, since there are no other progra
 - [x] Check for `MAA` and `MAE` keyword. => Dont support, could be old
 - [x] Check for `WIED` and `LINE`
 - [x] Check if this is valid `POINT R -D(DN*MZ4)` => no not really. Should be `POINT R -D (DN*MZ4)`
+- [x] Check this `$T2:=CHR$(NP)`
+- [x] Check for relative paths like: `RMT ..\pmu\2dtext_neu.pmu`
+- [ ] Check `STRING "FOO"+bar`
 - [ ] Solve the occurence of bare `R` on a line
 - [ ] Check for `POINT I`
-- [ ] Check for relative paths like: `RMT ..\pmu\2dtext_neu.pmu`
-- [ ] CHECK this `$T2:=CHR$(NP)`
 - [ ] Create queries for tagging, code navigation etc.
 
 This is valid code but parses bad

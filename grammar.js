@@ -265,6 +265,8 @@ const input_kw = kw("INPUT");
 const copy_kw = kw("COPY");
 const mkdir_kw = kw("MKDIR");
 
+const rmt_kw = kw("RMT");
+
 const goto_kw = kw("GOTO");
 const wert_kw = kw("WERT");
 
@@ -611,7 +613,18 @@ module.exports = grammar({
 
     char_literal: ($) => token(prec(PREC.literals, /[^$%\s"()]+/)),
 
+    file_arg: ($) =>
+      choice($.char_variable, $.windows_path, $.relative_path, $.hc_path),
+
     windows_path: ($) => choice($.unc_path, $.local_path),
+
+    relative_path: ($) =>
+      token(
+        prec(
+          PREC.keyword + 2,
+          /(\.\.|\.)\\[A-Za-z0-9_.-]+(\\[A-Za-z0-9_.-]+)*/,
+        ),
+      ),
 
     // Allows hyphens in host/path parts.
     unc_path: ($) =>
@@ -831,10 +844,16 @@ module.exports = grammar({
     text_value: ($) => token(prec(PREC.literals, /[^\s"$%#][^\n\r]*/)),
 
     file_operation: ($) =>
-      choice($.file_open, $.file_close, $.file_write, $.file_copy, $.mkdir),
+      choice(
+        $.file_open,
+        $.file_close,
+        $.file_write,
+        $.file_copy,
+        $.mkdir,
+        $.file_rmt,
+      ),
 
-    file_open: ($) =>
-      seq($.open_kw, choice($.hc_path, $.flow_args, $.char_variable)),
+    file_open: ($) => seq($.open_kw, choice($.file_arg, $.flow_args)),
 
     file_close: ($) => $.close_kw,
 
@@ -845,20 +864,15 @@ module.exports = grammar({
     open_kw: ($) => open_kw,
     close_kw: ($) => close_kw,
 
-    file_copy: ($) =>
-      prec(
-        PREC.file,
-        seq(
-          $.copy_kw,
-          choice($.char_variable, $.windows_path, $.hc_path),
-          choice($.char_variable, $.windows_path, $.hc_path),
-        ),
-      ),
+    file_copy: ($) => prec(PREC.file, seq($.copy_kw, $.file_arg, $.file_arg)),
     copy_kw: ($) => copy_kw,
 
-    mkdir: ($) =>
-      prec(PREC.file, seq($.mkdir_kw, choice($.char_variable, $.windows_path))),
+    mkdir: ($) => prec(PREC.file, seq($.mkdir_kw, $.file_arg)),
     mkdir_kw: ($) => mkdir_kw,
+
+    // Not sure what this does but seems legit.
+    file_rmt: ($) => prec(PREC.file, seq($.rmt_kw, $.file_arg)),
+    rmt_kw: ($) => rmt_kw,
 
     hc_path: ($) =>
       prec(PREC.file, choice(seq($.path_indicator, $.filename), $.filename)),
@@ -866,7 +880,7 @@ module.exports = grammar({
     // prec higher than keyword since # is a point option by itself, that should not win here
     path_indicator: ($) => token(prec(PREC.keyword + 1, /[A-Za-z0-9#]:/)),
 
-    filename: ($) => token(prec(PREC.file, /[A-Za-z0-9_.-]{1,80}/)),
+    filename: ($) => token(prec(PREC.file, /[A-Za-z0-9_][A-Za-z0-9_.-]{0,79}/)),
 
     file_extension: ($) => /&:\.SZA/,
 

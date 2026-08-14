@@ -2041,6 +2041,27 @@
         }
       }
     },
+    "file_arg": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "char_variable"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "windows_path"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "relative_path"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "hc_path"
+        }
+      ]
+    },
     "windows_path": {
       "type": "CHOICE",
       "members": [
@@ -2053,6 +2074,17 @@
           "name": "local_path"
         }
       ]
+    },
+    "relative_path": {
+      "type": "TOKEN",
+      "content": {
+        "type": "PREC",
+        "value": 16,
+        "content": {
+          "type": "PATTERN",
+          "value": "(\\.\\.|\\.)\\\\[A-Za-z0-9_.-]+(\\\\[A-Za-z0-9_.-]+)*"
+        }
+      }
     },
     "unc_path": {
       "type": "TOKEN",
@@ -3483,6 +3515,10 @@
         {
           "type": "SYMBOL",
           "name": "mkdir"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "file_rmt"
         }
       ]
     },
@@ -3498,15 +3534,11 @@
           "members": [
             {
               "type": "SYMBOL",
-              "name": "hc_path"
+              "name": "file_arg"
             },
             {
               "type": "SYMBOL",
               "name": "flow_args"
-            },
-            {
-              "type": "SYMBOL",
-              "name": "char_variable"
             }
           ]
         }
@@ -3582,38 +3614,12 @@
             "name": "copy_kw"
           },
           {
-            "type": "CHOICE",
-            "members": [
-              {
-                "type": "SYMBOL",
-                "name": "char_variable"
-              },
-              {
-                "type": "SYMBOL",
-                "name": "windows_path"
-              },
-              {
-                "type": "SYMBOL",
-                "name": "hc_path"
-              }
-            ]
+            "type": "SYMBOL",
+            "name": "file_arg"
           },
           {
-            "type": "CHOICE",
-            "members": [
-              {
-                "type": "SYMBOL",
-                "name": "char_variable"
-              },
-              {
-                "type": "SYMBOL",
-                "name": "windows_path"
-              },
-              {
-                "type": "SYMBOL",
-                "name": "hc_path"
-              }
-            ]
+            "type": "SYMBOL",
+            "name": "file_arg"
           }
         ]
       }
@@ -3640,17 +3646,8 @@
             "name": "mkdir_kw"
           },
           {
-            "type": "CHOICE",
-            "members": [
-              {
-                "type": "SYMBOL",
-                "name": "char_variable"
-              },
-              {
-                "type": "SYMBOL",
-                "name": "windows_path"
-              }
-            ]
+            "type": "SYMBOL",
+            "name": "file_arg"
           }
         ]
       }
@@ -3663,6 +3660,34 @@
         "content": {
           "type": "PATTERN",
           "value": "[mM][kK][dD][iI][rR]"
+        }
+      }
+    },
+    "file_rmt": {
+      "type": "PREC",
+      "value": 11,
+      "content": {
+        "type": "SEQ",
+        "members": [
+          {
+            "type": "SYMBOL",
+            "name": "rmt_kw"
+          },
+          {
+            "type": "SYMBOL",
+            "name": "file_arg"
+          }
+        ]
+      }
+    },
+    "rmt_kw": {
+      "type": "TOKEN",
+      "content": {
+        "type": "PREC",
+        "value": 14,
+        "content": {
+          "type": "PATTERN",
+          "value": "[rR][mM][tT]"
         }
       }
     },
@@ -3710,7 +3735,7 @@
         "value": 11,
         "content": {
           "type": "PATTERN",
-          "value": "[A-Za-z0-9_.-]{1,80}"
+          "value": "[A-Za-z0-9_][A-Za-z0-9_.-]{0,79}"
         }
       }
     },

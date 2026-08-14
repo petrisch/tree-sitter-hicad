@@ -80,6 +80,9 @@ LISTE
 FAA
 FAE
 
+REM Not sure what this does, but seems legit
+RMT ..\pmu\2dteil_khilf.pmu
+
 
 END
 

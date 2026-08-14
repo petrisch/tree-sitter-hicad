@@ -715,6 +715,33 @@
     }
   },
   {
+    "type": "file_arg",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "char_variable",
+          "named": true
+        },
+        {
+          "type": "hc_path",
+          "named": true
+        },
+        {
+          "type": "relative_path",
+          "named": true
+        },
+        {
+          "type": "windows_path",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "file_close",
     "named": true,
     "fields": {},
@@ -738,19 +765,11 @@
       "required": true,
       "types": [
         {
-          "type": "char_variable",
-          "named": true
-        },
-        {
           "type": "copy_kw",
           "named": true
         },
         {
-          "type": "hc_path",
-          "named": true
-        },
-        {
-          "type": "windows_path",
+          "type": "file_arg",
           "named": true
         }
       ]
@@ -765,15 +784,11 @@
       "required": true,
       "types": [
         {
-          "type": "char_variable",
+          "type": "file_arg",
           "named": true
         },
         {
           "type": "flow_args",
-          "named": true
-        },
-        {
-          "type": "hc_path",
           "named": true
         },
         {
@@ -804,11 +819,34 @@
           "named": true
         },
         {
+          "type": "file_rmt",
+          "named": true
+        },
+        {
           "type": "file_write",
           "named": true
         },
         {
           "type": "mkdir",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "file_rmt",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "file_arg",
+          "named": true
+        },
+        {
+          "type": "rmt_kw",
           "named": true
         }
       ]
@@ -1277,15 +1315,11 @@
       "required": true,
       "types": [
         {
-          "type": "char_variable",
+          "type": "file_arg",
           "named": true
         },
         {
           "type": "mkdir_kw",
-          "named": true
-        },
-        {
-          "type": "windows_path",
           "named": true
         }
       ]
@@ -2590,7 +2624,15 @@
     "named": true
   },
   {
+    "type": "relative_path",
+    "named": true
+  },
+  {
     "type": "repeat_kw",
+    "named": true
+  },
+  {
+    "type": "rmt_kw",
     "named": true
   },
   {
