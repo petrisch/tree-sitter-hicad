@@ -684,6 +684,10 @@
           "named": true
         },
         {
+          "type": "line_function",
+          "named": true
+        },
+        {
           "type": "logic_operation",
           "named": true
         },
@@ -1142,6 +1146,21 @@
         },
         {
           "type": "quoted_char",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "line_function",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "num_value",
           "named": true
         }
       ]

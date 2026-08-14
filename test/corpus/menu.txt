@@ -32,11 +32,20 @@ OPTION 1 2
   POINT INT
   POINT A FY+FSY+17.5+19 4.9
   POINT AR
-  REM 3D, with special case where A0 is actually A 0 and 0 is X-coord.
+
+  REM 3D coordinates
   POINT A 0 0 0
+  REM Special case where A0 is actually A 0 and 0 is X-coord. Should be avoided.
   POINT A0 Y Z
-  POINT N !
+
+  REM Immediate coordinates. Work, but should be avoided
+  REM POINT 42 43
+
+  REM Distance
   DISTANZ -LH
+
+  REM Somehow valid, dont know what it does though
+  POINT N !
   POINT J Z8 Z9
 
 REM Nested menu
@@ -293,6 +302,7 @@ END
           (point_arithmetic
             (point_num_value
               (point_int)))))))
+  (comment)
   (input
     (point
       (point_kw)
@@ -306,6 +316,17 @@ END
         (point_argument
           (point_arithmetic
             (point_identifier))))))
+  (comment)
+  (comment)
+  (comment)
+  (input
+    (distance
+      (distance_kw)
+      (arithmetic
+        (unary_operator
+          (arithmetic
+            (general_variable))))))
+  (comment)
   (input
     (point
       (point_kw)
@@ -314,13 +335,6 @@ END
         (point_opt_argument
           (point_argument_lit_ind
             (point_insertion_marker))))))
-  (input
-    (distance
-      (distance_kw)
-      (arithmetic
-        (unary_operator
-          (arithmetic
-            (general_variable))))))
   (input
     (point
       (point_kw)

@@ -253,6 +253,10 @@
         {
           "type": "SYMBOL",
           "name": "func_api_call"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "line_function"
         }
       ]
     },
@@ -4818,6 +4822,55 @@
           "value": "[wW][iI][nN][kK][eE][lL]"
         }
       }
+    },
+    "line_function": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "TOKEN",
+          "content": {
+            "type": "PREC",
+            "value": 14,
+            "content": {
+              "type": "PATTERN",
+              "value": "[lL][iI][nN][eE]"
+            }
+          }
+        },
+        {
+          "type": "REPEAT",
+          "content": {
+            "type": "SYMBOL",
+            "name": "num_value"
+          }
+        },
+        {
+          "type": "REPEAT",
+          "content": {
+            "type": "SEQ",
+            "members": [
+              {
+                "type": "TOKEN",
+                "content": {
+                  "type": "PREC",
+                  "value": 14,
+                  "content": {
+                    "type": "PATTERN",
+                    "value": "[wW][iI][eE][dD]"
+                  }
+                }
+              },
+              {
+                "type": "REPEAT",
+                "content": {
+                  "type": "SYMBOL",
+                  "name": "num_value"
+                }
+              }
+            ]
+          }
+        }
+      ]
     },
     "comment": {
       "type": "TOKEN",

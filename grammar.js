@@ -150,6 +150,9 @@ const dbein = kw("DBEIN");
 const dbaus = kw("DBAUS");
 const liste_kw = kw("LISTE");
 
+const line_kw = kw("LINE");
+const wied_kw = kw("WIED");
+
 const guidance_noargs = [
   apein,
   apaus,
@@ -395,6 +398,7 @@ module.exports = grammar({
         $.string_function,
         $.system_function,
         $.func_api_call,
+        $.line_function,
       ),
 
     guidance_noarg: ($) => choice(...guidance_noargs),
@@ -1091,6 +1095,13 @@ module.exports = grammar({
       prec.right(seq($.angle_kw, choice($.flow_args, zei_kw, $.arithmetic))),
 
     angle_kw: ($) => angle_kw,
+
+    line_function: ($) =>
+      seq(
+        line_kw,
+        repeat($.num_value),
+        repeat(seq(wied_kw, repeat($.num_value))),
+      ),
 
     comment: ($) => token(prec(PREC.comment, /REM.*/i)),
 

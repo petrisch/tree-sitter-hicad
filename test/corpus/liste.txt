@@ -1,0 +1,69 @@
+================================================================================
+Return liste
+================================================================================
+
+
+START   59
+
+REM List calls
+
+REM   LINIEN   1 = Isolierte Pkt
+OPTION   1   6
+POINT   R
+REM TODO: POINT   I
+LINE             8         0
+WIED             0         0
+WIED             0         0         0         0         0
+WIED             0         0         0         0         0
+
+END
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (start_marker
+    (start_menu_index))
+  (comment)
+  (comment)
+  (expression
+    (menu
+      (option_kw)
+      (menu_index)
+      (menu_code)))
+  (input
+    (point
+      (point_kw)
+      (point_opt_option
+        (point_opt_argument_indicator))))
+  (comment)
+  (expression
+    (line_function
+      (num_value
+        (real))
+      (num_value
+        (real))
+      (num_value
+        (real))
+      (num_value
+        (real))
+      (num_value
+        (real))
+      (num_value
+        (real))
+      (num_value
+        (real))
+      (num_value
+        (real))
+      (num_value
+        (real))
+      (num_value
+        (real))
+      (num_value
+        (real))
+      (num_value
+        (real))
+      (num_value
+        (real))
+      (num_value
+        (real))))
+  (end_marker))

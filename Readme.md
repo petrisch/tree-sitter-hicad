@@ -48,15 +48,16 @@ Also right now the grammar is somehow opiniated, since there are no other progra
 - [x] Adding more features to the grammar
 - [x] I am fairly new to tree-sitter, so probably at some point refactor it completly
 - [x] Check what `POINT J Z8 Z9` is.
-- [x] Support the `IGNORE` Keyword
+- [x] Support the `IGNORE` keyword
 - [x] Check for `REAL    RET`.
+- [x] Check for the `LISTE` keyword
+- [x] Check for `MAA` and `MAE` keyword. => Dont support, could be old
+- [x] Check for `WIED` and `LINE`
+- [x] Check if this is valid `POINT R -D(DN*MZ4)` => no not really. Should be `POINT R -D (DN*MZ4)`
 - [ ] Solve the occurence of bare `R` on a line
 - [ ] Check for `POINT I`
-- [ ] Check for the `LISTE` and `WIED`
-- [ ] Check if this is valid `POINT R -D(DN*MZ4)`
 - [ ] Check for relative paths like: `RMT ..\pmu\2dtext_neu.pmu`
 - [ ] CHECK this `$T2:=CHR$(NP)`
-- [ ] Check for `MAA` and `MAE` Keyword.
 - [ ] Create queries for tagging, code navigation etc.
 
 This is valid code but parses bad
