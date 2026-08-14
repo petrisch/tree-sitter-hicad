@@ -393,7 +393,7 @@
       "required": true,
       "types": [
         {
-          "type": "chr_num_literal",
+          "type": "arithmetic",
           "named": true
         }
       ]
@@ -2374,10 +2374,6 @@
   },
   {
     "type": "char_var_sign",
-    "named": true
-  },
-  {
-    "type": "chr_num_literal",
     "named": true
   },
   {

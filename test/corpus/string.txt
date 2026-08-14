@@ -10,6 +10,9 @@ REM ASC function
 REM CHR$ function
 IF CHR$(65) = "A" GOTO 99
 
+REM With variable
+IF CHR$(%FOO) = "A" GOTO 99
+
 REM LTU$ function
 $LOW:=LTU$("foo")
 
@@ -52,7 +55,28 @@ END
           (char_expression
             (string_function
               (chr_function
-                (chr_num_literal))))
+                (arithmetic
+                  (num_value
+                    (real))))))
+          (comparative_operator)
+          (char_expression
+            (quoted_char)))))
+    (jump
+      (goto_kw)
+      (label)))
+  (comment)
+  (condition
+    (if_kw)
+    (logical_expression
+      (comparison
+        (char_comparison
+          (char_expression
+            (string_function
+              (chr_function
+                (arithmetic
+                  (num_variable
+                    (num_var_sign)
+                    (num_var_name))))))
           (comparative_operator)
           (char_expression
             (quoted_char)))))

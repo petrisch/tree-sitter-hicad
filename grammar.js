@@ -550,14 +550,15 @@ module.exports = grammar({
 
     func_api_payload: ($) => token(prec(PREC.echo_text, /[^\r\n]+/)),
 
-    // CHR function takes number between 0 255
-    chr_function: ($) => seq(chr_kw, "(", $.chr_num_literal, ")"),
+    // CHR function takes number between 0 255. Though variables are allowed too,
+    // so we accept everything and leave things to the linter
+    // chr_function: ($) => seq(chr_kw, "(", $.chr_num_literal, ")"),
+    chr_function: ($) => seq(chr_kw, "(", $.arithmetic, ")"),
+    // chr_num_literal: ($) =>
+    //   token(/25[0-5]|2[0-4][0-9]|1[0-9]{2}|[1-9][0-9]|[0-9]/),
 
     // Single token functions
     time_function: ($) => choice(time_kw, date_kw),
-
-    chr_num_literal: ($) =>
-      token(/25[0-5]|2[0-4][0-9]|1[0-9]{2}|[1-9][0-9]|[0-9]/),
 
     num_variable: ($) => seq($.num_var_sign, $.num_var_name),
 
