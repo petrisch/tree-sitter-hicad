@@ -621,12 +621,25 @@
         }
       ]
     },
+    "num_assignment_target": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "num_variable"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "num_special_sys_var"
+        }
+      ]
+    },
     "num_definition": {
       "type": "SEQ",
       "members": [
         {
           "type": "SYMBOL",
-          "name": "num_variable"
+          "name": "num_assignment_target"
         },
         {
           "type": "CHOICE",
@@ -3878,6 +3891,10 @@
             {
               "type": "SYMBOL",
               "name": "num_variable"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "num_special_sys_var"
             },
             {
               "type": "SYMBOL",

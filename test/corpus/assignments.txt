@@ -31,6 +31,9 @@ DEL %BA
 REM String length function
 %LEN_ATYP2:=LEN($ATYP_2)
 
+REM Though dangerous assigning to a sys var is allowed
+%@SKZ:=3
+
 END
 
 --------------------------------------------------------------------------------
@@ -42,9 +45,10 @@ END
   (expression
     (definition
       (num_definition
-        (num_variable
-          (num_var_sign)
-          (num_var_name))
+        (num_assignment_target
+          (num_variable
+            (num_var_sign)
+            (num_var_name)))
         (arithmetic
           (num_value
             (real))))))
@@ -125,12 +129,22 @@ END
   (expression
     (definition
       (num_definition
-        (num_variable
-          (num_var_sign)
-          (num_var_name))
+        (num_assignment_target
+          (num_variable
+            (num_var_sign)
+            (num_var_name)))
         (arithmetic
           (len_function
             (char_variable
               (char_var_sign)
               (identifier)))))))
+  (comment)
+  (expression
+    (definition
+      (num_definition
+        (num_assignment_target
+          (num_special_sys_var))
+        (arithmetic
+          (num_value
+            (real))))))
   (end_marker))

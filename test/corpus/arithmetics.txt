@@ -40,9 +40,10 @@ END
   (expression
     (definition
       (num_definition
-        (num_variable
-          (num_var_sign)
-          (num_var_name))
+        (num_assignment_target
+          (num_variable
+            (num_var_sign)
+            (num_var_name)))
         (arithmetic
           (binary_operator
             (arithmetic
@@ -60,9 +61,10 @@ END
   (expression
     (definition
       (num_definition
-        (num_variable
-          (num_var_sign)
-          (num_var_name))
+        (num_assignment_target
+          (num_variable
+            (num_var_sign)
+            (num_var_name)))
         (arithmetic
           (binary_operator
             (arithmetic
@@ -80,9 +82,10 @@ END
   (expression
     (definition
       (num_definition
-        (num_variable
-          (num_var_sign)
-          (num_var_name))
+        (num_assignment_target
+          (num_variable
+            (num_var_sign)
+            (num_var_name)))
         (arithmetic
           (binary_operator
             (arithmetic
@@ -93,9 +96,10 @@ END
   (expression
     (definition
       (num_definition
-        (num_variable
-          (num_var_sign)
-          (num_var_name))
+        (num_assignment_target
+          (num_variable
+            (num_var_sign)
+            (num_var_name)))
         (arithmetic
           (binary_operator
             (arithmetic
@@ -105,9 +109,10 @@ END
   (expression
     (definition
       (num_definition
-        (num_variable
-          (num_var_sign)
-          (num_var_name))
+        (num_assignment_target
+          (num_variable
+            (num_var_sign)
+            (num_var_name)))
         (arithmetic
           (binary_operator
             (arithmetic
@@ -118,9 +123,10 @@ END
   (expression
     (definition
       (num_definition
-        (num_variable
-          (num_var_sign)
-          (num_var_name))
+        (num_assignment_target
+          (num_variable
+            (num_var_sign)
+            (num_var_name)))
         (arithmetic
           (binary_operator
             (arithmetic
@@ -132,9 +138,10 @@ END
   (expression
     (definition
       (num_definition
-        (num_variable
-          (num_var_sign)
-          (num_var_name))
+        (num_assignment_target
+          (num_variable
+            (num_var_sign)
+            (num_var_name)))
         (arithmetic
           (binary_operator
             (arithmetic
@@ -152,9 +159,10 @@ END
   (expression
     (definition
       (num_definition
-        (num_variable
-          (num_var_sign)
-          (num_var_name))
+        (num_assignment_target
+          (num_variable
+            (num_var_sign)
+            (num_var_name)))
         (arithmetic
           (binary_operator
             (arithmetic
@@ -165,9 +173,10 @@ END
   (expression
     (definition
       (num_definition
-        (num_variable
-          (num_var_sign)
-          (num_var_name))
+        (num_assignment_target
+          (num_variable
+            (num_var_sign)
+            (num_var_name)))
         (arithmetic
           (binary_operator
             (arithmetic

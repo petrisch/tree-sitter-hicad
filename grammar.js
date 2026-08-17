@@ -464,8 +464,14 @@ module.exports = grammar({
     definition: ($) =>
       choice($.num_definition, $.char_definition, $.assignment),
 
+    num_assignment_target: ($) => choice($.num_variable, $.num_special_sys_var),
+
     num_definition: ($) =>
-      seq($.num_variable, choice(...assignment_operator), $.arithmetic),
+      seq(
+        $.num_assignment_target,
+        choice(...assignment_operator),
+        $.arithmetic,
+      ),
 
     char_definition: ($) =>
       seq(
@@ -934,7 +940,10 @@ module.exports = grammar({
     jump_to: ($) => seq($.label, ":"),
 
     logic_operation: ($) =>
-      seq($.wert_kw, choice($.num_variable, $.char_variable)),
+      seq(
+        $.wert_kw,
+        choice($.num_variable, $.num_special_sys_var, $.char_variable),
+      ),
 
     point_lit_ind: ($) => choice(...point_literal_indicators),
 

@@ -1221,6 +1221,10 @@
           "named": true
         },
         {
+          "type": "num_special_sys_var",
+          "named": true
+        },
+        {
           "type": "num_variable",
           "named": true
         },
@@ -1330,6 +1334,25 @@
     }
   },
   {
+    "type": "num_assignment_target",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "num_special_sys_var",
+          "named": true
+        },
+        {
+          "type": "num_variable",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "num_comparison",
     "named": true,
     "fields": {},
@@ -1361,7 +1384,7 @@
           "named": true
         },
         {
-          "type": "num_variable",
+          "type": "num_assignment_target",
           "named": true
         }
       ]
