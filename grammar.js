@@ -499,7 +499,10 @@ module.exports = grammar({
           $.pfd_kw,
           choice($.char_variable, $.path_indicator, $.file_extension),
         ),
-        seq($.del_kw, choice($.char_variable, $.num_variable)),
+        seq(
+          $.del_kw,
+          choice($.char_variable, $.num_variable, $.num_special_sys_var),
+        ),
       ),
 
     vai_kw: ($) => vai_kw,

@@ -815,6 +815,10 @@
                 {
                   "type": "SYMBOL",
                   "name": "num_variable"
+                },
+                {
+                  "type": "SYMBOL",
+                  "name": "num_special_sys_var"
                 }
               ]
             }

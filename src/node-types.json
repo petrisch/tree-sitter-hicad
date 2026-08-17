@@ -148,6 +148,10 @@
           "named": true
         },
         {
+          "type": "num_special_sys_var",
+          "named": true
+        },
+        {
           "type": "num_variable",
           "named": true
         },
