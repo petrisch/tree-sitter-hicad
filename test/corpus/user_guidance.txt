@@ -154,46 +154,55 @@ END
   (file_operation
     (file_copy
       (copy_kw)
-      (char_variable
-        (char_var_sign)
-        (identifier))
-      (char_variable
-        (char_var_sign)
-        (identifier))))
+      (file_arg
+        (char_variable
+          (char_var_sign)
+          (identifier)))
+      (file_arg
+        (char_variable
+          (char_var_sign)
+          (identifier)))))
   (file_operation
     (file_copy
       (copy_kw)
-      (char_variable
-        (char_var_sign)
-        (identifier))
-      (windows_path
-        (local_path))))
+      (file_arg
+        (char_variable
+          (char_var_sign)
+          (identifier)))
+      (file_arg
+        (windows_path
+          (local_path)))))
   (file_operation
     (file_copy
       (copy_kw)
-      (hc_path
-        (path_indicator)
-        (filename))
-      (char_variable
-        (char_var_sign)
-        (identifier))))
+      (file_arg
+        (hc_path
+          (path_indicator)
+          (filename)))
+      (file_arg
+        (char_variable
+          (char_var_sign)
+          (identifier)))))
   (file_operation
     (mkdir
       (mkdir_kw)
-      (char_variable
-        (char_var_sign)
-        (identifier))))
+      (file_arg
+        (char_variable
+          (char_var_sign)
+          (identifier)))))
   (file_operation
     (mkdir
       (mkdir_kw)
-      (windows_path
-        (local_path))))
+      (file_arg
+        (windows_path
+          (local_path)))))
   (file_operation
     (file_open
       (open_kw)
-      (hc_path
-        (path_indicator)
-        (filename))))
+      (file_arg
+        (hc_path
+          (path_indicator)
+          (filename)))))
   (file_operation
     (file_write
       (output_kw)
@@ -246,4 +255,10 @@ END
     (system_function))
   (expression
     (system_function))
+  (comment)
+  (file_operation
+    (file_rmt
+      (rmt_kw)
+      (file_arg
+        (relative_path))))
   (end_marker))

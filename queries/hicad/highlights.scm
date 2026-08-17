@@ -182,8 +182,6 @@
 (menu_index) @number
 (menu_code) @number
 
-(chr_num_literal) @number
-
 ; ----------------------------
 ; STRINGS / TEXT
 ; ----------------------------
