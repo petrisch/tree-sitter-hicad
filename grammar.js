@@ -950,11 +950,20 @@ module.exports = grammar({
         ),
       ),
 
-    // Arguments are optional, but not more than two
+    // Arguments are optional
     point_opt_option: ($) =>
       prec.right(
         PREC.keyword,
         choice(
+          seq(
+            $.point_opt_argument_indicator,
+            $._point_sep,
+            $.point_opt_argument,
+            $._point_sep,
+            $.point_opt_argument,
+            $._point_sep,
+            $.point_opt_argument,
+          ),
           seq(
             $.point_opt_argument_indicator,
             $._point_sep,

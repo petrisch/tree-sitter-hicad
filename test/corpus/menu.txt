@@ -293,6 +293,72 @@ END
   (input
     (point
       (point_kw)
+      (point_2p_option
+        (point_2_argument_indicator)
+        (point_argument
+          (point_arithmetic
+            (point_parenthesized_expression
+              (point_arithmetic
+                (point_binary_operator
+                  (point_arithmetic
+                    (point_identifier))
+                  (point_arithmetic
+                    (point_identifier)))))))
+        (point_argument
+          (point_arithmetic
+            (point_binary_operator
+              (point_arithmetic
+                (point_parenthesized_expression
+                  (point_arithmetic
+                    (point_binary_operator
+                      (point_arithmetic
+                        (point_identifier))
+                      (point_arithmetic
+                        (point_num_value
+                          (point_int)))))))
+              (point_arithmetic
+                (point_arithmetic_function
+                  (point_arithmetic_func_open)
+                  (point_arithmetic
+                    (point_identifier))))))))))
+  (comment)
+  (input
+    (point
+      (point_kw)
+      (point_2p_option
+        (point_2_argument_indicator)
+        (point_argument
+          (point_arithmetic
+            (point_parenthesized_expression
+              (point_arithmetic
+                (point_binary_operator
+                  (point_arithmetic
+                    (point_identifier))
+                  (point_arithmetic
+                    (point_identifier)))))))
+        (point_argument
+          (point_arithmetic
+            (point_binary_operator
+              (point_arithmetic
+                (point_parenthesized_expression
+                  (point_arithmetic
+                    (point_binary_operator
+                      (point_arithmetic
+                        (point_identifier))
+                      (point_arithmetic
+                        (point_num_value
+                          (point_int)))))))
+              (point_arithmetic
+                (point_identifier)))))
+        (point_argument
+          (point_arithmetic
+            (point_parenthesized_expression
+              (point_arithmetic
+                (point_identifier))))))))
+  (comment)
+  (input
+    (point
+      (point_kw)
       (point_a_option
         (point_a_indicator)
         (point_argument
