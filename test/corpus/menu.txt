@@ -33,18 +33,23 @@ OPTION 1 2
   POINT A FY+FSY+17.5+19 4.9
   POINT AR
 
-  REM 3D coordinates
+REM Function calls in Point arguments are only valid without spaces
+  POINT   P (FW+NRW1) (F/2)/COS(NRW1)
+REM This is not valid
+  POINT   P (FW+NRW1) (F/2)/COS (NRW1)
+
+REM 3D coordinates
   POINT A 0 0 0
-  REM Special case where A0 is actually A 0 and 0 is X-coord. Should be avoided.
+REM Special case where A0 is actually A 0 and 0 is X-coord. Should be avoided.
   POINT A0 Y Z
 
-  REM Immediate coordinates. Work, but should be avoided
+REM Immediate coordinates. Work, but should be avoided
   REM POINT 42 43
 
-  REM Distance
+REM Distance
   DISTANZ -LH
 
-  REM Somehow valid, dont know what it does though
+REM Somehow valid, dont know what it does though
   POINT N !
   POINT J Z8 Z9
 

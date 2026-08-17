@@ -11,6 +11,18 @@ const ci = (word) =>
       .join(""),
   );
 
+// Used for point argument arithmetics
+const ciSource = (word) =>
+  word
+    .split("")
+    .map((c) =>
+      /[a-zA-Z]/.test(c) ? `[${c.toLowerCase()}${c.toUpperCase()}]` : c,
+    )
+    .join("");
+
+const pointFnOpen = (word) =>
+  token(prec(PREC.keyword + 1, new RegExp(`${ciSource(word)}\\(`)));
+
 // Higher value is higher priority
 const PREC = {
   literals: -1,
@@ -182,49 +194,72 @@ const popup = kw("POPUP");
 
 const function_call = [call, makro, popup];
 
-const abs = kw("ABS");
-const acos = kw("ACOS");
-const aint = kw("AINT");
-const arc = kw("ARC");
-const asin = kw("ASIN");
-const atan = kw("ATAN");
-const cos = kw("COS");
-const cosh = kw("COSH");
-const exp = kw("EXP");
-const grd = kw("GRD");
-const len = kw("LEN");
-const log = kw("LOG");
-const log10 = kw("LOG10");
-const nint = kw("NINT");
-const sig = kw("SIG");
-const sin = kw("SIN");
-const sinh = kw("SINH");
-const sqr = kw("SQR");
-const sqrt = kw("SQRT");
-const tan = kw("TAN");
-const tanh = kw("TANH");
+const abs_kw = kw("ABS");
+const acos_kw = kw("ACOS");
+const aint_kw = kw("AINT");
+const arc_kw = kw("ARC");
+const asin_kw = kw("ASIN");
+const atan_kw = kw("ATAN");
+const cos_kw = kw("COS");
+const cosh_kw = kw("COSH");
+const exp_kw = kw("EXP");
+const grd_kw = kw("GRD");
+const len_kw = kw("LEN");
+const log_kw = kw("LOG");
+const log10_kw = kw("LOG10");
+const nint_kw = kw("NINT");
+const sig_kw = kw("SIG");
+const sin_kw = kw("SIN");
+const sinh_kw = kw("SINH");
+const sqr_kw = kw("SQR");
+const sqrt_kw = kw("SQRT");
+const tan_kw = kw("TAN");
+const tanh_kw = kw("TANH");
 
 const arithmetic_functions = [
-  abs,
-  acos,
-  aint,
-  arc,
-  asin,
-  atan,
-  cos,
-  cosh,
-  exp,
-  grd,
-  log,
-  log10,
-  nint,
-  sig,
-  sin,
-  sinh,
-  sqr,
-  sqrt,
-  tan,
-  tanh,
+  abs_kw,
+  acos_kw,
+  aint_kw,
+  arc_kw,
+  asin_kw,
+  atan_kw,
+  cos_kw,
+  cosh_kw,
+  exp_kw,
+  grd_kw,
+  log_kw,
+  log10_kw,
+  nint_kw,
+  sig_kw,
+  sin_kw,
+  sinh_kw,
+  sqr_kw,
+  sqrt_kw,
+  tan_kw,
+  tanh_kw,
+];
+
+const point_arithmetic_function_opens = [
+  pointFnOpen("ABS"),
+  pointFnOpen("ACOS"),
+  pointFnOpen("AINT"),
+  pointFnOpen("ARC"),
+  pointFnOpen("ASIN"),
+  pointFnOpen("ATAN"),
+  pointFnOpen("COS"),
+  pointFnOpen("COSH"),
+  pointFnOpen("EXP"),
+  pointFnOpen("GRD"),
+  pointFnOpen("LOG"),
+  pointFnOpen("LOG10"),
+  pointFnOpen("NINT"),
+  pointFnOpen("SIG"),
+  pointFnOpen("SIN"),
+  pointFnOpen("SINH"),
+  pointFnOpen("SQR"),
+  pointFnOpen("SQRT"),
+  pointFnOpen("TAN"),
+  pointFnOpen("TANH"),
 ];
 
 const wait_kw = kw("WAIT");
@@ -513,7 +548,7 @@ module.exports = grammar({
     // LEN takes a string and returns a int, special case
     len_function: ($) =>
       seq(
-        len,
+        len_kw,
         "(",
         choice($.char_variable, $.char_sys_var, $.quoted_char, $.concat_char),
         ")",
@@ -1052,8 +1087,8 @@ module.exports = grammar({
         $.num_variable,
         $.num_sys_var,
         $.special2Dvariable,
+        $.point_arithmetic_function,
         $.point_identifier,
-        $.arithmetic_function,
         $.val_function,
         $.len_function,
         $.idx_function,
@@ -1093,6 +1128,15 @@ module.exports = grammar({
       prec(PREC.parenthesized, seq("(", $.point_arithmetic, ")")),
 
     point_identifier: ($) => token(prec(PREC.keyword, /[A-Za-z][A-Za-z0-9_]*/)),
+
+    point_arithmetic_func_open: ($) =>
+      choice(...point_arithmetic_function_opens),
+
+    point_arithmetic_function: ($) =>
+      prec(
+        PREC.arithmetic,
+        seq($.point_arithmetic_func_open, $.point_arithmetic, ")"),
+      ),
 
     point_num_value: ($) => choice($.point_real, $.point_int),
     point_real: ($) => token(prec(PREC.general, /[0-9]+\.[0-9]+/)),

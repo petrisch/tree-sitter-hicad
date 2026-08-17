@@ -1587,10 +1587,6 @@
       "required": true,
       "types": [
         {
-          "type": "arithmetic_function",
-          "named": true
-        },
-        {
           "type": "asc_function",
           "named": true
         },
@@ -1608,6 +1604,10 @@
         },
         {
           "type": "num_variable",
+          "named": true
+        },
+        {
+          "type": "point_arithmetic_function",
           "named": true
         },
         {
@@ -1636,6 +1636,30 @@
         },
         {
           "type": "val_function",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "point_arithmetic_func_open",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "point_arithmetic_function",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "point_arithmetic",
+          "named": true
+        },
+        {
+          "type": "point_arithmetic_func_open",
           "named": true
         }
       ]
