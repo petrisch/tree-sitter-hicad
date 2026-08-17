@@ -65,6 +65,8 @@ OPEN Y:FOO
   OUTPUT $FOO
   INPUT $FOO
   INPUT %ANZF
+  REM String concatination in file operation
+  OUTPUT ($FOO+$BAR)
 CLOSE
 
 DEL $FOO
@@ -82,7 +84,6 @@ FAE
 
 REM Not sure what this does, but seems legit
 RMT ..\pmu\2dteil_khilf.pmu
-
 
 END
 
@@ -206,9 +207,10 @@ END
   (file_operation
     (file_write
       (output_kw)
-      (char_variable
-        (char_var_sign)
-        (identifier))))
+      (char_expression
+        (char_variable
+          (char_var_sign)
+          (identifier)))))
   (input
     (scal_input
       (scalar_in
@@ -226,6 +228,20 @@ END
         (num_variable
           (num_var_sign)
           (num_var_name)))))
+  (comment)
+  (file_operation
+    (file_write
+      (output_kw)
+      (char_expression
+        (parenthesized_char_expression
+          (char_expression
+            (concat_char
+              (char_variable
+                (char_var_sign)
+                (identifier))
+              (char_variable
+                (char_var_sign)
+                (identifier))))))))
   (file_operation
     (file_close
       (close_kw)))

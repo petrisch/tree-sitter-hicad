@@ -837,12 +837,14 @@ module.exports = grammar({
 
     char_expression: ($) =>
       choice(
+        $.parenthesized_char_expression,
         $.char_variable,
         $.char_sys_var,
         $.quoted_char,
         $.concat_char,
         $.string_function,
       ),
+    parenthesized_char_expression: ($) => seq("(", $.char_expression, ")"),
 
     comparative_operator: ($) => choice(...comparative_operators),
 
@@ -893,7 +895,8 @@ module.exports = grammar({
     file_close: ($) => $.close_kw,
 
     file_write: ($) =>
-      seq($.output_kw, choice($.char_variable, $.num_variable)),
+      seq($.output_kw, choice($.char_expression, $.num_variable)),
+
     output_kw: ($) => output_kw,
 
     open_kw: ($) => open_kw,

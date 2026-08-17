@@ -293,6 +293,10 @@
           "named": true
         },
         {
+          "type": "parenthesized_char_expression",
+          "named": true
+        },
+        {
           "type": "quoted_char",
           "named": true
         },
@@ -861,7 +865,7 @@
       "required": true,
       "types": [
         {
-          "type": "char_variable",
+          "type": "char_expression",
           "named": true
         },
         {
@@ -1443,6 +1447,21 @@
         },
         {
           "type": "parenthesis",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "parenthesized_char_expression",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "char_expression",
           "named": true
         }
       ]
