@@ -1992,11 +1992,11 @@
         },
         {
           "type": "SYMBOL",
-          "name": "quoted_char"
+          "name": "concat_char"
         },
         {
           "type": "SYMBOL",
-          "name": "concat_char"
+          "name": "quoted_char"
         },
         {
           "type": "SYMBOL",
@@ -2142,6 +2142,10 @@
             {
               "type": "SYMBOL",
               "name": "char_sys_var"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "char_literal"
             }
           ]
         },
@@ -2159,6 +2163,10 @@
                 "members": [
                   {
                     "type": "SYMBOL",
+                    "name": "quoted_char"
+                  },
+                  {
+                    "type": "SYMBOL",
                     "name": "char_variable"
                   },
                   {
@@ -2167,7 +2175,7 @@
                   },
                   {
                     "type": "SYMBOL",
-                    "name": "quoted_char"
+                    "name": "char_literal"
                   }
                 ]
               }

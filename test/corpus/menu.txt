@@ -69,7 +69,12 @@ ESC
 REM various string examples
 STRING  $PROG
 STRING  10-30%181mµéàèçai
+
+REM String concatination
 STRING  "HCM_"+$@9
+STRING  "HCM_"+SOMETEXT
+
+REM and the free argument
 STRING #
 
 REAL RET
@@ -493,6 +498,7 @@ END
       (scalar_in)
       (scal_value
         (text_value))))
+  (comment)
   (input
     (scal_input
       (scalar_in)
@@ -501,6 +507,15 @@ END
           (concat_char
             (quoted_char)
             (char_sys_var))))))
+  (input
+    (scal_input
+      (scalar_in)
+      (scal_value
+        (char_value
+          (concat_char
+            (quoted_char)
+            (char_literal))))))
+  (comment)
   (input
     (scal_input
       (scalar_in)

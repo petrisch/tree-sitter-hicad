@@ -448,6 +448,10 @@
       "required": true,
       "types": [
         {
+          "type": "char_literal",
+          "named": true
+        },
+        {
           "type": "char_sys_var",
           "named": true
         },

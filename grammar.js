@@ -643,8 +643,8 @@ module.exports = grammar({
     char_value: ($) =>
       choice(
         $.windows_path,
-        $.quoted_char,
         $.concat_char,
+        $.quoted_char,
         $.char_variable,
         $.char_sys_var,
         $.string_function,
@@ -680,9 +680,17 @@ module.exports = grammar({
 
     concat_char: ($) =>
       seq(
-        choice($.quoted_char, $.char_variable, $.char_sys_var),
+        choice($.quoted_char, $.char_variable, $.char_sys_var, $.char_literal),
         repeat1(
-          seq("+", choice($.char_variable, $.char_sys_var, $.quoted_char)),
+          seq(
+            "+",
+            choice(
+              $.quoted_char,
+              $.char_variable,
+              $.char_sys_var,
+              $.char_literal,
+            ),
+          ),
         ),
       ),
 
