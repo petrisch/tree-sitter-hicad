@@ -4015,6 +4015,10 @@
               {
                 "type": "SYMBOL",
                 "name": "point_reference"
+              },
+              {
+                "type": "SYMBOL",
+                "name": "point_no_args"
               }
             ]
           }
@@ -4455,6 +4459,17 @@
         "content": {
           "type": "PATTERN",
           "value": "M[0-9]"
+        }
+      }
+    },
+    "point_no_args": {
+      "type": "IMMEDIATE_TOKEN",
+      "content": {
+        "type": "PREC",
+        "value": 14,
+        "content": {
+          "type": "PATTERN",
+          "value": " +I *\\r?\\n"
         }
       }
     },

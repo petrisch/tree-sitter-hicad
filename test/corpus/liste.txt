@@ -10,7 +10,7 @@ REM List calls
 REM   LINIEN   1 = Isolierte Pkt
 OPTION   1   6
 POINT   R
-REM TODO: POINT   I
+POINT   I
 LINE             8         0
 WIED             0         0
 WIED             0         0         0         0         0
@@ -35,7 +35,10 @@ END
       (point_kw)
       (point_opt_option
         (point_opt_argument_indicator))))
-  (comment)
+  (input
+    (point
+      (point_kw)
+      (point_no_args)))
   (expression
     (line_function
       (num_value

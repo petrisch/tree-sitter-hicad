@@ -969,6 +969,7 @@ module.exports = grammar({
             $.point_2p_option,
             $.point_a_option,
             $.point_reference,
+            $.point_no_args,
           ),
         ),
       ),
@@ -1106,6 +1107,10 @@ module.exports = grammar({
 
     point_ar_reference: ($) => token(prec(PREC.keyword + 1, /AR/)),
     point_m_reference: ($) => token(prec(PREC.keyword + 1, /M[0-9]/)),
+
+    // let this explicitly have no args. TODO: we dont know what it does and if its still valid.
+    // point_no_args: ($) => token.immediate(prec(PREC.keyword, /[ ]+I/)),
+    point_no_args: ($) => token.immediate(prec(PREC.keyword, / +I *\r?\n/)),
 
     point_argument: ($) =>
       choice($.point_literal, $.line_literal, $.point_arithmetic),

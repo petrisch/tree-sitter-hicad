@@ -1534,6 +1534,10 @@
           "named": true
         },
         {
+          "type": "point_no_args",
+          "named": true
+        },
+        {
           "type": "point_opt_option",
           "named": true
         },
@@ -2675,6 +2679,10 @@
   },
   {
     "type": "point_m_reference",
+    "named": true
+  },
+  {
+    "type": "point_no_args",
     "named": true
   },
   {
