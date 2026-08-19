@@ -257,6 +257,10 @@
         {
           "type": "SYMBOL",
           "name": "line_function"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "zusatz_function"
         }
       ]
     },
@@ -5185,52 +5189,118 @@
         }
       }
     },
-    "line_function": {
+    "line_kw": {
+      "type": "TOKEN",
+      "content": {
+        "type": "PREC",
+        "value": 14,
+        "content": {
+          "type": "PATTERN",
+          "value": "[lL][iI][nN][eE]"
+        }
+      }
+    },
+    "line_arg": {
+      "type": "IMMEDIATE_TOKEN",
+      "content": {
+        "type": "PATTERN",
+        "value": "[ \\t]+[+-]?([0-9]*[.])?[0-9]+"
+      }
+    },
+    "wied_continuation_kw": {
+      "type": "IMMEDIATE_TOKEN",
+      "content": {
+        "type": "PATTERN",
+        "value": "[ \\t]*\\r?\\n[ \\t]*[Ww][Ii][Ee][Dd]"
+      }
+    },
+    "wied_continuation": {
       "type": "SEQ",
       "members": [
         {
-          "type": "TOKEN",
-          "content": {
-            "type": "PREC",
-            "value": 14,
-            "content": {
-              "type": "PATTERN",
-              "value": "[lL][iI][nN][eE]"
-            }
-          }
+          "type": "SYMBOL",
+          "name": "wied_continuation_kw"
         },
         {
           "type": "REPEAT",
           "content": {
             "type": "SYMBOL",
-            "name": "num_value"
+            "name": "line_arg"
           }
+        }
+      ]
+    },
+    "line_function": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "SEQ",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "line_kw"
+            },
+            {
+              "type": "REPEAT",
+              "content": {
+                "type": "SYMBOL",
+                "name": "line_arg"
+              }
+            },
+            {
+              "type": "REPEAT1",
+              "content": {
+                "type": "SYMBOL",
+                "name": "wied_continuation"
+              }
+            }
+          ]
         },
         {
-          "type": "REPEAT",
-          "content": {
-            "type": "SEQ",
-            "members": [
-              {
-                "type": "TOKEN",
-                "content": {
-                  "type": "PREC",
-                  "value": 14,
-                  "content": {
-                    "type": "PATTERN",
-                    "value": "[wW][iI][eE][dD]"
-                  }
-                }
-              },
-              {
-                "type": "REPEAT",
-                "content": {
-                  "type": "SYMBOL",
-                  "name": "num_value"
-                }
-              }
-            ]
-          }
+          "type": "SEQ",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "line_kw"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "flow_args"
+            }
+          ]
+        }
+      ]
+    },
+    "zusatz_kw": {
+      "type": "TOKEN",
+      "content": {
+        "type": "PREC",
+        "value": 14,
+        "content": {
+          "type": "PATTERN",
+          "value": "[zZ][uU][sS][aA][tT][zZ][ \\t]+"
+        }
+      }
+    },
+    "zusatz_function": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "zusatz_kw"
+        },
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "flow_args"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "arithmetic"
+            }
+          ]
         }
       ]
     },

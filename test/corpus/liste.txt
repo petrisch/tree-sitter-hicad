@@ -9,6 +9,7 @@ REM List calls
 
 REM   LINIEN   1 = Isolierte Pkt
 OPTION   1   6
+ZUSATZ          -1
 POINT   R
 POINT   I
 LINE             8         0
@@ -30,6 +31,12 @@ END
       (option_kw)
       (menu_index)
       (menu_code)))
+  (expression
+    (zusatz_function
+      (zusatz_kw)
+      (arithmetic
+        (num_value
+          (real)))))
   (input
     (point
       (point_kw)
@@ -41,32 +48,25 @@ END
       (point_no_args)))
   (expression
     (line_function
-      (num_value
-        (real))
-      (num_value
-        (real))
-      (num_value
-        (real))
-      (num_value
-        (real))
-      (num_value
-        (real))
-      (num_value
-        (real))
-      (num_value
-        (real))
-      (num_value
-        (real))
-      (num_value
-        (real))
-      (num_value
-        (real))
-      (num_value
-        (real))
-      (num_value
-        (real))
-      (num_value
-        (real))
-      (num_value
-        (real))))
+      (line_kw)
+      (line_arg)
+      (line_arg)
+      (wied_continuation
+        (wied_continuation_kw)
+        (line_arg)
+        (line_arg))
+      (wied_continuation
+        (wied_continuation_kw)
+        (line_arg)
+        (line_arg)
+        (line_arg)
+        (line_arg)
+        (line_arg))
+      (wied_continuation
+        (wied_continuation_kw)
+        (line_arg)
+        (line_arg)
+        (line_arg)
+        (line_arg)
+        (line_arg))))
   (end_marker))

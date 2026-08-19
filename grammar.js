@@ -163,7 +163,11 @@ const dbaus = kw("DBAUS");
 const liste_kw = kw("LISTE");
 
 const line_kw = kw("LINE");
-const wied_kw = kw("WIED");
+// const wied_kw = kw("WIED"); <- See the wied rules which needs to consume eol
+// Neither know what this does, but since its a seperate statement we need to consume eol too.
+const zusatz_kw = token(
+  prec(PREC.keyword, new RegExp(`${ciSource("ZUSATZ")}[ \\t]+`)),
+);
 
 const guidance_noargs = [
   apein,
@@ -436,6 +440,7 @@ module.exports = grammar({
         $.system_function,
         $.func_api_call,
         $.line_function,
+        $.zusatz_function,
       ),
 
     guidance_noarg: ($) => choice(...guidance_noargs),
@@ -1192,15 +1197,20 @@ module.exports = grammar({
 
     angle_kw: ($) => angle_kw,
 
+    line_kw: ($) => line_kw,
+    line_arg: ($) => token.immediate(/[ \t]+[+-]?([0-9]*[.])?[0-9]+/),
+    wied_continuation_kw: ($) =>
+      token.immediate(/[ \t]*\r?\n[ \t]*[Ww][Ii][Ee][Dd]/),
+    wied_continuation: ($) => seq($.wied_continuation_kw, repeat($.line_arg)),
     line_function: ($) =>
-      seq(
-        line_kw,
-        repeat($.num_value),
-        repeat(seq(wied_kw, repeat($.num_value))),
+      choice(
+        seq($.line_kw, repeat($.line_arg), repeat1($.wied_continuation)),
+        seq($.line_kw, $.flow_args),
       ),
+    zusatz_kw: ($) => zusatz_kw,
+    zusatz_function: ($) => seq($.zusatz_kw, choice($.flow_args, $.arithmetic)),
 
     comment: ($) => token(prec(PREC.comment, /REM.*/i)),
-
     decimal: ($) => /\d+\.?\d*/,
   },
 });

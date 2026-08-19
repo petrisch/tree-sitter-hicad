@@ -722,6 +722,10 @@
         {
           "type": "warte",
           "named": true
+        },
+        {
+          "type": "zusatz_function",
+          "named": true
         }
       ]
     }
@@ -1207,10 +1211,22 @@
     "fields": {},
     "children": {
       "multiple": true,
-      "required": false,
+      "required": true,
       "types": [
         {
-          "type": "num_value",
+          "type": "flow_args",
+          "named": true
+        },
+        {
+          "type": "line_arg",
+          "named": true
+        },
+        {
+          "type": "line_kw",
+          "named": true
+        },
+        {
+          "type": "wied_continuation",
           "named": true
         }
       ]
@@ -2362,6 +2378,25 @@
     }
   },
   {
+    "type": "wied_continuation",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "line_arg",
+          "named": true
+        },
+        {
+          "type": "wied_continuation_kw",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "windows_path",
     "named": true,
     "fields": {},
@@ -2375,6 +2410,29 @@
         },
         {
           "type": "unc_path",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "zusatz_function",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "arithmetic",
+          "named": true
+        },
+        {
+          "type": "flow_args",
+          "named": true
+        },
+        {
+          "type": "zusatz_kw",
           "named": true
         }
       ]
@@ -2571,6 +2629,14 @@
   },
   {
     "type": "label",
+    "named": true
+  },
+  {
+    "type": "line_arg",
+    "named": true
+  },
+  {
+    "type": "line_kw",
     "named": true
   },
   {
@@ -2771,6 +2837,14 @@
   },
   {
     "type": "while_kw",
+    "named": true
+  },
+  {
+    "type": "wied_continuation_kw",
+    "named": true
+  },
+  {
+    "type": "zusatz_kw",
     "named": true
   }
 ]
