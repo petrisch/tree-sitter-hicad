@@ -70,4 +70,5 @@ Also right now the grammar is somehow opiniated, since there are no other progra
 - [x] Check `STRING "FOO"+bar`
 - [x] Solve the occurence of bare `POINT R` on a line
 - [x] Check for `POINT I`
+- [x] Allow spaces in paths (but dont do that even in 2026)
 - [ ] Create queries for tagging, code navigation etc.

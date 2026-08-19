@@ -673,10 +673,10 @@ module.exports = grammar({
     // Allows hyphens in host/path parts.
     unc_path: ($) =>
       token(
-        prec(PREC.keyword + 2, /\\\\[A-Za-z0-9_.-]+\\[A-Za-z0-9_.\\-]{1,256}/),
+        prec(PREC.keyword + 2, /\\\\[A-Za-z0-9_.-]+\\[A-Za-z0-9 _.\\-]{1,256}/),
       ),
     local_path: ($) =>
-      token(prec(PREC.keyword + 2, /[A-Za-z]:\\[A-Za-z0-9_.\\-]{1,256}/)),
+      token(prec(PREC.keyword + 2, /[A-Za-z]:\\[A-Za-z0-9 _.\\-]{1,256}/)),
 
     concat_char: ($) =>
       seq(
